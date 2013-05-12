@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../entries2html.xsl" ?>
+<entry type="method" name="Validator.resetForm">
+	<title>Validator.resetForm()</title>
+	<signature>
+	</signature>
+	<desc>Resets the controlled form.</desc>
+	<longdesc>Resets input fields to their original value (requires form plugin), removes classes indicating invalid elements and hides error messages.</longdesc>
+	<example>
+		<desc>Reset the form controlled by this validator.</desc>
+		<code><![CDATA[
+var validator = $( "#myform" );
+validator.resetForm();
+]]></code>
+	</example>
+	<category slug="validator"/>
+</entry>

@@ -1,0 +1,15 @@
+<categories>
+	<category name="Uncategorized" slug="uncategorized"/>
+	<category name="Methods" slug="methods"></category>
+	<category name="Additional Methods" slug="additional-methods"></category>
+	<category name="Plugin Methods" slug="plugin">
+		<desc><![CDATA[
+			All jQuery methods that the plugin adds, available on all jQuery objects.
+		]]></desc>
+	</category>
+	<category name="Validator" slug="validator">
+		<desc><![CDATA[
+			Methods available on the Validator object returned by the validate method.
+		]]></desc>
+	</category>
+</categories>

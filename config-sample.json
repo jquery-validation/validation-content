@@ -1,0 +1,6 @@
+{
+	"url": "validation.local",
+	"username": "admin",
+	"password": "secret",
+	"dir": "dist/wordpress"
+}

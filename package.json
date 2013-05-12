@@ -1,0 +1,30 @@
+{
+  "name": "jqueryvalidation-content",
+  "title": "jQuery Validation Plugin site content",
+  "description": "Site content for the jQuery Validation Plugin",
+  "version": "1.0.0",
+  "homepage": "http://validation.bassistance.de",
+  "author": {
+    "name": "Jörn Zaefferer (http://bassistance.de/)"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jzaefferer/jqueryvalidation-content.git"
+  },
+  "bugs": {
+    "url": "https://github.com/jzaefferer/jqueryvalidation-content/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://www.opensource.org/licenses/MIT"
+    }
+  ],
+  "dependencies": {
+    "grunt": "0.3.17",
+    "grunt-clean": "0.3.0",
+    "grunt-wordpress": "1.0.7",
+    "grunt-jquery-content": "0.9.0",
+    "grunt-check-modules": "0.1.0"
+  }
+}
