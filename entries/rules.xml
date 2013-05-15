@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<entry name="rules" type="method" return="Object">
+	<title>.rules()</title>
+	<desc>Read, add and remove rules for an element.</desc>
+	<longdesc>
+		Return the validations rules for the first selected element or
+
+		Adds the specified rules and returns all rules for the first matched element. Requires that the parent form is validated, that is, $(&quot;form&quot;).validate() is called first or
+
+		Removes the specified rules and returns all rules for the first matched element.
+
+		There are several ways to specify validation rules.
+		<ul>
+			<li>Validation methods without parameters can be specified as classes on the element (recommended)</li>
+			<li>Validation methods with parameters can be specified as attributes (recommended)</li>
+			<li>Both can be specified as metadata using the metadata plugin</li>
+			<li>Both can be specified using the rules-option of the validate()-method</li>
+		</ul>
+		When setting, the rules can also contain a messages-object, specifying custom messages for existing or added rules.
+	</longdesc>
+	<signature>
+		<desc>Read rules for the first element</desc>
+	</signature>
+	<signature>
+		<desc>Add rules</desc>
+		<argument name='"add"' type="String"/>
+		<argument name="rules" type="Object">
+			<desc>The rules to add. Accepts the same format as the rules-option of the validate-method.</desc>
+		</argument>
+	</signature>
+	<signature>
+		<desc>Remove rules</desc>
+		<argument name='"remove"' type="String"/>
+		<argument name="rules" type="Object">
+			<desc>The space-seperated names of rules to remove and return. If left unspecified, removes and return all rules. Manipulates only rules specified via rules-option or via rules("add").</desc>
+		</argument>
+	</signature>
+	<example>
+		<desc>Adds minlength: 2 to an element which is already required.</desc>
+		<code><![CDATA[
+$( "#myinput" ).rules( "add", {
+	minlength: 2
+});
+]]></code>
+	</example>
+	<example>
+		<desc>Adds required and minlength: 2 to an element and specifies custom messages for both.</desc>
+		<code><![CDATA[
+$( "#myinput" ).rules( "add", {
+	required: true,
+	minlength: 2,
+	messages: {
+		required: "Required input",
+		minlength: jQuery.format("Please, at least {0} characters are necessary")
+	}
+});
+]]></code>
+	</example>
+	<example>
+		<desc>Removes all static rules from an element.</desc>
+		<code><![CDATA[
+$( "#myinput" ).rules( "remove" );
+]]></code>
+	</example>
+	<example>
+		<desc>Removes min and max rules from an element.</desc>
+		<code><![CDATA[
+$( "#myinput" ).rules( "remove", "min max" );
+]]></code>
+	</example>
+	<category slug="plugin"/>
+</entry>

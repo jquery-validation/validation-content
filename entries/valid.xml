@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<entry name="valid" type="method" return="Boolean">
+	<title>.valid()</title>
+	<desc>Checks whether the selected form is valid or whether all selected elements are valid.</desc>
+	<longdesc>
+		<a href="/validate">validate()</a> needs to be called on the form before checking it using this method.
+	</longdesc>
+	<signature>
+	</signature>
+	<example>
+		<desc>Sets up validation for a form, then checks if the form is when clicking a button valid.</desc>
+		<css><![CDATA[
+
+]]></css>
+		<code><![CDATA[
+var form = $( "#myform" ).validate();
+$( "button" ).click(function() {
+	alert( "Valid: " + form.valid() );
+});
+]]></code>
+		<html><![CDATA[
+<form id="myform">
+	<input type="text" name="name" required>
+	<br>
+	<button>Validate!</button>
+</form>
+]]></html>
+	</example>
+	<category slug="plugin"/>
+</entry>

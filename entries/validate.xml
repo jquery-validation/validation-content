@@ -1,55 +1,515 @@
 <?xml version="1.0"?>
 <entry name="validate" type="method" return="Validator">
 	<title>.validate()</title>
-	<desc>Validate a single form.</desc>
+	<desc>Validates the selected form.</desc>
 	<longdesc>
-		<p>The jQuery UI <code>.position()</code> method allows you to position an element relative to the window, document, another element, or the cursor/mouse, without worrying about offset parents.</p>
-		<p><em>Note: jQuery UI does not support positioning hidden elements.</em></p>
-		<p>This is a standalone jQuery plugin and has no dependencies on other jQuery UI components.</p>
-		<xi:include href="../includes/core-extension-desc.xml" xmlns:xi="http://www.w3.org/2003/XInclude"/>
+		This method sets up event handlers for submit, focus, keyup, blur and click to trigger validation of the entire form or individual elements. Each one can be disabled, see the onxxx options (onsubmit, onfocusout, onkeyup, onclick). focusInvalid focuses elements when submitting a invalid form.
+		<p>Use the debug option to ease setting up validation rules, it always prevents the default submit, even when script errors occur.</p>
+		<p>Use submitHandler to implement your own form submit, eg. via Ajax. Use invalidHandler to react when an invalid form is submitted.</p>
+		<p>Use rules and messages to specify which elements to validate, and how. See [[Plugins/Validation/rules|rules()]] for more details about specifying validation rules.</p>
+		<p>Use errorClass, errorElement, wrapper, errorLabelContainer, errorContainer, showErrors, success, errorPlacement, highlight, unhighlight, and ignoreTitle to control how invalid elements and error messages are displayed.</p>
 	</longdesc>
-	<added>1.8</added>
 	<signature>
-		<argument name="options" type="Object">
-			<property name="my" default='"center"'>
-				<desc>Defines which position <strong>on the element being positioned</strong> to align with the target element: "horizontal vertical" alignment. A single value such as <code>"right"</code> will be normalized to <code>"right center"</code>, <code>"top"</code> will be normalized to <code>"center top"</code> (following CSS convention). Acceptable horizontal values: <code>"left"</code>, <code>"center"</code>, <code>"right"</code>. Acceptable vertical values: <code>"top"</code>, <code>"center"</code>, <code>"bottom"</code>. Example: <code>"left top"</code> or <code>"center center"</code>. Each dimension can also contain offsets, in pixels or percent, e.g., <code>"right+10 top-25%"</code>. Percentage offsets are relative to the element being positioned.</desc>
-				<type name="String"/>
+		<argument name="options" type="Object" optional="true">
+			<property name="debug" default="false">
+				<desc>Enables debug mode. If true, the form is not submitted and certain errors are displayed on the console (requires [http://getfirebug.com Firebug or Firebug lite]). Try to enable when a form is just submitted instead of validation stopping the submit.</desc>
+				<type name="Boolean"/>
+				<!--
+				{{APIOptionExample|
+|desc=Prevents the form from submitting and tries to help setting up the validation with warnings about missing methods and other debug messages.
+|code={{Code|Core|$}}(&quot;.selector&quot;).{{Code|Plugins/Validation|validate}}({
+    debug: true
+ })
+}}
+{{APIOptionExample|
+|desc=Sets the debug option as the default, handy when validating multiple forms on a single page.
+|code={{Code|Core|$}}.validator.{{Code|Plugins/Validation/Validator|setDefaults}}({
+    debug: true
+ })
+}}
+-->
 			</property>
-			<property name="at" default='"center"'>
-				<desc>Defines which position <strong>on the target element</strong> to align the positioned element against: "horizontal vertical" alignment. See the <a href="#option-my"><code>my</code></a> option for full details on possible values. Percentage offsets are relative to the target element.</desc>
-				<type name="String"/>
+			<property name="submitHandler" default="native form submit">
+				<desc>Callback for handling the actual submit when the form is valid. Gets the form as the only argument. Replaces the default submit. The right place to [http://www.malsup.com/jquery/form/#api submit a form via Ajax] after it validated.</desc>
+				<type name="Function"/>
+				<!--
+					{{APIOptionExample|
+|desc=Submits the form via Ajax when valid.
+|code={{Code|Core|$}}(&quot;.selector&quot;).{{Code|Plugins/Validation|validate}}({
+    submitHandler: function(form) {
+      {{Code|Core|$}}(form).ajaxSubmit();
+    }
+ })
+}}
+{{APIOptionExample|
+|desc=Use submitHandler to process something and then using the default submit. Note that &quot;form&quot; refers to a DOM element, this way the validation isn't triggered again.
+|code={{Code|Core|$}}(&quot;.selector&quot;).{{Code|Plugins/Validation|validate}}({
+    submitHandler: function(form) {
+        // do other stuff for a valid form
+      form.submit();
+    }
+ })
+}}
+-->
 			</property>
-			<property name="of" default="null">
-				<desc>Which element to position against. If you provide a selector or jQuery object, the first matching element will be used. If you provide an event object, the <code>pageX</code> and <code>pageY</code> properties will be used. Example: <code>"#top-menu"</code></desc>
+			<property name="invalidHandler">
+				<desc>Callback for custom code when an invalid form is submitted. Called with a event object as the first argument, and the validator as the second.</desc>
+				<type name="Function"/>
+				<!--
+					{{APIOptionExample|
+|desc=Displays a message above the form, indicating how many fields are invalid when the user tries to submit an invalid form.
+|code={{Code|Core|$}}(&quot;.selector&quot;).{{Code|Plugins/Validation|validate}}({&lt;nowiki&gt;
+    invalidHandler: function(event, validator) {
+      // 'this' refers to the form
+      var errors = validator.numberOfInvalids();
+      if (errors) {
+        var message = errors == 1
+          ? 'You missed 1 field. It has been highlighted'
+          : 'You missed ' + errors + ' fields. They have been highlighted';
+        $(&quot;div.error span&quot;).html(message);
+        $(&quot;div.error&quot;).show();
+      } else {
+        $(&quot;div.error&quot;).hide();
+      }
+    }
+ })&lt;/nowiki&gt;
+}}
+-->
+			</property>
+			<property name="ignore" default='":hidden"'>
+				<desc>Elements to ignore when validating, simply filtering them out. jQuery's not-method is used, therefore everything that is accepted by not() can be passed as this option. Inputs of type submit and reset are always ignored, so are disabled elements.</desc>
 				<type name="Selector"/>
-				<type name="Element"/>
-				<type name="jQuery"/>
-				<type name="Event"/>
+<!-- 				{{APIOptionExample|
+|desc=Ignores all element with the class &quot;ignore&quot; when validating.
+|code={{Code|Core|$}}(&quot;#myform&quot;).{{Code|Plugins/Validation|validate}}({
+    ignore: &quot;.ignore&quot;
+ })
+}} -->
 			</property>
-			<property name="collision" default='"flip"'>
+			<property name="rules">
 				<desc>
-					<p>When the positioned element overflows the window in some direction, move it to an alternative position. Similar to <a href="#option-my"><code>my</code></a> and <a href="#option-at"><code>at</code></a>, this accepts a single value or a pair for horizontal/vertical, e.g., <code>"flip"</code>, <code>"fit"</code>, <code>"fit flip"</code>, <code>"fit none"</code>.</p>
-					<ul>
-						<li><code>"flip"</code>: Flips the element to the opposite side of the target and the collision detection is run again to see if it will fit. Whichever side allows more of the element to be visible will be used.</li>
-						<li><code>"fit"</code>: Shift the element away from the edge of the window.</li>
-						<li><code>"flipfit"</code>: First applies the flip logic, placing the element on whichever side allows more of the element to be visible. Then the fit logic is applied to ensure as much of the element is visible as possible.</li>
-						<li><code>"none"</code>: Does not apply any collision detection.</li>
-					</ul>
+					Key/value pairs defining custom rules. Key is the name of an element (or a group of checkboxes/radio buttons), value is an object consisting of rule/parameter pairs or a plain String. Can be combined with class/attribute/data rules. Each rule can be specified as having a depends-property to apply the rule only in certain conditions. See the second example below for details.|rules are read from markup (classes, attributes, data)
 				</desc>
+				<type name="Object"/>
+<!-- 				{{APIOptionExample|
+|desc=Specifies a name element as required and an email element as required (using the shortcut for a single rule) and a valid email address (using another object literal).
+|code={{Code|Core|$}}(&quot;.selector&quot;).{{Code|Plugins/Validation|validate}}({
+    rules: {
+      // simple rule, converted to {required:true}
+      name: &quot;required&quot;,
+      // compound rule
+      email: {
+        required: true,
+        email: true
+      }
+    }
+ })
+}}
+{{APIOptionExample|
+|desc=Specifies a contact element as required and as email address, the latter depending on a checkbox being checked for contacting via email.
+|code={{Code|Core|$}}(&quot;.selector&quot;).{{Code|Plugins/Validation|validate}}({
+    rules: {
+      contact: {
+        required: true,
+        email: {
+          depends: function(element) {
+            return $(&quot;#contactform_email:checked&quot;)
+          }
+        }
+      }
+    }
+ })
+}} -->
+			</property>
+			<property name="messages" default="the default message for the method used">
+				<desc>
+					Key/value pairs defining custom messages. Key is the name of an element, value the message to display for that element. Instead of a plain message another map with specific messages for each rule can be used. Overrides the title attribute of an element or the default message for the method (in that order). Each message can be a String or a Callback. The callback is called in the scope of the validator and with the rule's parameters as the first and the element as the second arugment, it must return a String to display as the message.
+				</desc>
+				<type name="Object"/>
+<!-- 				{{APIOptionExample|
+|desc=Specifies a name element as required and an email element as required and a valid email address. A single message is specified for the name element, and two messages for email.
+|code={{Code|Core|$}}(&quot;.selector&quot;).{{Code|Plugins/Validation|validate}}({
+    rules: {
+      name: &quot;required&quot;,
+      email: {
+        required: true,
+        email: true
+      }
+    },
+    messages: {
+      name: &quot;Please specify your name&quot;,
+      email: {
+        required: &quot;We need your email address to contact you&quot;,
+        email: &quot;Your email address must be in the format of name@domain.com&quot;
+      }
+    }
+ })
+}}
+{{APIOptionExample|
+|desc=Validates the name-field as required and having at least two characters. Provides a callback message using jQuery.format to avoid having to specify the parameter in two places.
+|code={{Code|Core|$}}(&quot;.selector&quot;).{{Code|Plugins/Validation|validate}}({
+    rules: {
+      name: {
+        required: true,
+        minlength: 2
+      }
+    },
+    messages: {
+      name: {
+        required: &quot;We need your email address to contact you&quot;,
+        minlength: jQuery.format(&quot;At least {0} characters required!&quot;)
+      }
+    }
+ })
+}} -->
+			</property>
+			<property name="groups">
+				<desc>Specify grouping of error messages. A group consists of an arbitrary group name as the key and a space separated list of element names as the value. Use errorPlacement to control where the group message is placed.</desc>
+				<type name="Object"/>
+<!-- 				{{APIOptionExample|
+|desc=Use a table layout for the form, placing error messags in the next cell after the input.
+|inhead=&lt;nowiki&gt;&lt;script type=&quot;text/javascript&quot; src=&quot;http://jzaefferer.github.com/jquery-validation/jquery.validate.js&quot;&gt;&lt;/script&gt;&lt;/nowiki&gt;
+|html=&lt;nowiki&gt;&lt;form id=&quot;myform&quot;&gt;
+  &lt;label&gt;Your Name&lt;/label&gt;
+  &lt;input name=&quot;fname&quot; class=&quot;required&quot; value=&quot;Pete&quot; /&gt;
+  &lt;input name=&quot;lname&quot; id=&quot;lastname&quot; class=&quot;required&quot; /&gt;
+  &lt;br/&gt;
+  &lt;input type=&quot;submit&quot; value=&quot;Submit&quot;/&gt;
+&lt;/form&gt;&lt;/nowiki&gt;
+|code={{Code|Core|$}}(&quot;#myform&quot;).{{Code|Plugins/Validation|validate}}({
+   groups: {
+     username: &quot;fname lname&quot;
+   },
+   &lt;nowiki&gt;errorPlacement: function(error, element) {
+     if (element.attr(&quot;name&quot;) == &quot;fname&quot;
+                 || element.attr(&quot;name&quot;) == &quot;lname&quot; )
+       error.insertAfter(&quot;#lastname&quot;);
+     else
+       error.insertAfter(element);
+   },
+   debug:true
+ })&lt;/nowiki&gt;
+}} -->
+			</property>
+			<property name="onsubmit">
+				<desc>
+					Validate the form on submit. Set to false to use only other events for validation.
+					<p>Set to a Function to decide yourself when to run validation.</p>
+					<p>A boolean true is not a valid value.</p>
+				</desc>
+				<type name="Boolean"/>
+				<type name="Function"/>
+<!-- 				{{APIOptionExample|
+|desc=Disables onsubmit validation, allowing the user to submit whatever he wants, while still validating on keyup/blur/click events (if not specified otherwise).
+|code={{Code|Core|$}}(&quot;.selector&quot;).{{Code|Plugins/Validation|validate}}({
+    onsubmit: false
+ })
+}} -->
+			</property>
+			<property name="onfocusout">
+				<desc>
+					Validate elements (except checkboxes/radio buttons) on blur. If nothing is entered, all rules are skipped, except when the field was already marked as invalid.
+					<p>Set to a Function to decide yourself when to run validation.</p>
+					<p>A boolean true is not a valid value.</p>
+				</desc>
+				<type name="Boolean"/>
+				<type name="Function"/>
+				<!--
+					{{APIOptionExample|
+|desc=Disables onblur validation.
+|code={{Code|Core|$}}(&quot;.selector&quot;).{{Code|Plugins/Validation|validate}}({
+    onfocusout: false
+ })
+}}-->
+			</property>
+			<property name="onkeyup">
+				<desc>
+					Validate elements on keyup. As long as the field is not marked as invalid, nothing happens. Otherwise, all rules are checked on each key up event. Set to false to disable.
+					<p>Set to a Function to decide yourself when to run validation.</p>
+					<p>A boolean true is not a valid value.</p>
+				</desc>
+				<type name="Boolean"/>
+				<type name="Function"/>
+<!-- 				{{APIOptionExample|
+|desc=Disables onkeyup validation.
+|code={{Code|Core|$}}(&quot;.selector&quot;).{{Code|Plugins/Validation|validate}}({
+    onkeyup: false
+ })
+}} -->
+			</property>
+			<property name="onclick">
+				<desc>
+					Validate checkboxes and radio buttons on click. Set to false to disable.
+					<p>Set to a Function to decide yourself when to run validation.</p>
+					<p>A boolean true is not a valid value.</p>
+				</desc>
+				<type name="Boolean"/>
+				<type name="Function"/>
+<!-- 				{{APIOptionExample|
+|desc=Disables onclick validation of checkboxes and radio buttons.
+|code={{Code|Core|$}}(&quot;.selector&quot;).{{Code|Plugins/Validation|validate}}({
+    onclick: false
+ })
+}} -->
+			</property>
+			<property name="focusInvalid" default="true">
+				<desc>Focus the last active or first invalid element on submit via validator.focusInvalid(). The last active element is the one that had focus when the form was submitted, avoiding to steal its focus. If there was no element focused, the first one in the form gets it, unless this option is turned off.</desc>
+				<type name="Boolean"/>
+<!-- 				{{APIOptionExample|
+|desc=Disables focusing of invalid elements.
+|code={{Code|Core|$}}(&quot;.selector&quot;).{{Code|Plugins/Validation|validate}}({
+    focusInvalid: false
+ })
+}} -->
+			</property>
+			<property name="focusCleanup" default="false">
+				<desc>If enabled, removes the errorClass from the invalid elements and hides all errors messages whenever the element is focused. Avoid combination with focusInvalid.</desc>
+				<type name="Boolean"/>
+<!-- 				{{APIOptionExample|
+|desc=Enables cleanup when focusing elements, removing the error class and hiding error messages when an element is focused.
+|code={{Code|Core|$}}(&quot;.selector&quot;).{{Code|Plugins/Validation|validate}}({
+    focusCleanup: true
+ })
+}} -->
+			</property>
+			<property name="errorClass" default='"error"'>
+				<desc>Use this class to create error labels, to look for existing error labels and to add it to invalid elements.</desc>
 				<type name="String"/>
+<!-- 				{{APIOptionExample|
+|desc=Sets the error class to &quot;invalid&quot;.
+|code={{Code|Core|$}}(&quot;.selector&quot;).{{Code|Plugins/Validation|validate}}({
+    errorClass: &quot;invalid&quot;
+ })
+}} -->
 			</property>
-			<property name="using" default="null">
-				<desc>
-					When specified, the actual property setting is delegated to this callback. Receives two parameters: The first is a hash of <code>top</code> and <code>left</code> values for the position that should be set and can be forwarded to <code>.css()</code> or <code>.animate()</code>.
-					<p>The second provides feedback about the position and dimensions of both elements, as well as calculations to their relative position. Both <code>target</code> and <code>element</code> have these properties: <code>element</code>, <code>left</code>, <code>top</code>, <code>width</code>, <code>height</code>. In addition, there's <code>horizontal</code>, <code>vertical</code> and <code>important</code>, giving you twelve potential directions like <code>{ horizontal: "center", vertical: "left", important: "horizontal" }</code>.</p>
-				</desc>
+			<property name="validClass" default='"valid"'>
+				<desc>This class is added to an element after it was validated and considered valid.</desc>
+				<type name="String"/>
+<!-- 				{{APIOptionExample|
+|desc=Sets the valid class to &quot;success&quot;.
+|code={{Code|Core|$}}(&quot;.selector&quot;).{{Code|Plugins/Validation|validate}}({
+    validClass: &quot;success&quot;
+ })
+}} -->
+			</property>
+			<property name="errorElement" default='"label"'>
+				<desc>se this element type to create error messages and to look for existing error messages. The default, "label", has the advantage of creating a meaningful link between error message and invalid field using the for attribute (which is always used, no matter the element type).</desc>
+				<type name="String"/>
+<!-- 				{{APIOptionExample|
+|desc=Sets the error element to &quot;em&quot;.
+|code={{Code|Core|$}}(&quot;.selector&quot;).{{Code|Plugins/Validation|validate}}({
+    errorElement: &quot;em&quot;
+ })
+}} -->
+			</property>
+			<property name="wrapper" default="window">
+				<desc>Wrap error labels with the specified element. Useful in combination with errorLabelContainer to create a list of error messages.</desc>
+				<type name="String"/>
+<!-- 				{{APIOptionExample|
+|desc=Wrap each error element with a list item, useful when using an ordered or unordered list as the error container.
+|code={{Code|Core|$}}(&quot;.selector&quot;).{{Code|Plugins/Validation|validate}}({
+    wrapper: &quot;li&quot;
+ })
+}} -->
+			</property>
+			<property name="errorLabelContainer">
+				<desc>Hide and show this container when validating.</desc>
+				<type name="Selector"/>
+<!-- 				{{APIOptionExample|
+|desc=All error labels are displayed inside an unordered list with the ID &quot;messageBox&quot;, as specified by the selector passed as errorContainer option. All error elements are wrapped inside an li element, to create a list of messages.
+|html=&lt;nowiki&gt;&lt;script type=&quot;text/javascript&quot; src=&quot;http://jzaefferer.github.com/jquery-validation/jquery.validate.js&quot;&gt;&lt;/script&gt;
+&lt;ul id=&quot;messageBox&quot;&gt;&lt;/ul&gt;
+ &lt;form id=&quot;myform&quot; action=&quot;/login&quot; method=&quot;post&quot;&gt;
+   &lt;label&gt;Firstname&lt;/label&gt;
+   &lt;input name=&quot;fname&quot; class=&quot;required&quot; /&gt;
+   &lt;label&gt;Lastname&lt;/label&gt;
+   &lt;input name=&quot;lname&quot; title=&quot;Your lastname, please!&quot; class=&quot;required&quot; /&gt;
+   &lt;br/&gt;
+   &lt;input type=&quot;submit&quot; value=&quot;Submit&quot;/&gt;
+ &lt;/form&gt;&lt;/nowiki&gt;
+|code={{Code|Core|$}}(&quot;#myform&quot;).{{Code|Plugins/Validation|validate}}({
+    errorLabelContainer: &quot;#messageBox&quot;,
+    wrapper: &quot;li&quot;,
+    submitHandler: function() { alert(&quot;Submitted!&quot;) }
+ })
+}} -->
+			</property>
+			<property name="errorContainer">
+				<desc>Hide and show this container when validating.</desc>
+				<type name="Selector"/>
+<!-- 				{{APIOptionExample|
+|height=240
+|desc=Uses an additonal container for error messages. The elements given as the errorContainer are all shown and hidden when errors occur. But the error labels themselve are added to the element(s) given as errorLabelContainer, here an unordered list. Therefore the error labels are also wrapped into li elements (wrapper option).
+|css=&lt;nowiki&gt;#messageBox1, #messageBox2 { display: none }&lt;/nowiki&gt;
+|html=&lt;nowiki&gt;&lt;script type=&quot;text/javascript&quot; src=&quot;http://jzaefferer.github.com/jquery-validation/jquery.validate.js&quot;&gt;&lt;/script&gt;
+&lt;div id=&quot;messageBox1&quot;&gt;
+  &lt;ul&gt;&lt;/ul&gt;
+&lt;/div&gt;
+&lt;form id=&quot;myform&quot; action=&quot;/login&quot; method=&quot;post&quot;&gt;
+  &lt;label&gt;Firstname&lt;/label&gt;
+  &lt;input name=&quot;fname&quot; class=&quot;required&quot; /&gt;
+  &lt;label&gt;Lastname&lt;/label&gt;
+  &lt;input name=&quot;lname&quot; title=&quot;Your lastname, please!&quot; class=&quot;required&quot; /&gt;
+  &lt;br/&gt;
+  &lt;input type=&quot;submit&quot; value=&quot;Submit&quot;/&gt;
+&lt;/form&gt;
+&lt;div id=&quot;messageBox2&quot;&gt;
+  &lt;h3&gt;There are errors in your form, see details above!&lt;/h3&gt;
+&lt;/div&gt;&lt;/nowiki&gt;
+|code={{Code|Core|$}}(&quot;#myform&quot;).{{Code|Plugins/Validation|validate}}({
+    errorContainer: &quot;#messageBox1, #messageBox2&quot;,
+    errorLabelContainer: &quot;#messageBox1 ul&quot;,
+    wrapper: &quot;li&quot;, debug:true,
+    submitHandler: function() { alert(&quot;Submitted!&quot;) }
+ })
+}} -->
+			</property>
+			<property name="showErrors">
+				<desc>A custom message display handler. Gets the map of errors as the first argument and and array of errors as the second, called in the context of the validator object. The arguments contain only those elements currently validated, which can be a single element when doing validation onblur/keyup. You can trigger (in addition to your own messages) the default behaviour by calling this.defaultShowErrors().</desc>
+				<type name="Function"/>
+<!-- 				{{APIOptionExample|
+|desc=Update the number of invalid elements each time an error is displayed. Delegates to the default implementation for the actual error display.
+|code={{Code|Core|$}}(&quot;.selector&quot;).{{Code|Plugins/Validation|validate}}({
+    &lt;nowiki&gt;showErrors: function(errorMap, errorList) {
+    $(&quot;#summary&quot;).html(&quot;Your form contains &quot;
+                                   + this.numberOfInvalids()
+                                   + &quot; errors, see details below.&quot;);
+    this.defaultShowErrors();
+  }
+ })&lt;/nowiki&gt;
+}} -->
+			</property>
+			<property name="errorPlacement" default="Places the error label after the invalid element">
+				<desc>Customize placement of created error labels. First argument: The created error label as a jQuery object. Second argument: The invalid element as a jQuery object.</desc>
+				<type name="Function"/>
+				<!--
+					{{APIOptionExample|
+|desc=Use a table layout for the form, placing error messags in the next cell after the input.
+|inhead=&lt;nowiki&gt;&lt;script type=&quot;text/javascript&quot; src=&quot;http://jzaefferer.github.com/jquery-validation/jquery.validate.js&quot;&gt;&lt;/script&gt;&lt;/nowiki&gt;
+|html=&lt;nowiki&gt;&lt;form id=&quot;myform&quot; action=&quot;/login&quot; method=&quot;post&quot;&gt;
+  &lt;table&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;label&gt;Firstname&lt;/label&gt;
+      &lt;td&gt;&lt;input name=&quot;fname&quot; class=&quot;required&quot; value=&quot;Pete&quot; /&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;label&gt;Lastname&lt;/label&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;input name=&quot;lname&quot; title=&quot;Your lastname, please!&quot; class=&quot;required&quot; /&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;input type=&quot;submit&quot; value=&quot;Submit&quot;/&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;
+  &lt;/table&gt;
+&lt;/form&gt;&lt;/nowiki&gt;
+|code={{Code|Core|$}}(&quot;#myform&quot;).{{Code|Plugins/Validation|validate}}({
+   &lt;nowiki&gt;errorPlacement: function(error, element) {
+     error.appendTo( element.parent(&quot;td&quot;).next(&quot;td&quot;) );
+   },
+   debug:true
+ })&lt;/nowiki&gt;
+}}
+-->
+			</property>
+			<property name="success">
+				<desc>If specified, the error label is displayed to show a valid element. If a String is given, its added as a class to the label. If a Function is given, its called with the label (as a jQuery object) as its only argument. That can be used to add a text like "ok!".</desc>
+				<type name="String"/>
+				<type name="Function"/>
+<!-- 				{{APIOptionExample|
+|height=60
+|desc=Add a class &quot;valid&quot; to valid elements, styled via CSS.
+|css=&lt;nowiki&gt;label.valid {
+  background: url('http://dev.jquery.com/view/trunk/plugins/validate/demo/images/checked.gif') no-repeat;
+  height:16px;
+  width:16px;
+  display: block;
+  position: absolute;
+  top: 4px;
+  left: 152px;
+}&lt;/nowiki&gt;
+|inhead=&lt;nowiki&gt;&lt;script type=&quot;text/javascript&quot; src=&quot;http://jzaefferer.github.com/jquery-validation/jquery.validate.js&quot;&gt;&lt;/script&gt;&lt;/nowiki&gt;
+|html=&lt;nowiki&gt;
+&lt;form id=&quot;myform&quot;&gt;
+  &lt;input type=&quot;text&quot; name=&quot;email&quot; class=&quot;required&quot; /&gt;
+  &lt;br/&gt;
+  &lt;input type=&quot;submit&quot; value=&quot;Submit&quot; /&gt;
+&lt;/form&gt;&lt;/nowiki&gt;
+|code={{Code|Core|$}}(&quot;#myform&quot;).{{Code|Plugins/Validation|validate}}({
+    success: &quot;valid&quot;,
+    submitHandler: function() { alert(&quot;Submitted!&quot;) }
+ })
+}}
+{{APIOptionExample|
+|height=60
+|desc=Add a class &quot;valid&quot; to valid elements, styled via CSS, and add the text &quot;Ok!&quot;.
+|css=&lt;nowiki&gt;label.valid {
+  background: url('http://dev.jquery.com/view/trunk/plugins/validate/demo/images/checked.gif') no-repeat;
+  height:16px;
+  width:16px;
+  display: block;
+  position: absolute;
+  top: 4px;
+  left: 152px;
+  padding-left: 18px;
+}&lt;/nowiki&gt;
+|inhead=&lt;nowiki&gt;&lt;script type=&quot;text/javascript&quot; src=&quot;http://jzaefferer.github.com/jquery-validation/jquery.validate.js&quot;&gt;&lt;/script&gt;&lt;/nowiki&gt;
+|html=&lt;nowiki&gt;
+&lt;form id=&quot;myform&quot;&gt;
+  &lt;input type=&quot;text&quot; name=&quot;email&quot; class=&quot;required&quot; /&gt;
+  &lt;br/&gt;
+  &lt;input type=&quot;submit&quot; value=&quot;Submit&quot; /&gt;
+&lt;/form&gt;&lt;/nowiki&gt;
+|code={{Code|Core|$}}(&quot;#myform&quot;).{{Code|Plugins/Validation|validate}}({
+    success: function(label) {
+      label.addClass(&quot;valid&quot;).text(&quot;Ok!&quot;)
+    },
+    submitHandler: function() { alert(&quot;Submitted!&quot;) }
+ })
+}} -->
+			</property>
+			<property name="highlight" default="Adds errorClass (see the option) to the element">
+				<desc>How to highlight invalid fields. Override to decide which fields and how to highlight.</desc>
+				<type name="Function"/>
+<!-- 				{{APIOptionExample|
+|desc=Highlights an invalid element by fading it out and in again.
+|code={{Code|Core|$}}(&quot;.selector&quot;).{{Code|Plugins/Validation|validate}}({
+   &lt;nowiki&gt;highlight: function(element, errorClass) {
+     $(element).fadeOut(function() {
+       $(element).fadeIn();
+     });
+  }&lt;/nowiki&gt;
+ })
+}}
+{{APIOptionExample|
+|desc=Adds the error class to both the invalid element and it's label
+|code={{Code|Core|$}}(&quot;.selector&quot;).{{Code|Plugins/Validation|validate}}({
+   highlight: function(element, errorClass, validClass) {
+      {{Code|Core|$}}(element).addClass(errorClass).removeClass(validClass);
+      {{Code|Core|$}}&lt;nowiki&gt;(element.form).find(&quot;label[for=&quot; + element.id + &quot;]&quot;)
+                    .addClass(errorClass);&lt;/nowiki&gt;
+   },
+   unhighlight: function(element, errorClass, validClass) {
+      {{Code|Core|$}}(element).removeClass(errorClass).addClass(validClass);
+      {{Code|Core|$}}&lt;nowiki&gt;(element.form).find(&quot;label[for=&quot; + element.id + &quot;]&quot;)
+                    .removeClass(errorClass);&lt;/nowiki&gt;
+   }
+ });
+}} -->
+			</property>
+			<property name="unhighlight" default="Removes the errorClass">
+				<desc>Called to revert changes made by option highlight, same arguments as highlight.</desc>
 				<type name="Function"/>
 			</property>
-			<property name="within" default="window">
-				<desc>Element to position within, affecting collision detection. If you provide a selector or jQuery object, the first matching element will be used.</desc>
-				<type name="Selector"/>
-				<type name="Element"/>
-				<type name="jQuery"/>
+			<property name="ignoreTitle" default="false">
+				<desc>Set to skip reading messages from the title attribute, helps to avoid issues with Google Toolbar; default is false for compability, the message-from-title is likely to be completely removed in a future release</desc>
+				<type name="Boolean"/>
+				<!--
+					{{APIOptionExample|
+|desc=Configure the plugin to ignore title attributes on validated elements when looking for messages.
+|code={{Code|Core|$}}(&quot;.selector&quot;).{{Code|Plugins/Validation|validate}}({
+    ignoreTitle: true
+ })
+}}-->
 			</property>
 		</argument>
 	</signature>

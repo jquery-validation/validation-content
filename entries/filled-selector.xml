@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<entry type="selector" name="filled" return="">
+  <title>:filled Selector</title>
+  <sample>:filled</sample>
+  <signature>
+    <added>1.0</added>
+  </signature>
+  <desc>Selects all elements with a filled value.</desc>
+  <longdesc>
+    filled means any value, but not only whitespace.
+    <p>The implementation does a check like this: <code>jQuery.trim(value).length &gt; 0</code></p>
+  </longdesc>
+  <example>
+    <desc>Finds input elements with a non-whitespace value.</desc>
+    <code><![CDATA[
+$( "input:filled" ).css( "background-color", "#bbbbff" );
+]]></code>
+    <html><![CDATA[
+<div>Mouseover to see the value of each input</div>
+<input value="" title='""'>
+<input value="   " title='"   "'>
+<input value="abc" title='"abc"'>
+]]></html>
+  </example>
+  <category slug="selectors"/>
+</entry>

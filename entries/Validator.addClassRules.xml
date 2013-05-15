@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../entries2html.xsl" ?>
+<entry type="method" name="Validator.addClassRules">
+	<title>Validator.addClassRules()</title>
+	<signature>
+		<argument name="name" type="String">
+			<desc>The name of the class rule to add</desc>
+		</argument>
+		<argument name="rules" type="Object">
+			<desc>The compound rules (see example)</desc>
+		</argument>
+	</signature>
+	<signature>
+		<argument name="rules" type="Object">
+			<desc>A map of className-rules pairs (see example).</desc>
+		</argument>
+	</signature>
+	<desc>Add a compound class method - useful to refactor common combinations of rules into a single class.</desc>
+	<example>
+		<desc>Add a new compound rule called "name", replacing class="required" minlength="2" with class="name".</desc>
+		<code><![CDATA[
+jQuery.validator.addClassRules("name", {
+  required: true,
+  minlength: 2
+});
+]]></code>
+	</example>
+	<example>
+		<desc>Add two compound class rules for name and zip.</desc>
+		<code><![CDATA[
+jQuery.validator.addClassRules({
+  name: {
+    required: true,
+    minlength: 2
+  },
+  zip: {
+    required: true,
+    digits: true,
+    minlength: 5,
+    maxlength: 5
+  }
+});
+]]></code>
+	</example>
+	<category slug="validator"/>
+</entry>

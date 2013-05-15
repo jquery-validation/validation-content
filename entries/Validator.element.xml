@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../entries2html.xsl" ?>
+<entry type="method" name="Validator.element">
+	<title>Validator.element()</title>
+	<signature>
+		<argument name="element" type="Selector">
+			<desc>An element to validate, must be inside the validated form.</desc>
+		</argument>
+	</signature>
+	<desc>Validates a single element, returns true if it is valid, false otherwise.</desc>
+	<longdesc>This behaves as validation on blur or keyup, but returns the result.</longdesc>
+	<example>
+		<desc>Triggers element validation programmatically.</desc>
+		<code><![CDATA[
+var validator = $( "#myform" );
+validator.element( "#myselect" );
+]]></code>
+	</example>
+	<category slug="validator"/>
+</entry>

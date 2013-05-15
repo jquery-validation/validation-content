@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../entries2html.xsl" ?>
+<entry type="method" name="jQuery.validator.setDefaults">
+	<title>jQuery.validator.setDefaults()</title>
+	<signature>
+		<argument name="options" type="Object">
+			<desc>Options to set as default.</desc>
+		</argument>
+	</signature>
+	<desc>Modify default settings for validation.</desc>
+	<longdesc>Accepts everything that <a href="/validate">validate()</a> accepts.</longdesc>
+	<example>
+		<desc>Sets the debug setting for all validation calls.</desc>
+		<code><![CDATA[
+jQuery.validator.setDefaults({
+	debug: true
+});
+]]></code>
+	</example>
+	<category slug="validator"/>
+</entry>

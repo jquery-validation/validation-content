@@ -80,7 +80,7 @@ That behaviour can be irritating when clicking through demos of the validation p
 
 You're likely looking for
 
-=== [[Plugins/Validation/validate#toptions|Options for the validate() method]] ===
+### [Options for the validate() method](/validate)
 
 If not, read on.
 

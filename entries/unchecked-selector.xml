@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<entry type="selector" name="unchecked" return="">
+  <title>:unchecked Selector</title>
+  <sample>:unchecked</sample>
+  <signature>
+    <added>1.0</added>
+  </signature>
+  <desc>Selects all elements that are unchecked.</desc>
+  <longdesc>
+    Inversion of <a href="http://api.jquery.com/checked">:checked</a>a>.
+  </longdesc>
+  <example>
+    <desc>Finds all input elements that are unchecked.</desc>
+    <code><![CDATA[
+function countUnchecked() {
+  var n = $( "input:unchecked" ).length;
+  $( "div" ).text(n + (n == 1 ? " is" : " are") + " unchecked!" );
+}
+countUnchecked();
+$( ":checkbox" ).click( countUnchecked );
+]]></code>
+    <css>
+      <![CDATA[
+div { color:red; }
+]]>
+      </css>
+    <html><![CDATA[
+<form>
+    <input type="checkbox" name="newsletter" checked="checked" value="Hourly" />
+    <input type="checkbox" name="newsletter" value="Daily" />
+    <input type="checkbox" name="newsletter" value="Weekly" />
+    <input type="checkbox" name="newsletter" checked="checked" value="Monthly" />
+    <input type="checkbox" name="newsletter" value="Yearly" />
+  </form>
+  <div></div>
+]]></html>
+  </example>
+  <category slug="selectors"/>
+</entry>

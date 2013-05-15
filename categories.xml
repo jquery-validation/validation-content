@@ -12,4 +12,5 @@
 			Methods available on the Validator object returned by the validate method.
 		]]></desc>
 	</category>
+	<category name="Selectors" slug="selectors"/>
 </categories>

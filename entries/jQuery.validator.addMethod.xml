@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../entries2html.xsl" ?>
+<entry type="method" name="jQuery.validator.addMethod">
+	<title>jQuery.validator.addMethod()</title>
+	<signature>
+		<argument name="name" type="String">
+			<desc>The name of the method, used to identify and referencing it, must be a valid javascript identifier</desc>
+		</argument>
+		<argument name="method" type="Function">
+			<desc>The actual method implementation, returning true if an element is valid. First argument: Current value. Second argument: Validated element. Third argument: Parameters.</desc>
+			<property name="value" type="String">
+				<desc>the current value of the validated element</desc>
+			</property>
+			<property name="element" type="Element">
+				<desc>the element to be validated</desc>
+			</property>
+			<property name="value" type="String">
+				<desc>parameters specified for the method, e.g. for min: 5 the parameter is 5, for range: [1, 5] its [1, 5]</desc>
+			</property>
+		</argument>
+		<argument name="message" type="String" optional="true">
+			<desc>The default message to display for this method. Can be a function created by ''jQuery.validator.format(value)''. When undefined, an already existing message is used (handy for localization), otherwise the field-specific messages have to be defined.</desc>
+		</argument>
+	</signature>
+	<desc>Add a custom validation method. It must consist of a name (must be a legal javascript identifier), a javascript based function and a default string message.</desc>
+	<longdesc>The arguments to the callback are:
+ * the current value of the validated element
+ * the element to be validated
+ * parameters specified for the method, e.g. for min: 5 the parameter is 5, for range: [1, 5] its [1, 5]
+
+Please note: While the temptation is great to add a regex method that checks it's parameter against the value, it is much cleaner to encapsulate those regular expressions inside their own method. If you need lots of slightly different expressions, try to extract a common parameter.
+
+See also a <a href="http://regexlib.com/DisplayPatterns.aspx">library of regular expressions</a>.
+</longdesc>
+	<example>
+		<desc>Add a validation method that checks if a value starts with a certain domain.</desc>
+		<code><![CDATA[
+jQuery.validator.addMethod("domain";, function(value, element) {
+  return this.optional(element) || /^http:\/\/mycorporatedomain.com/.test(value);
+}, "Please specify the correct domain for your documents");
+]]></code>
+	</example>
+	<example>
+		<desc>Adds a validation method that checks if a given value equals the addition of the two parameters.</desc>
+		<code><![CDATA[
+jQuery.validator.addMethod("math", function(value, element, params) {
+ return this.optional(element) || value == params[0] + params[1];
+}, jQuery.validator.format("Please enter the correct value for {0} + {1}"));
+]]></code>
+	</example>
+	<category slug="validator"/>
+</entry>

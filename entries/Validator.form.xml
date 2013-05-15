@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../entries2html.xsl" ?>
+<entry type="method" name="Validator.form">
+	<title>Validator.form()</title>
+	<signature>
+	</signature>
+	<desc>Validates the form, returns true if it is valid, false otherwise.</desc>
+	<longdesc>This behaves as a normal submit event, but returns the result.</longdesc>
+	<example>
+		<desc>Triggers form validation programmatically.</desc>
+		<code><![CDATA[
+var validator = $( "#myform" );
+validator.form();
+]]></code>
+	</example>
+	<category slug="validator"/>
+</entry>

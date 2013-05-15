@@ -11,7 +11,7 @@
 &lt;title&gt;<xsl:value-of select="desc"/>&lt;/title&gt;
 <xsl:if test="css">
 &lt;style&gt;<xsl:copy-of select="css/text()"/>  &lt;/style&gt;</xsl:if>
-&lt;script src="jquery.validate.js"&gt;&lt;/script&gt;
+&lt;script src="http://jquery.bassistance.de/validate/jquery.validate.js"&gt;&lt;/script&gt;
 &lt;script&gt;<xsl:copy-of select="code/text()"/>&lt;/script&gt;
 &lt;/head&gt;
 &lt;body&gt;

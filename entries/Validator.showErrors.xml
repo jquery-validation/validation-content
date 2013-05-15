@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../entries2html.xsl" ?>
+<entry type="method" name="Validator.showErrors">
+	<title>Validator.showErrors()</title>
+	<signature>
+		<argument name="errors" type="Object">
+			<desc>One or more key/value pairs of input names and messages.</desc>
+		</argument>
+	</signature>
+	<desc>Show the specified messages.</desc>
+	<longdesc>Keys have to refer to the names of elements, values are displayed for those elements, using the configured error placement.</longdesc>
+	<example>
+		<desc>Adds and shows error message programmatically.</desc>
+		<code><![CDATA[
+var validator = $( "#myshowErrors" );
+validator.showErrors({
+	"firstname": "I know that your firstname is Pete, Pete!"
+});
+]]></code>
+	</example>
+	<category slug="validator"/>
+</entry>
