@@ -513,51 +513,5 @@
 			</property>
 		</argument>
 	</signature>
-	<example>
-		<desc>A simple jQuery UI Position example.</desc>
-		<css><![CDATA[
-	.positionDiv {
-		position: absolute;
-		width: 75px;
-		height: 75px;
-		background: green;
-	}
-]]></css>
-		<code><![CDATA[
-$( "#position1" ).position({
-	my: "center",
-	at: "center",
-	of: "#targetElement"
-});
-
-$( "#position2" ).position({
-	my: "left top",
-	at: "left top",
-	of: "#targetElement"
-});
-
-$( "#position3" ).position({
-	my: "right center",
-	at: "right bottom",
-	of: "#targetElement"
-});
-
-$( document ).mousemove(function( event ) {
-	$( "#position4" ).position({
-		my: "left+3 bottom-3",
-		of: event,
-		collision: "fit"
-	});
-});
-]]></code>
-		<html><![CDATA[
-<div id="targetElement">
-	<div class="positionDiv" id="position1"></div>
-	<div class="positionDiv" id="position2"></div>
-	<div class="positionDiv" id="position3"></div>
-	<div class="positionDiv" id="position4"></div>
-</div>
-]]></html>
-	</example>
 	<category slug="plugin"/>
 </entry>
