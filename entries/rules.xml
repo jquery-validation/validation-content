@@ -5,18 +5,18 @@
 	<longdesc>
 		Return the validations rules for the first selected element or
 
-		Adds the specified rules and returns all rules for the first matched element. Requires that the parent form is validated, that is, $(&quot;form&quot;).validate() is called first or
+		<p>Adds the specified rules and returns all rules for the first matched element. Requires that the parent form is validated, that is, $( "form" ).validate() is called first or</p>
 
-		Removes the specified rules and returns all rules for the first matched element.
+		<p>Removes the specified rules and returns all rules for the first matched element.</p>
 
-		There are several ways to specify validation rules.
+		<p>There are several ways to specify validation rules.</p>
 		<ul>
 			<li>Validation methods without parameters can be specified as classes on the element (recommended)</li>
 			<li>Validation methods with parameters can be specified as attributes (recommended)</li>
 			<li>Both can be specified as metadata using the metadata plugin</li>
 			<li>Both can be specified using the rules-option of the validate()-method</li>
 		</ul>
-		When setting, the rules can also contain a messages-object, specifying custom messages for existing or added rules.
+		<p>When setting, the rules can also contain a messages-object, specifying custom messages for existing or added rules.</p>
 	</longdesc>
 	<signature>
 		<desc>Read rules for the first element</desc>
