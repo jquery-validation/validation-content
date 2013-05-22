@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<entry name="range" type="method" return="Boolean">
+	<title>range method</title>
+	<desc>Makes the element require a given value range.</desc>
+	<longdesc>
+		Works with text inputs. To exclude the maximum value, subtract Number.MIN_VALUE from that value. To exclude the minimum value, add Number.MIN_VALUE to that value.
+	</longdesc>
+	<signature>
+		<argument name="range" type="Array">
+			<desc>
+				Value range required
+			</desc>
+		</argument>
+	</signature>
+	<example>
+		<desc>Makes "field" required and between 13 and 23.</desc>
+		<code><![CDATA[
+$( "#myform" ).validate({
+  rules: {
+    field: {
+      required: true,
+      range: [13, 23]
+    }
+  }
+});
+]]></code>
+<html><![CDATA[
+<label for="field">Required, minium 13, maximum 23:</label>
+<input type="text" class="left" id="field" name="field">
+<br/>
+<input type="submit" value="Validate!">
+]]></html>
+	</example>
+	<category slug="methods"/>
+</entry>

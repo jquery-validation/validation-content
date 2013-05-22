@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<entry name="digits" type="method" return="Boolean">
+	<title>digits method</title>
+	<desc>Makes the element require digits only.</desc>
+	<longdesc>
+		Returns true if the value contains only digits.
+		<p>Works with text inputs.</p>
+	</longdesc>
+	<example>
+		<desc>Makes "field" required and digits only.</desc>
+		<code><![CDATA[
+$( "#myform" ).validate({
+  rules: {
+    field: {
+      required: true,
+      digits: true
+    }
+  }
+});
+]]></code>
+<html><![CDATA[
+<label for="field">Required, digits: </label>
+<input class="left" id="field" name="field">
+<br/>
+<input type="submit" value="Validate!">
+]]></html>
+	</example>
+	<category slug="methods"/>
+</entry>

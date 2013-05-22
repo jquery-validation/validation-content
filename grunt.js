@@ -40,14 +40,8 @@ grunt.initConfig({
 	}, grunt.file.readJSON( "config.json" ) )
 });
 
-// workaround until I figure out how to allow upload of xml files
-grunt.registerTask( "delete-apixml", function() {
-	// var fs = require( "fs" );
-	// fs.unlinkSync( "dist/wordpress/resources/api.xml" );
-});
-
 grunt.registerTask( "default", "build-wordpress" );
-grunt.registerTask( "build", "build-pages build-xml-entries build-xml-categories build-xml-full build-resources delete-apixml" );
+grunt.registerTask( "build", "build-pages build-xml-entries build-xml-categories build-xml-full build-resources" );
 grunt.registerTask( "build-wordpress", "check-modules clean lint xmllint build" );
 grunt.registerTask( "tidy", "xmllint xmltidy" );
 

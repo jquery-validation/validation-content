@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<entry name="rangelength" type="method" return="Boolean">
+	<title>rangelength method</title>
+	<desc>Makes the element require a given value range.</desc>
+	<longdesc>
+		Return false, if the element is
+		<ul>
+			<li>some kind of text input and its length is too short or too long</li>
+			<li>a set of checkboxes has not enough or too many boxes checked</li>
+			<li>a select and has not enough or too many options selected</li>
+		</ul>
+		<p>Works with text inputs, selects and checkboxes.</p>
+	</longdesc>
+	<signature>
+		<argument name="range" type="Array">
+			<desc>
+				Value range required
+			</desc>
+		</argument>
+	</signature>
+	<example>
+		<desc>Makes "field" required and between 2 and 6 characters long.</desc>
+		<code><![CDATA[
+$( "#myform" ).validate({
+  rules: {
+    field: {
+      required: true,
+      rangelength: [2, 6]
+    }
+  }
+});
+]]></code>
+<html><![CDATA[
+<label for="field">Required, minium length 2, maximum length 6: </label>
+<input type="text" class="left" id="field" name="field">
+<br/>
+<input type="submit" value="Validate!">
+]]></html>
+	</example>
+	<category slug="methods"/>
+</entry>

@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<entry name="equalTo" type="method" return="Boolean">
+	<title>equalTo method</title>
+	<desc>Requires the element to be the same as another one</desc>
+	<longdesc>
+		Returns true if the value has the same value as the element specified by the first parameter.
+	</longdesc>
+	<signature>
+		<argument name="other" type="Selector">
+			<desc>
+				The selector for the element to compare the current values
+			</desc>
+		</argument>
+	</signature>
+	<example>
+		<desc>Makes "field" required to be the same as #other</desc>
+		<code><![CDATA[
+$( "#myform" ).validate({
+  rules: {
+    password: "required",
+    password_again: {
+      equalTo: "#password"
+    }
+  }
+});
+]]></code>
+<html><![CDATA[
+<label for="password">Password</label>
+<input id="password" name="password" />
+<br/>
+<label for="password_again">Again</label>
+<input class="left" id="password_again" name="password_again" />
+<br>
+<input type="submit" value="Validate!">
+]]></html>
+	</example>
+	<category slug="methods"/>
+</entry>

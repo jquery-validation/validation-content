@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<entry name="phoneUS" type="method" return="Boolean">
+	<title>phoneUS method</title>
+	<desc>Validate for valid US phone number.</desc>
+	<longdesc>
+		Works with text inputs.
+	</longdesc>
+	<example>
+		<desc>Makes "field" required and a US phone number.</desc>
+		<code><![CDATA[
+$( "#myform" ).validate({
+  rules: {
+    field: {
+      required: true,
+      phoneUS: true
+    }
+  }
+});
+]]></code>
+<html><![CDATA[
+<label for="field">Required, us phone number: </label>
+<input class="left" id="field" name="field">
+<br/>
+<input type="submit" value="Validate!">
+]]></html>
+	</example>
+	<category slug="methods"/>
+</entry>

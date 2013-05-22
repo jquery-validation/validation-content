@@ -1,3 +1,6 @@
+dateDE - redirect to date-method
+numberDE - redirect to number-method
+
 Redirect these to the API documentation page:
 
 jQuery.fn.removeAttrs

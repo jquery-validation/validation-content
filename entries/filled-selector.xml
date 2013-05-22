@@ -3,7 +3,6 @@
   <title>:filled Selector</title>
   <sample>:filled</sample>
   <signature>
-    <added>1.0</added>
   </signature>
   <desc>Selects all elements with a filled value.</desc>
   <longdesc>
@@ -16,10 +15,10 @@
 $( "input:filled" ).css( "background-color", "#bbbbff" );
 ]]></code>
     <html><![CDATA[
-<div>Mouseover to see the value of each input</div>
-<input value="" title='""'>
-<input value="   " title='"   "'>
-<input value="abc" title='"abc"'>
+  <div>Mouseover to see the value of each input</div>
+  <input value="" title='""'>
+  <input value="   " title='"   "'>
+  <input value="abc" title='"abc"'>
 ]]></html>
   </example>
   <category slug="selectors"/>

@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<entry name="number" type="method" return="Boolean">
+	<title>number method</title>
+	<desc>Makes the element require a decimal number.</desc>
+	<longdesc>
+		Returns true if the value contains a valid decimal number.
+		<p>Works with text inputs.</p>
+	</longdesc>
+	<example>
+		<desc>Makes "field" required and a decimal number only.</desc>
+		<code><![CDATA[
+$( "#myform" ).validate({
+  rules: {
+    field: {
+      required: true,
+      number: true
+    }
+  }
+});
+]]></code>
+<html><![CDATA[
+<label for="field">Required, decimal number: </label>
+<input class="left" id="field" name="field">
+<br/>
+<input type="submit" value="Validate!">
+]]></html>
+	</example>
+	<category slug="methods"/>
+</entry>

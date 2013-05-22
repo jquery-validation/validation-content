@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<entry name="max" type="method" return="Boolean">
+	<title>max method</title>
+	<desc>Makes the element require a given maximum.</desc>
+	<longdesc>
+		Works with text inputs. To exclude the maximum value, subtract Number.MIN_VALUE from that value.
+	</longdesc>
+	<signature>
+		<argument name="value" type="Number">
+			<desc>
+				Maximum value required
+			</desc>
+		</argument>
+	</signature>
+	<example>
+		<desc>Makes "field" required and 23 or smaller.</desc>
+		<code><![CDATA[
+$( "#myform" ).validate({
+  rules: {
+    field: {
+      required: true,
+      max: 23
+    }
+  }
+});
+]]></code>
+<html><![CDATA[
+<label for="field">Required, maximum value 23: </label>
+<input type="text" class="left" id="field" name="field">
+<br/>
+<input type="submit" value="Validate!">
+]]></html>
+	</example>
+	<category slug="methods"/>
+</entry>

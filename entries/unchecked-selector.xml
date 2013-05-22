@@ -3,7 +3,6 @@
   <title>:unchecked Selector</title>
   <sample>:unchecked</sample>
   <signature>
-    <added>1.0</added>
   </signature>
   <desc>Selects all elements that are unchecked.</desc>
   <longdesc>

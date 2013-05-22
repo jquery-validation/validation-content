@@ -2,109 +2,117 @@
 	"title": "Reference docs"
 }</script>
 
-== Goals ==
+# Goals
 The ultimate goal of this plugin is to make working with forms more fun for anyone. By improving the interaction, it is easier and less annoying for the user to fill out the form and submit it.
 
 To achieve that goal, it is important that the plugin is actually deployed on websites around the world, so a lot of focus is spent on making it easy for a developer, you, to use the plugin.
 
 The plugin can never replace serverside validation and doesn't intend to do so. Having both in place gives you the necessary security for your application, and the improved usability.
 
-== Markup recommendations ==
+# Markup recommendations
 Each input has a label associated with it: The for-attribute of the label refers to the id-attribute of the input.
-&lt;pre&gt;&lt;nowiki&gt;
-  &lt;label for=&quot;firstname&quot;&gt;Firstname&lt;/label&gt;&lt;input id=&quot;firstname&quot; name=&quot;fname&quot; /&gt;
-&lt;/nowiki&gt;&lt;/pre&gt;
+<pre><code>
+<label for="firstname">Firstname</label>
+<input id="firstname" name="fname">
+</code></pre>
 
 The name attribute is '''required''' for input elements, the validation plugin doesn't work without it. Usually name and id attributes should have the same value.
 
-== Methods ==
-A validation method implements the logic to validate any element. Provided are a set of default validation methods, like required. Except required itself and equalTo, all validation methods declare an element valid when it has no value at all. That way an email field is optional, unless also required is specified. you can specify an element input to contain a valid email address, or nothing at all. Use [[Plugins/Validation/Validator/addMethod|$.validator.addMethod]] to implement custom methods.
+# Methods
+A validation method implements the logic to validate any element. Provided are a set of default validation methods, like required. Except required itself and equalTo, all validation methods declare an element valid when it has no value at all. That way an email field is optional, unless also required is specified. you can specify an element input to contain a valid email address, or nothing at all. Use <a href="/jQuery.validator.addMethod/">jQuery.validator.addMethod</a> to implement custom methods.
 
-=== Validating multiple fields with one method ===
-Using a combination of custom methods, the groups-option and, when necessary, custom error placement, you can validate multiple fields with one method and display a single message for them. [[Plugins/Validation/multiplefields|The example shows how to validate a date range.]]
-
-== Rules ==
+# Rules
 A validation rule applies one or more validation methods to an input element. You can specify validation rules via metadata or via plugin settings (option rules). The decision is often influenced by serverside infrastructure. If a web framework is used, its often easier to use metadata, which is also good for fast prototyping. Plugin settings produce cleaner markup, though valid markup results from both.
 
-=== Fields with complex names (brackets, dots) ===
+## Fields with complex names (brackets, dots)
 If your form consists of fields using names that aren't legal JavaScript identifiers, you have to quote those names when using the rules option:
 
- $(&quot;#myform&quot;).validate({
+<pre><code>
+ $("#myform").validate({
    rules: {
      // no quoting necessary
-     name: &quot;required&quot;,
+     name: "required",
      // quoting necessary!
-     &quot;user[email]&quot;: &quot;email&quot;,
+     "user[email]": "email",
      // dots need quoting, too!
-     &quot;user.address.street&quot;: &quot;required&quot;
+     "user.address.street": "required"
    }
  });
+</code></pre>
 
-=== Refactoring rules ===
+## Refactoring rules
 Whenever you have multiple fields with the same rules and messages, refactoring those can reduce a lot of duplication. Using addMethod and addClassRules are most effective for that.
 
 Lets consider an example where you have ten customer fields, each is required and has a minlength of 2. You need custom messages for both rules. To avoid having to specify those rules and messages again and again, we can alias existing methods with different messages and group them into a single class:
 
+<pre><code>
  // alias required to cRequired with new message
- $.validator.addMethod(&quot;cRequired&quot;, $.validator.methods.required,
-   &quot;Customer name required&quot;);
+ $.validator.addMethod("cRequired", $.validator.methods.required,
+   "Customer name required");
  // alias minlength, too
- $.validator.addMethod(&quot;cMinlength&quot;, $.validator.methods.minlength,
+ $.validator.addMethod("cMinlength", $.validator.methods.minlength,
    // leverage parameter replacement for minlength, {0} gets replaced with 2
-   $.format(&quot;Customer name must have at least {0} characters&quot;));
+   $.format("Customer name must have at least {0} characters"));
  // combine them both, including the parameter for minlength
- $.validator.addClassRules(&quot;customer&quot;, { cRequired: true, cMinlength: 2 });
+ $.validator.addClassRules("customer", { cRequired: true, cMinlength: 2 });
+</code></pre>
 
 With that in place, we can add a class customer to all customer fields and be done with it:
 
- &lt;input name=&quot;customer1&quot; class=&quot;customer&quot; /&gt;
- &lt;input name=&quot;customer2&quot; class=&quot;customer&quot; /&gt;
- &lt;input name=&quot;customer3&quot; class=&quot;customer&quot; /&gt;
+<pre><code>
+ <input name="customer1" class="customer">
+ <input name="customer2" class="customer">
+ <input name="customer3" class="customer">
+</code></pre>
 
-== Error messages ==
+# Error messages
 An error message displays a hint for the user about invalid elements, and what is wrong. There are three ways to provide error messages. Via the title attribute of the input element to validate, via error labels and via plugin settings (option messages).
 
 All included validation rules provide a default error message which you can use for prototyping, because it is used when no specific message is provided.
 
 The priorities are as follows: A custom message (passed by plugin options),  the element's title, the default message.
 
-=== Error messages and Google Toolbar conflicts ===
+## Error messages and Google Toolbar conflicts
 
 Google Toolbar's AutoFill feature sometimes conflicts with the validation plugin's message display. Google Toolbar replaces the title attribute of an element with some hint at it's AutoFill. The validation plugin then uses that title attribute to display it as an error message - not the intended behaviour. One workaround to avoid that is to clear affected elements on DOM load:
 
-  $(&quot;input.remove_title&quot;).attr(&quot;title&quot;, &quot;&quot;);
+<pre><code>
+  $("input.remove_title").attr("title", "");
+</code></pre>
 
-More details in [http://www.dream-revolver.com/2008/04/22/google-toolbar-overwriting-labels-when-using-jquerys-validate-plugin/ this article].
+More details in [this article](http://www.dream-revolver.com/2008/04/22/google-toolbar-overwriting-labels-when-using-jquerys-validate-plugin/).
 
-== Error message display ==
+# Error message display
 Error messages are handled via label elements with an additional class (option errorClass). The link between the message and the invalid element is provided via the label's for attribute. When provided in the markup, they are shown and hidden accordingly, otherwise created on demand. By default, labels are created after the invalid element, this is also customizable (option errorPlacement). It is also possible to put them into an error container (option errorLabelContainer). To use a different element then a label, specify the errorElement option.
 
-== General messages ==
-In addition to field-specific messages you can display a general &quot;your form is invalid, please fix the highlighted fields!&quot; message in a container anywhere on your page, eg. above the form (option errorContainer). The container is shown and hidden when errors occur and are fixed accordingly. The container for error labels (option errorLabelContainer) can also be nested inside the error container.
+# General messages
+In addition to field-specific messages you can display a general "your form is invalid, please fix the highlighted fields!" message in a container anywhere on your page, eg. above the form (option errorContainer). The container is shown and hidden when errors occur and are fixed accordingly. The container for error labels (option errorLabelContainer) can also be nested inside the error container.
 
-== Focusing of invalid elements ==
+# Focusing of invalid elements
 By default, the first invalid element in a form is focused after submitting a form with invalid elements. To prevent confusion on the behalf of the user, the plugin remembers the element that had focus when the form was submitted, and refocuses that element. That way the user can try to fill out elements of the form at the end, without being forced to focus them again and again. This can be disabled (option focusInvalid).
 
-== Form submit ==
+# Form submit
 By default, the form submission is prevented when the form is invalid, and submitted as normal when it is valid. You can also handle the submission manually (option submitHandler).
 
-=== Skipping validation on submit ===
-To skip validation while still using a submit-button, add a class=&quot;cancel&quot; to that input.
+## Skipping validation on submit
+To skip validation while still using a submit-button, add a class="cancel" to that input.
 
- &lt;input type=&quot;submit&quot; name=&quot;submit&quot; value=&quot;Submit&quot; /&gt;
- &lt;input type=&quot;submit&quot; class=&quot;cancel&quot; name=&quot;cancel&quot; value=&quot;Cancel&quot; /&gt;
+<pre><code>
+ <input type="submit" name="submit" value="Submit">
+ <input type="submit" class="cancel" name="cancel" value="Cancel">
+</code></pre>
 
-[http://jquery.bassistance.de/validate/demo/errorcontainer-demo.html Demo for the cancel button]
+[Demo for the cancel button](http://jquery.bassistance.de/validate/demo/errorcontainer-demo.html)
 
-== Validation event ==
+# Validation event
 By default, forms are validated on submit, triggered by the user clicking the submit button or pressing enter when a form input is focused (option onsubmit). In addition, once a field was highlighted as being invalid, it is validated whenever the user types something in the field (option onkeyup). When the user enters something invalid into a valid field, it is also validated when the field loses focus (option onblur).
 
 The goal of these interactions is to provide feedback as early as possible, while avoid to annoy users. Displaying error messages before the user had the chance to even type something is not helpful.
 
-== Developing and debugging a form ==
+# Developing and debugging a form
 While developing and debugging the form, you should set the debug option to true. That prevents the form submission on both valid and invalid forms and outputs some helpful messages to window.console (available via Firebug or Firebug Lite) that help debugging. When you have everything setup and don't get any error messages displayed, check if your rules all accept empty elements as valid (like email or url methods).
 
-Some issues are caused by certain form element's names. A name you should avoid is &quot;submit&quot; (for submit buttons and anything else). Browsers expose form elements as properties of the form element, by their name, in this case hiding native methods like submit(). Just don't use name=&quot;submit&quot; and you're good.
+Some issues are caused by certain form element's names. A name you should avoid is "submit" (for submit buttons and anything else). Browsers expose form elements as properties of the form element, by their name, in this case hiding native methods like submit(). Just don't use name="submit" and you're good.
 
-== Validating multiple forms on one page ==
-The plugin can handle only one form per call. In case you have multiple forms on a single page which you want to validate, you can avoid having to duplicate the plugin settings by modifying the defaults. Use [[Plugins/Validation/Validator/setDefaults|$.validator.setDefaults({...})]] to override multiple settings at once.
+# Validating multiple forms on one page
+The plugin can handle only one form per call. In case you have multiple forms on a single page which you want to validate, you can avoid having to duplicate the plugin settings by modifying the defaults. Use <a href="/jQuery.validator.setDefaults/">jQuery.validator.setDefaults</a> to override multiple settings at once.

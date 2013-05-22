@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<entry name="email" type="method" return="Boolean">
+	<title>email method</title>
+	<desc>Makes the element require a valid email</desc>
+	<longdesc>
+		Return true, if the value is a valid email address.
+		<p>Works with text inputs.</p>
+	</longdesc>
+	<example>
+		<desc>Makes "field" required and an email address.</desc>
+		<code><![CDATA[
+$( "#myform" ).validate({
+  rules: {
+    field: {
+      required: true,
+      email: true
+    }
+  }
+});
+]]></code>
+<html><![CDATA[
+<label for="field">Required, email: </label>
+<input class="left" id="field" name="field">
+<br/>
+<input type="submit" value="Validate!">
+]]></html>
+	</example>
+	<category slug="methods"/>
+</entry>

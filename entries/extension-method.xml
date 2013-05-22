@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<entry name="extension" type="method" return="Boolean">
+	<title>extension method</title>
+	<desc>Makes the element require a certain file extension.</desc>
+	<longdesc>
+		Returns true if the value ends with one of the specified file extensions. If nothing is specified, only images are allowed (png, jpeg, gif).
+		<p>Works with text inputs.</p>
+	</longdesc>
+	<signature>
+		<argument name="extension" type="String" optional="true">
+			<desc>
+				The allowed file extensions, seperated via "|" (or a comma, ","), defaults to "png|jpe?g|gif".
+			</desc>
+		</argument>
+	</signature>
+	<example>
+		<desc>Makes "field" required and ending with ".xls" or ".csv".</desc>
+		<code><![CDATA[
+$( "#myform" ).validate({
+  rules: {
+    field: {
+      required: true,
+      extension: "xls|csv"
+    }
+  }
+});
+]]></code>
+<html><![CDATA[
+<label for="field">Required, only .xls and .csv files allowed: </label>
+<input type="file" class="left" id="field" name="field">
+<br/>
+<input type="submit" value="Validate!">
+]]></html>
+	</example>
+	<category slug="methods"/>
+</entry>

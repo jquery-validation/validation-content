@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<entry name="accept" type="method" return="Boolean">
+	<title>accept method</title>
+	<desc>Makes a file upload accept only specified mime-types.</desc>
+	<longdesc>
+		Uses the HTML5 file API to look at the type attribute of one or more selected files and validate that each matches the specified mime-type.
+
+		<p>If nothing is specified, only images are allowed (image/*).</p>
+
+		<p>You can specify multiple mime-types by separating them with a comma, e.g. "image/x-eps,application/pdf".</p>
+
+		<p>Works with type="file" inputs.</p>
+
+		<p>Note: This method used to look at just the filename, specifically the file extension. That behaviour is now available as the "extension" method inside additional-methods.js, same as this "accept" method itself.</p>
+	</longdesc>
+	<signature>
+		<argument name="mimetype" type="String">
+			<desc>
+				The allowed type, seperated via ",", defaults to "image/*"
+			</desc>
+		</argument>
+	</signature>
+	<example>
+		<desc>Required, only audio files allowed:</desc>
+		<code><![CDATA[
+$( "#myform" ).validate({
+  rules: {
+    field: {
+      required: true,
+      accept: "audio/*"
+    }
+  }
+});
+]]></code>
+<html><![CDATA[
+<label for="field">Required, audio files only: </label>
+<input type="file" class="left" id="field" name="field">
+<br/>
+<input type="submit" value="Validate!">
+]]></html>
+	</example>
+	<category slug="methods"/>
+</entry>

@@ -1,0 +1,162 @@
+<?xml version="1.0"?>
+<entry name="required" type="method" return="Boolean">
+	<title>required method</title>
+	<desc>Makes the element required.</desc>
+	<longdesc>
+		Return false if the element is empty (text input) or unchecked (radio/checkbox) or nothing selected (select).
+		<p>Works with text inputs, selects, checkboxes and radio buttons.</p>
+		<p>To force a user to select an option from a select box, provide an empty option element like &lt;option value=""&gt;Choose...&lt;/option&gt;</p>
+	</longdesc>
+	<signature>
+		<desc>The element is always required.</desc>
+	</signature>
+	<signature>
+		<desc>Makes the element required, depending on the result of the given expression.</desc>
+		<argument name="dependency-expression" type="String">
+			<desc>
+				An expression (String) that is evaluated in the context of the element's form, making the field required only if the expression returns more than one element.
+				<p>Very often your expression will use selector filters such as <code>#foo:checked</code>, <code>#foo:filled</code>, <code>#foo:visible</code>. This plugin provides <a href="/category/selectors/">custom selectors for that purpose</a>.</p>
+			</desc>
+		</argument>
+	</signature>
+	<signature>
+		<desc>Makes the element required, depending on the result of the given callback.</desc>
+		<argument name="dependency-callback" type="Function">
+			<desc>
+				The function is executed with the element as it's only argument: If it returns true, the element is required.
+			</desc>
+		</argument>
+	</signature>
+	<example>
+		<desc>Makes "field" always required. Nothing and blanks are invalid.</desc>
+		<code><![CDATA[
+$( "#myform" ).validate({
+  rules: {
+    field: {
+      required: true
+    }
+  }
+});
+]]></code>
+<html><![CDATA[
+<label for="field">Required: </label>
+<input type="text" class="left" id="field" name="field">
+<br/>
+<input type="submit" value="Validate!">
+]]></html>
+	</example>
+	<example>
+		<desc>Makes the fruit select required.</desc>
+		<code><![CDATA[
+$( "#myform" ).validate({
+  rules: {
+    fruit: {
+      required: true
+    }
+  }
+});
+]]></code>
+<html><![CDATA[
+<label for="fruit">Please select a fruit</label>
+<select id="fruit" name="fruit" title="Please select something!">
+	<option value="">Select...</option>
+	<option value="1">Banana</option>
+	<option value="2">Apple</option>
+	<option value="3">Peach</option>
+</select>
+<br/>
+<input type="submit" value="Validate!">
+]]></html>
+	</example>
+	<example>
+		<desc>Makes the gender radio buttons required.</desc>
+		<code><![CDATA[
+$( "#myform" ).validate({
+  rules: {
+    gender: {
+      required: true
+    }
+  }
+});
+]]></code>
+<html><![CDATA[
+<label for="gender_male">
+  <input  type="radio" id="gender_male" value="m" name="gender" />
+  Male
+</label>
+<label for="gender_female">
+  <input  type="radio" id="gender_female" value="f" name="gender"/>
+  Female
+</label>
+<label for="gender" class="error">Please select your gender</label>
+<br/>
+<input type="submit" value="Validate!">
+]]></html>
+	</example>
+	<example>
+		<desc>Makes the agree checkbox required.</desc>
+		<code><![CDATA[
+$( "#myform" ).validate({
+  rules: {
+    agree: {
+      required: true
+    }
+  }
+});
+]]></code>
+<html><![CDATA[
+<label for="agree">Please agree to our policy</label>
+<input type="checkbox" id="agree" title="Please agree to our policy!" name="agree" />
+<br/>
+<input type="submit" value="Validate!">
+]]></html>
+	</example>
+	<example>
+		<desc>Makes details required only if #other is checked.</desc>
+		<code><![CDATA[
+$( "#myform" ).validate({
+  rules: {
+    details: {
+      required: "#other:checked"
+    }
+  }
+});
+]]></code>
+<html><![CDATA[
+<label for="other">Check to make next field required</label>
+<input id="other" type="checkbox">
+<br>
+<input id="details" name="details">
+<br>
+<input type="submit" value="Validate!">
+]]></html>
+	</example>
+	<example>
+		<desc>Makes "parent" required only if age is below 13.</desc>
+		<code><![CDATA[
+$( "#myform" ).validate({
+  rules: {
+    age: {
+      required: true,
+      min: 3
+    },
+    parent: {
+      required: function(element) {
+        return $("#age").val() < 13;
+      }
+    }
+  }
+});
+]]></code>
+<html><![CDATA[
+<label>Age </label>
+<input id="age" name="age">
+<br>
+<label>Parent </label>
+<input id="parent" name="parent">
+<br>
+<input type="submit" value="Validate!">
+]]></html>
+	</example>
+	<category slug="methods"/>
+</entry>

@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<entry name="minlength" type="method" return="Boolean">
+	<title>minlength method</title>
+	<desc>Makes the element require a given minimum length.</desc>
+	<longdesc>
+		Return false, if the element is
+		<ul>
+			<li>some kind of text input and its value is too short</li>
+			<li>a set of checkboxes has not enough boxes checked</li>
+			<li>a select and has not enough options selected</li>
+		</ul>
+		<p>Works with text inputs, selects and checkboxes.</p>
+	</longdesc>
+	<signature>
+		<argument name="length" type="Number">
+			<desc>
+				Minimum number of characters required
+			</desc>
+		</argument>
+	</signature>
+	<example>
+		<desc>Makes "field" required having at least 3 characters.</desc>
+		<code><![CDATA[
+$( "#myform" ).validate({
+  rules: {
+    field: {
+      required: true,
+      minlength: 3
+    }
+  }
+});
+]]></code>
+<html><![CDATA[
+<label for="field">Required, minimum length 3: </label>
+<input type="text" class="left" id="field" name="field">
+<br/>
+<input type="submit" value="Validate!">
+]]></html>
+	</example>
+	<category slug="methods"/>
+</entry>

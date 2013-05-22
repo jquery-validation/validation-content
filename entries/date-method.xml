@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<entry name="date" type="method" return="Boolean">
+	<title>date method</title>
+	<desc>Makes the element require a date.</desc>
+	<longdesc>
+		Return true, if the value is a valid date. Uses JavaScripts built-in Date to test if the date is valid, and does therefore no sanity checks. Only the format must be valid, not the actual date, eg 30/30/2008 is a valid date.
+		<p>This method should not be used, since it relies on the <code>new Date</code> constructor, which behaves very differently across browsers and locales. Use <code>dateISO</code> instead or one of the locale specific methods (in localizations/ and additional-methods.js).</p>
+	</longdesc>
+	<example>
+		<desc>Makes "field" required and a date.</desc>
+		<code><![CDATA[
+$( "#myform" ).validate({
+  rules: {
+    field: {
+      required: true,
+      date: true
+    }
+  }
+});
+]]></code>
+<html><![CDATA[
+<label for="field">Required, date: </label>
+<input class="left" id="field" name="field">
+<br/>
+<input type="submit" value="Validate!">
+]]></html>
+	</example>
+	<category slug="methods"/>
+</entry>

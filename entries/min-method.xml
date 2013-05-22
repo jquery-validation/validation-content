@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<entry name="min" type="method" return="Boolean">
+	<title>min method</title>
+	<desc>Makes the element require a given minimum.</desc>
+	<longdesc>
+		Works with text inputs. To exclude the minimum value, add Number.MIN_VALUE to that value.
+	</longdesc>
+	<signature>
+		<argument name="value" type="Number">
+			<desc>
+				Minimum value required
+			</desc>
+		</argument>
+	</signature>
+	<example>
+		<desc>Makes "field" required and 13 or larger.</desc>
+		<code><![CDATA[
+$( "#myform" ).validate({
+  rules: {
+    field: {
+      required: true,
+      min: 13
+    }
+  }
+});
+]]></code>
+<html><![CDATA[
+<label for="field">Required, minimum 13: </label>
+<input type="text" class="left" id="field" name="field">
+<br/>
+<input type="submit" value="Validate!">
+]]></html>
+	</example>
+	<category slug="methods"/>
+</entry>

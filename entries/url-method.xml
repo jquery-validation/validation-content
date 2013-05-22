@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<entry name="url" type="method" return="Boolean">
+	<title>url method</title>
+	<desc>Makes the element require a valid url</desc>
+	<longdesc>
+		Return true, if the value is a valid url.
+		<p>Works with text inputs.</p>
+	</longdesc>
+	<example>
+		<desc>Makes "field" required and an url.</desc>
+		<code><![CDATA[
+$( "#myform" ).validate({
+  rules: {
+    field: {
+      required: true,
+      url: true
+    }
+  }
+});
+]]></code>
+<html><![CDATA[
+<label for="field">Required, URL: </label>
+<input class="left" id="field" name="field">
+<br/>
+<input type="submit" value="Validate!">
+]]></html>
+	</example>
+	<category slug="methods"/>
+</entry>
