@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <?xml-stylesheet type="text/xsl" href="../entries2html.xsl" ?>
-<entry type="method" name="Validator.addClassRules">
-	<title>Validator.addClassRules()</title>
+<entry type="method" name="jQuery.validator.addClassRules">
+	<title>jQuery.validator.addClassRules()</title>
 	<signature>
 		<argument name="name" type="String">
 			<desc>The name of the class rule to add</desc>
