@@ -18,7 +18,7 @@ grunt.initConfig({
 	},
 	watch: {
 		files: [ "entries/**", "pages/**", "categories.xml" ],
-		tasks: "deploy"
+		tasks: "build-xml-entries"
 	},
 	xmllint: {
 		all: [].concat( entryFiles, "categories.xml", "entries2html.xsl" )

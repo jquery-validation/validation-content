@@ -6,44 +6,38 @@
 		This method sets up event handlers for submit, focus, keyup, blur and click to trigger validation of the entire form or individual elements. Each one can be disabled, see the onxxx options (onsubmit, onfocusout, onkeyup, onclick). focusInvalid focuses elements when submitting a invalid form.
 		<p>Use the debug option to ease setting up validation rules, it always prevents the default submit, even when script errors occur.</p>
 		<p>Use submitHandler to implement your own form submit, eg. via Ajax. Use invalidHandler to react when an invalid form is submitted.</p>
-		<p>Use rules and messages to specify which elements to validate, and how. See [[Plugins/Validation/rules|rules()]] for more details about specifying validation rules.</p>
+		<p>Use rules and messages to specify which elements to validate, and how. See <a href="/rules">rules()</a> for more details about specifying validation rules.</p>
 		<p>Use errorClass, errorElement, wrapper, errorLabelContainer, errorContainer, showErrors, success, errorPlacement, highlight, unhighlight, and ignoreTitle to control how invalid elements and error messages are displayed.</p>
 	</longdesc>
 	<signature>
 		<argument name="options" type="Object" optional="true">
 			<property name="debug" default="false">
-				<desc>Enables debug mode. If true, the form is not submitted and certain errors are displayed on the console (requires [http://getfirebug.com Firebug or Firebug lite]). Try to enable when a form is just submitted instead of validation stopping the submit.</desc>
+				<desc>
+					Enables debug mode. If true, the form is not submitted and certain errors are displayed on the console (will check if a <code>window.console</code> property exists). Try to enable when a form is just submitted instead of validation stopping the submit.
+					<p><strong>Example</strong>: Prevents the form from submitting and tries to help setting up the validation with warnings about missing methods and other debug messages.</p>
+					<pre><code>
+					$(".selector").validate({
+						debug: true
+					});
+					</code></pre>
+				</desc>
 				<type name="Boolean"/>
-				<!--
-				{{APIOptionExample|
-|desc=Prevents the form from submitting and tries to help setting up the validation with warnings about missing methods and other debug messages.
-|code={{Code|Core|$}}(&quot;.selector&quot;).{{Code|Plugins/Validation|validate}}({
-    debug: true
- })
-}}
-{{APIOptionExample|
-|desc=Sets the debug option as the default, handy when validating multiple forms on a single page.
-|code={{Code|Core|$}}.validator.{{Code|Plugins/Validation/Validator|setDefaults}}({
-    debug: true
- })
-}}
--->
 			</property>
 			<property name="submitHandler" default="native form submit">
-				<desc>Callback for handling the actual submit when the form is valid. Gets the form as the only argument. Replaces the default submit. The right place to [http://www.malsup.com/jquery/form/#api submit a form via Ajax] after it validated.</desc>
+				<desc>Callback for handling the actual submit when the form is valid. Gets the form as the only argument. Replaces the default submit. The right place to <a href="http://www.malsup.com/jquery/form/#api">submit a form via Ajax</a> after it validated.</desc>
 				<type name="Function"/>
 				<!--
 					{{APIOptionExample|
 |desc=Submits the form via Ajax when valid.
-|code={{Code|Core|$}}(&quot;.selector&quot;).{{Code|Plugins/Validation|validate}}({
+|code=$(".selector").validate({
     submitHandler: function(form) {
-      {{Code|Core|$}}(form).ajaxSubmit();
+      $(form).ajaxSubmit();
     }
  })
 }}
 {{APIOptionExample|
-|desc=Use submitHandler to process something and then using the default submit. Note that &quot;form&quot; refers to a DOM element, this way the validation isn't triggered again.
-|code={{Code|Core|$}}(&quot;.selector&quot;).{{Code|Plugins/Validation|validate}}({
+|desc=Use submitHandler to process something and then using the default submit. Note that "form" refers to a DOM element, this way the validation isn't triggered again.
+|code=$(".selector").validate({
     submitHandler: function(form) {
         // do other stuff for a valid form
       form.submit();
@@ -58,7 +52,7 @@
 				<!--
 					{{APIOptionExample|
 |desc=Displays a message above the form, indicating how many fields are invalid when the user tries to submit an invalid form.
-|code={{Code|Core|$}}(&quot;.selector&quot;).{{Code|Plugins/Validation|validate}}({&lt;nowiki&gt;
+|code=$(".selector").validate({
     invalidHandler: function(event, validator) {
       // 'this' refers to the form
       var errors = validator.numberOfInvalids();
@@ -66,13 +60,13 @@
         var message = errors == 1
           ? 'You missed 1 field. It has been highlighted'
           : 'You missed ' + errors + ' fields. They have been highlighted';
-        $(&quot;div.error span&quot;).html(message);
-        $(&quot;div.error&quot;).show();
+        $("div.error span").html(message);
+        $("div.error").show();
       } else {
-        $(&quot;div.error&quot;).hide();
+        $("div.error").hide();
       }
     }
- })&lt;/nowiki&gt;
+ })
 }}
 -->
 			</property>
@@ -80,9 +74,9 @@
 				<desc>Elements to ignore when validating, simply filtering them out. jQuery's not-method is used, therefore everything that is accepted by not() can be passed as this option. Inputs of type submit and reset are always ignored, so are disabled elements.</desc>
 				<type name="Selector"/>
 <!-- 				{{APIOptionExample|
-|desc=Ignores all element with the class &quot;ignore&quot; when validating.
-|code={{Code|Core|$}}(&quot;#myform&quot;).{{Code|Plugins/Validation|validate}}({
-    ignore: &quot;.ignore&quot;
+|desc=Ignores all element with the class "ignore" when validating.
+|code=$("#myform").validate({
+    ignore: ".ignore"
  })
 }} -->
 			</property>
@@ -93,10 +87,10 @@
 				<type name="Object"/>
 <!-- 				{{APIOptionExample|
 |desc=Specifies a name element as required and an email element as required (using the shortcut for a single rule) and a valid email address (using another object literal).
-|code={{Code|Core|$}}(&quot;.selector&quot;).{{Code|Plugins/Validation|validate}}({
+|code=$(".selector").validate({
     rules: {
       // simple rule, converted to {required:true}
-      name: &quot;required&quot;,
+      name: "required",
       // compound rule
       email: {
         required: true,
@@ -107,13 +101,13 @@
 }}
 {{APIOptionExample|
 |desc=Specifies a contact element as required and as email address, the latter depending on a checkbox being checked for contacting via email.
-|code={{Code|Core|$}}(&quot;.selector&quot;).{{Code|Plugins/Validation|validate}}({
+|code=$(".selector").validate({
     rules: {
       contact: {
         required: true,
         email: {
           depends: function(element) {
-            return $(&quot;#contactform_email:checked&quot;)
+            return $("#contactform_email:checked")
           }
         }
       }
@@ -128,26 +122,26 @@
 				<type name="Object"/>
 <!-- 				{{APIOptionExample|
 |desc=Specifies a name element as required and an email element as required and a valid email address. A single message is specified for the name element, and two messages for email.
-|code={{Code|Core|$}}(&quot;.selector&quot;).{{Code|Plugins/Validation|validate}}({
+|code=$(".selector").validate({
     rules: {
-      name: &quot;required&quot;,
+      name: "required",
       email: {
         required: true,
         email: true
       }
     },
     messages: {
-      name: &quot;Please specify your name&quot;,
+      name: "Please specify your name",
       email: {
-        required: &quot;We need your email address to contact you&quot;,
-        email: &quot;Your email address must be in the format of name@domain.com&quot;
+        required: "We need your email address to contact you",
+        email: "Your email address must be in the format of name@domain.com"
       }
     }
  })
 }}
 {{APIOptionExample|
 |desc=Validates the name-field as required and having at least two characters. Provides a callback message using jQuery.format to avoid having to specify the parameter in two places.
-|code={{Code|Core|$}}(&quot;.selector&quot;).{{Code|Plugins/Validation|validate}}({
+|code=$(".selector").validate({
     rules: {
       name: {
         required: true,
@@ -156,8 +150,8 @@
     },
     messages: {
       name: {
-        required: &quot;We need your email address to contact you&quot;,
-        minlength: jQuery.format(&quot;At least {0} characters required!&quot;)
+        required: "We need your email address to contact you",
+        minlength: jQuery.format("At least {0} characters required!")
       }
     }
  })
@@ -168,27 +162,27 @@
 				<type name="Object"/>
 <!-- 				{{APIOptionExample|
 |desc=Use a table layout for the form, placing error messags in the next cell after the input.
-|inhead=&lt;nowiki&gt;&lt;script type=&quot;text/javascript&quot; src=&quot;http://jzaefferer.github.com/jquery-validation/jquery.validate.js&quot;&gt;&lt;/script&gt;&lt;/nowiki&gt;
-|html=&lt;nowiki&gt;&lt;form id=&quot;myform&quot;&gt;
+|inhead=&lt;script type="text/javascript" src="http://jzaefferer.github.com/jquery-validation/jquery.validate.js"&gt;&lt;/script&gt;
+|html=&lt;form id="myform"&gt;
   &lt;label&gt;Your Name&lt;/label&gt;
-  &lt;input name=&quot;fname&quot; class=&quot;required&quot; value=&quot;Pete&quot; /&gt;
-  &lt;input name=&quot;lname&quot; id=&quot;lastname&quot; class=&quot;required&quot; /&gt;
+  &lt;input name="fname" class="required" value="Pete" /&gt;
+  &lt;input name="lname" id="lastname" class="required" /&gt;
   &lt;br/&gt;
-  &lt;input type=&quot;submit&quot; value=&quot;Submit&quot;/&gt;
-&lt;/form&gt;&lt;/nowiki&gt;
-|code={{Code|Core|$}}(&quot;#myform&quot;).{{Code|Plugins/Validation|validate}}({
+  &lt;input type="submit" value="Submit"/&gt;
+&lt;/form&gt;
+|code=$("#myform").validate({
    groups: {
-     username: &quot;fname lname&quot;
+     username: "fname lname"
    },
-   &lt;nowiki&gt;errorPlacement: function(error, element) {
-     if (element.attr(&quot;name&quot;) == &quot;fname&quot;
-                 || element.attr(&quot;name&quot;) == &quot;lname&quot; )
-       error.insertAfter(&quot;#lastname&quot;);
+   errorPlacement: function(error, element) {
+     if (element.attr("name") == "fname"
+                 || element.attr("name") == "lname" )
+       error.insertAfter("#lastname");
      else
        error.insertAfter(element);
    },
    debug:true
- })&lt;/nowiki&gt;
+ })
 }} -->
 			</property>
 			<property name="onsubmit">
@@ -201,7 +195,7 @@
 				<type name="Function"/>
 <!-- 				{{APIOptionExample|
 |desc=Disables onsubmit validation, allowing the user to submit whatever he wants, while still validating on keyup/blur/click events (if not specified otherwise).
-|code={{Code|Core|$}}(&quot;.selector&quot;).{{Code|Plugins/Validation|validate}}({
+|code=$(".selector").validate({
     onsubmit: false
  })
 }} -->
@@ -217,7 +211,7 @@
 				<!--
 					{{APIOptionExample|
 |desc=Disables onblur validation.
-|code={{Code|Core|$}}(&quot;.selector&quot;).{{Code|Plugins/Validation|validate}}({
+|code=$(".selector").validate({
     onfocusout: false
  })
 }}-->
@@ -232,7 +226,7 @@
 				<type name="Function"/>
 <!-- 				{{APIOptionExample|
 |desc=Disables onkeyup validation.
-|code={{Code|Core|$}}(&quot;.selector&quot;).{{Code|Plugins/Validation|validate}}({
+|code=$(".selector").validate({
     onkeyup: false
  })
 }} -->
@@ -247,7 +241,7 @@
 				<type name="Function"/>
 <!-- 				{{APIOptionExample|
 |desc=Disables onclick validation of checkboxes and radio buttons.
-|code={{Code|Core|$}}(&quot;.selector&quot;).{{Code|Plugins/Validation|validate}}({
+|code=$(".selector").validate({
     onclick: false
  })
 }} -->
@@ -257,7 +251,7 @@
 				<type name="Boolean"/>
 <!-- 				{{APIOptionExample|
 |desc=Disables focusing of invalid elements.
-|code={{Code|Core|$}}(&quot;.selector&quot;).{{Code|Plugins/Validation|validate}}({
+|code=$(".selector").validate({
     focusInvalid: false
  })
 }} -->
@@ -267,7 +261,7 @@
 				<type name="Boolean"/>
 <!-- 				{{APIOptionExample|
 |desc=Enables cleanup when focusing elements, removing the error class and hiding error messages when an element is focused.
-|code={{Code|Core|$}}(&quot;.selector&quot;).{{Code|Plugins/Validation|validate}}({
+|code=$(".selector").validate({
     focusCleanup: true
  })
 }} -->
@@ -276,9 +270,9 @@
 				<desc>Use this class to create error labels, to look for existing error labels and to add it to invalid elements.</desc>
 				<type name="String"/>
 <!-- 				{{APIOptionExample|
-|desc=Sets the error class to &quot;invalid&quot;.
-|code={{Code|Core|$}}(&quot;.selector&quot;).{{Code|Plugins/Validation|validate}}({
-    errorClass: &quot;invalid&quot;
+|desc=Sets the error class to "invalid".
+|code=$(".selector").validate({
+    errorClass: "invalid"
  })
 }} -->
 			</property>
@@ -286,9 +280,9 @@
 				<desc>This class is added to an element after it was validated and considered valid.</desc>
 				<type name="String"/>
 <!-- 				{{APIOptionExample|
-|desc=Sets the valid class to &quot;success&quot;.
-|code={{Code|Core|$}}(&quot;.selector&quot;).{{Code|Plugins/Validation|validate}}({
-    validClass: &quot;success&quot;
+|desc=Sets the valid class to "success".
+|code=$(".selector").validate({
+    validClass: "success"
  })
 }} -->
 			</property>
@@ -296,9 +290,9 @@
 				<desc>se this element type to create error messages and to look for existing error messages. The default, "label", has the advantage of creating a meaningful link between error message and invalid field using the for attribute (which is always used, no matter the element type).</desc>
 				<type name="String"/>
 <!-- 				{{APIOptionExample|
-|desc=Sets the error element to &quot;em&quot;.
-|code={{Code|Core|$}}(&quot;.selector&quot;).{{Code|Plugins/Validation|validate}}({
-    errorElement: &quot;em&quot;
+|desc=Sets the error element to "em".
+|code=$(".selector").validate({
+    errorElement: "em"
  })
 }} -->
 			</property>
@@ -307,8 +301,8 @@
 				<type name="String"/>
 <!-- 				{{APIOptionExample|
 |desc=Wrap each error element with a list item, useful when using an ordered or unordered list as the error container.
-|code={{Code|Core|$}}(&quot;.selector&quot;).{{Code|Plugins/Validation|validate}}({
-    wrapper: &quot;li&quot;
+|code=$(".selector").validate({
+    wrapper: "li"
  })
 }} -->
 			</property>
@@ -316,21 +310,21 @@
 				<desc>Hide and show this container when validating.</desc>
 				<type name="Selector"/>
 <!-- 				{{APIOptionExample|
-|desc=All error labels are displayed inside an unordered list with the ID &quot;messageBox&quot;, as specified by the selector passed as errorContainer option. All error elements are wrapped inside an li element, to create a list of messages.
-|html=&lt;nowiki&gt;&lt;script type=&quot;text/javascript&quot; src=&quot;http://jzaefferer.github.com/jquery-validation/jquery.validate.js&quot;&gt;&lt;/script&gt;
-&lt;ul id=&quot;messageBox&quot;&gt;&lt;/ul&gt;
- &lt;form id=&quot;myform&quot; action=&quot;/login&quot; method=&quot;post&quot;&gt;
+|desc=All error labels are displayed inside an unordered list with the ID "messageBox", as specified by the selector passed as errorContainer option. All error elements are wrapped inside an li element, to create a list of messages.
+|html=&lt;script type="text/javascript" src="http://jzaefferer.github.com/jquery-validation/jquery.validate.js"&gt;&lt;/script&gt;
+&lt;ul id="messageBox"&gt;&lt;/ul&gt;
+ &lt;form id="myform" action="/login" method="post"&gt;
    &lt;label&gt;Firstname&lt;/label&gt;
-   &lt;input name=&quot;fname&quot; class=&quot;required&quot; /&gt;
+   &lt;input name="fname" class="required" /&gt;
    &lt;label&gt;Lastname&lt;/label&gt;
-   &lt;input name=&quot;lname&quot; title=&quot;Your lastname, please!&quot; class=&quot;required&quot; /&gt;
+   &lt;input name="lname" title="Your lastname, please!" class="required" /&gt;
    &lt;br/&gt;
-   &lt;input type=&quot;submit&quot; value=&quot;Submit&quot;/&gt;
- &lt;/form&gt;&lt;/nowiki&gt;
-|code={{Code|Core|$}}(&quot;#myform&quot;).{{Code|Plugins/Validation|validate}}({
-    errorLabelContainer: &quot;#messageBox&quot;,
-    wrapper: &quot;li&quot;,
-    submitHandler: function() { alert(&quot;Submitted!&quot;) }
+   &lt;input type="submit" value="Submit"/&gt;
+ &lt;/form&gt;
+|code=$("#myform").validate({
+    errorLabelContainer: "#messageBox",
+    wrapper: "li",
+    submitHandler: function() { alert("Submitted!") }
  })
 }} -->
 			</property>
@@ -340,27 +334,27 @@
 <!-- 				{{APIOptionExample|
 |height=240
 |desc=Uses an additonal container for error messages. The elements given as the errorContainer are all shown and hidden when errors occur. But the error labels themselve are added to the element(s) given as errorLabelContainer, here an unordered list. Therefore the error labels are also wrapped into li elements (wrapper option).
-|css=&lt;nowiki&gt;#messageBox1, #messageBox2 { display: none }&lt;/nowiki&gt;
-|html=&lt;nowiki&gt;&lt;script type=&quot;text/javascript&quot; src=&quot;http://jzaefferer.github.com/jquery-validation/jquery.validate.js&quot;&gt;&lt;/script&gt;
-&lt;div id=&quot;messageBox1&quot;&gt;
+|css=#messageBox1, #messageBox2 { display: none }
+|html=&lt;script type="text/javascript" src="http://jzaefferer.github.com/jquery-validation/jquery.validate.js"&gt;&lt;/script&gt;
+&lt;div id="messageBox1"&gt;
   &lt;ul&gt;&lt;/ul&gt;
 &lt;/div&gt;
-&lt;form id=&quot;myform&quot; action=&quot;/login&quot; method=&quot;post&quot;&gt;
+&lt;form id="myform" action="/login" method="post"&gt;
   &lt;label&gt;Firstname&lt;/label&gt;
-  &lt;input name=&quot;fname&quot; class=&quot;required&quot; /&gt;
+  &lt;input name="fname" class="required" /&gt;
   &lt;label&gt;Lastname&lt;/label&gt;
-  &lt;input name=&quot;lname&quot; title=&quot;Your lastname, please!&quot; class=&quot;required&quot; /&gt;
+  &lt;input name="lname" title="Your lastname, please!" class="required" /&gt;
   &lt;br/&gt;
-  &lt;input type=&quot;submit&quot; value=&quot;Submit&quot;/&gt;
+  &lt;input type="submit" value="Submit"/&gt;
 &lt;/form&gt;
-&lt;div id=&quot;messageBox2&quot;&gt;
+&lt;div id="messageBox2"&gt;
   &lt;h3&gt;There are errors in your form, see details above!&lt;/h3&gt;
-&lt;/div&gt;&lt;/nowiki&gt;
-|code={{Code|Core|$}}(&quot;#myform&quot;).{{Code|Plugins/Validation|validate}}({
-    errorContainer: &quot;#messageBox1, #messageBox2&quot;,
-    errorLabelContainer: &quot;#messageBox1 ul&quot;,
-    wrapper: &quot;li&quot;, debug:true,
-    submitHandler: function() { alert(&quot;Submitted!&quot;) }
+&lt;/div&gt;
+|code=$("#myform").validate({
+    errorContainer: "#messageBox1, #messageBox2",
+    errorLabelContainer: "#messageBox1 ul",
+    wrapper: "li", debug:true,
+    submitHandler: function() { alert("Submitted!") }
  })
 }} -->
 			</property>
@@ -369,14 +363,14 @@
 				<type name="Function"/>
 <!-- 				{{APIOptionExample|
 |desc=Update the number of invalid elements each time an error is displayed. Delegates to the default implementation for the actual error display.
-|code={{Code|Core|$}}(&quot;.selector&quot;).{{Code|Plugins/Validation|validate}}({
-    &lt;nowiki&gt;showErrors: function(errorMap, errorList) {
-    $(&quot;#summary&quot;).html(&quot;Your form contains &quot;
+|code=$(".selector").validate({
+    showErrors: function(errorMap, errorList) {
+    $("#summary").html("Your form contains "
                                    + this.numberOfInvalids()
-                                   + &quot; errors, see details below.&quot;);
+                                   + " errors, see details below.");
     this.defaultShowErrors();
   }
- })&lt;/nowiki&gt;
+ })
 }} -->
 			</property>
 			<property name="errorPlacement" default="Places the error label after the invalid element">
@@ -385,29 +379,29 @@
 				<!--
 					{{APIOptionExample|
 |desc=Use a table layout for the form, placing error messags in the next cell after the input.
-|inhead=&lt;nowiki&gt;&lt;script type=&quot;text/javascript&quot; src=&quot;http://jzaefferer.github.com/jquery-validation/jquery.validate.js&quot;&gt;&lt;/script&gt;&lt;/nowiki&gt;
-|html=&lt;nowiki&gt;&lt;form id=&quot;myform&quot; action=&quot;/login&quot; method=&quot;post&quot;&gt;
+|inhead=&lt;script type="text/javascript" src="http://jzaefferer.github.com/jquery-validation/jquery.validate.js"&gt;&lt;/script&gt;
+|html=&lt;form id="myform" action="/login" method="post"&gt;
   &lt;table&gt;
     &lt;tr&gt;
       &lt;td&gt;&lt;label&gt;Firstname&lt;/label&gt;
-      &lt;td&gt;&lt;input name=&quot;fname&quot; class=&quot;required&quot; value=&quot;Pete&quot; /&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;input name="fname" class="required" value="Pete" /&gt;&lt;/td&gt;
       &lt;td&gt;&lt;/td&gt;
     &lt;/tr&gt;
     &lt;tr&gt;
       &lt;td&gt;&lt;label&gt;Lastname&lt;/label&gt;&lt;/td&gt;
-      &lt;td&gt;&lt;input name=&quot;lname&quot; title=&quot;Your lastname, please!&quot; class=&quot;required&quot; /&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;input name="lname" title="Your lastname, please!" class="required" /&gt;&lt;/td&gt;
       &lt;td&gt;&lt;/td&gt;
     &lt;/tr&gt;
     &lt;tr&gt;
-      &lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;input type=&quot;submit&quot; value=&quot;Submit&quot;/&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;/td&gt;&lt;td&gt;&lt;input type="submit" value="Submit"/&gt;&lt;/td&gt;&lt;td&gt;&lt;/td&gt;
   &lt;/table&gt;
-&lt;/form&gt;&lt;/nowiki&gt;
-|code={{Code|Core|$}}(&quot;#myform&quot;).{{Code|Plugins/Validation|validate}}({
-   &lt;nowiki&gt;errorPlacement: function(error, element) {
-     error.appendTo( element.parent(&quot;td&quot;).next(&quot;td&quot;) );
+&lt;/form&gt;
+|code=$("#myform").validate({
+   errorPlacement: function(error, element) {
+     error.appendTo( element.parent("td").next("td") );
    },
    debug:true
- })&lt;/nowiki&gt;
+ })
 }}
 -->
 			</property>
@@ -417,8 +411,8 @@
 				<type name="Function"/>
 <!-- 				{{APIOptionExample|
 |height=60
-|desc=Add a class &quot;valid&quot; to valid elements, styled via CSS.
-|css=&lt;nowiki&gt;label.valid {
+|desc=Add a class "valid" to valid elements, styled via CSS.
+|css=label.valid {
   background: url('http://dev.jquery.com/view/trunk/plugins/validate/demo/images/checked.gif') no-repeat;
   height:16px;
   width:16px;
@@ -426,23 +420,23 @@
   position: absolute;
   top: 4px;
   left: 152px;
-}&lt;/nowiki&gt;
-|inhead=&lt;nowiki&gt;&lt;script type=&quot;text/javascript&quot; src=&quot;http://jzaefferer.github.com/jquery-validation/jquery.validate.js&quot;&gt;&lt;/script&gt;&lt;/nowiki&gt;
-|html=&lt;nowiki&gt;
-&lt;form id=&quot;myform&quot;&gt;
-  &lt;input type=&quot;text&quot; name=&quot;email&quot; class=&quot;required&quot; /&gt;
+}
+|inhead=&lt;script type="text/javascript" src="http://jzaefferer.github.com/jquery-validation/jquery.validate.js"&gt;&lt;/script&gt;
+|html=
+&lt;form id="myform"&gt;
+  &lt;input type="text" name="email" class="required" /&gt;
   &lt;br/&gt;
-  &lt;input type=&quot;submit&quot; value=&quot;Submit&quot; /&gt;
-&lt;/form&gt;&lt;/nowiki&gt;
-|code={{Code|Core|$}}(&quot;#myform&quot;).{{Code|Plugins/Validation|validate}}({
-    success: &quot;valid&quot;,
-    submitHandler: function() { alert(&quot;Submitted!&quot;) }
+  &lt;input type="submit" value="Submit" /&gt;
+&lt;/form&gt;
+|code=$("#myform").validate({
+    success: "valid",
+    submitHandler: function() { alert("Submitted!") }
  })
 }}
 {{APIOptionExample|
 |height=60
-|desc=Add a class &quot;valid&quot; to valid elements, styled via CSS, and add the text &quot;Ok!&quot;.
-|css=&lt;nowiki&gt;label.valid {
+|desc=Add a class "valid" to valid elements, styled via CSS, and add the text "Ok!".
+|css=label.valid {
   background: url('http://dev.jquery.com/view/trunk/plugins/validate/demo/images/checked.gif') no-repeat;
   height:16px;
   width:16px;
@@ -451,50 +445,62 @@
   top: 4px;
   left: 152px;
   padding-left: 18px;
-}&lt;/nowiki&gt;
-|inhead=&lt;nowiki&gt;&lt;script type=&quot;text/javascript&quot; src=&quot;http://jzaefferer.github.com/jquery-validation/jquery.validate.js&quot;&gt;&lt;/script&gt;&lt;/nowiki&gt;
-|html=&lt;nowiki&gt;
-&lt;form id=&quot;myform&quot;&gt;
-  &lt;input type=&quot;text&quot; name=&quot;email&quot; class=&quot;required&quot; /&gt;
+}
+|inhead=&lt;script type="text/javascript" src="http://jzaefferer.github.com/jquery-validation/jquery.validate.js"&gt;&lt;/script&gt;
+|html=
+&lt;form id="myform"&gt;
+  &lt;input type="text" name="email" class="required" /&gt;
   &lt;br/&gt;
-  &lt;input type=&quot;submit&quot; value=&quot;Submit&quot; /&gt;
-&lt;/form&gt;&lt;/nowiki&gt;
-|code={{Code|Core|$}}(&quot;#myform&quot;).{{Code|Plugins/Validation|validate}}({
+  &lt;input type="submit" value="Submit" /&gt;
+&lt;/form&gt;
+|code=$("#myform").validate({
     success: function(label) {
-      label.addClass(&quot;valid&quot;).text(&quot;Ok!&quot;)
+      label.addClass("valid").text("Ok!")
     },
-    submitHandler: function() { alert(&quot;Submitted!&quot;) }
+    submitHandler: function() { alert("Submitted!") }
  })
 }} -->
 			</property>
 			<property name="highlight" default="Adds errorClass (see the option) to the element">
-				<desc>How to highlight invalid fields. Override to decide which fields and how to highlight.</desc>
+				<desc>
+					How to highlight invalid fields. Override to decide which fields and how to highlight.
+					<p><strong>Example</strong>: Highlights an invalid element by fading it out and in again.</p>
+					<pre><code>
+					$(".selector").validate({
+						highlight: function(element, errorClass) {
+							$(element).fadeOut(function() {
+								$(element).fadeIn();
+							});
+						}
+					});
+					</code></pre>
+					<p><strong>Example</strong>: Adds the error class to both the invalid element and it's label</p>
+					<pre><code>
+					$(".selector").validate({
+						highlight: function(element, errorClass, validClass) {
+							$(element).addClass(errorClass).removeClass(validClass);
+							$(element.form).find("label[for=" + element.id + "]")
+								.addClass(errorClass);
+						},
+						unhighlight: function(element, errorClass, validClass) {
+							$(element).removeClass(errorClass).addClass(validClass);
+							$(element.form).find("label[for=" + element.id + "]")
+								.removeClass(errorClass);
+						}
+					});
+					</code></pre>
+					<p>The callback gets passed three arguments:</p>
+				</desc>
 				<type name="Function"/>
-<!-- 				{{APIOptionExample|
-|desc=Highlights an invalid element by fading it out and in again.
-|code={{Code|Core|$}}(&quot;.selector&quot;).{{Code|Plugins/Validation|validate}}({
-   &lt;nowiki&gt;highlight: function(element, errorClass) {
-     $(element).fadeOut(function() {
-       $(element).fadeIn();
-     });
-  }&lt;/nowiki&gt;
- })
-}}
-{{APIOptionExample|
-|desc=Adds the error class to both the invalid element and it's label
-|code={{Code|Core|$}}(&quot;.selector&quot;).{{Code|Plugins/Validation|validate}}({
-   highlight: function(element, errorClass, validClass) {
-      {{Code|Core|$}}(element).addClass(errorClass).removeClass(validClass);
-      {{Code|Core|$}}&lt;nowiki&gt;(element.form).find(&quot;label[for=&quot; + element.id + &quot;]&quot;)
-                    .addClass(errorClass);&lt;/nowiki&gt;
-   },
-   unhighlight: function(element, errorClass, validClass) {
-      {{Code|Core|$}}(element).removeClass(errorClass).addClass(validClass);
-      {{Code|Core|$}}&lt;nowiki&gt;(element.form).find(&quot;label[for=&quot; + element.id + &quot;]&quot;)
-                    .removeClass(errorClass);&lt;/nowiki&gt;
-   }
- });
-}} -->
+				<property name="element" type="Element">
+					<desc>The invalid DOM element, usually an <code>input</code>.</desc>
+				</property>
+				<property name="errorClass" type="String">
+					<desc>Current value of the <code>errorClass</code> option.</desc>
+				</property>
+				<property name="validClass" type="String">
+					<desc>Current value of the <code>validClass</code> option.</desc>
+				</property>
 			</property>
 			<property name="unhighlight" default="Removes the errorClass">
 				<desc>Called to revert changes made by option highlight, same arguments as highlight.</desc>
@@ -506,7 +512,7 @@
 				<!--
 					{{APIOptionExample|
 |desc=Configure the plugin to ignore title attributes on validated elements when looking for messages.
-|code={{Code|Core|$}}(&quot;.selector&quot;).{{Code|Plugins/Validation|validate}}({
+|code=$(".selector").validate({
     ignoreTitle: true
  })
 }}-->
