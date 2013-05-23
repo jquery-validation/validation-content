@@ -6,7 +6,7 @@
   </signature>
   <desc>Selects all elements that are unchecked.</desc>
   <longdesc>
-    Inversion of <a href="http://api.jquery.com/checked">:checked</a>a>.
+    Inversion of <a href="http://api.jquery.com/checked">:checked</a>.
   </longdesc>
   <example>
     <desc>Finds all input elements that are unchecked.</desc>

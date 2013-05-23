@@ -80,9 +80,9 @@
  })
 }} -->
 			</property>
-			<property name="rules">
+			<property name="rules" default="rules are read from markup (classes, attributes, data)">
 				<desc>
-					Key/value pairs defining custom rules. Key is the name of an element (or a group of checkboxes/radio buttons), value is an object consisting of rule/parameter pairs or a plain String. Can be combined with class/attribute/data rules. Each rule can be specified as having a depends-property to apply the rule only in certain conditions. See the second example below for details.|rules are read from markup (classes, attributes, data)
+					Key/value pairs defining custom rules. Key is the name of an element (or a group of checkboxes/radio buttons), value is an object consisting of rule/parameter pairs or a plain String. Can be combined with class/attribute/data rules. Each rule can be specified as having a depends-property to apply the rule only in certain conditions. See the second example below for details.
 				</desc>
 				<type name="Object"/>
 <!-- 				{{APIOptionExample|
