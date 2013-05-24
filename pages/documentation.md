@@ -70,106 +70,65 @@ Throughout the documentation, two terms, that you need to know about and their m
 * **method**: A validation method implements the logic to validate an element, like an email method that checks for the right format of an text input's value. A set of standard methods is available, and it is easy to write your own.
 * **rule**: A validation rule associates an element with a validation method, like  "validate input with name "primary-mail" with methods "required" and "email".
 
-For now, use the search or these category pages to look for API documentation entries:
-
-* [jQuery plugins](/category/plugin/)
-* [Validator methods](/category/validator/)
-* [all methods](/category/methods/)
-* [Custom selectors provided by the plugin](/category/selectors/)
-
-<!--
-For a start, the validate-method:
-
 ## Plugin methods
 
-{{APIList|
-{{APIListHeader|Plugin methods}}
-{{:Plugins/Validation/validate}}
-{{:Plugins/Validation/valid}}
-{{:Plugins/Validation/rules}}
-{{:Plugins/Validation/removeAttrs}}
-}}
+This library adds three jQuery plugin methods, the main entry point being the `validate` method:
+
+* [`validate()` - Validates the selected form.](/validate)
+* [`valid()` - Checks whether the selected form or selected elements are valid.](/valid)
+* [`rules()` - Read, add and remove rules for an element.](/rules)
 
 ## Custom selectors
 
-{{APIList|
-{{APIListHeader|Custom selectors}}
-{{:Plugins/Validation/blank}}
-{{:Plugins/Validation/filled}}
-{{:Plugins/Validation/unchecked}}
-}}
+This library also extends jQuery with three custom selectors:
 
-## Utilities
-
-{{APIList|
-{{APIListHeader|String utilities}}
-{{:Plugins/Validation/jQuery.validator.format}}
-}}
+* [`:blank` - Selects all elements with a blank value.](/blank-selector)
+* [`:filled` - Selects all elements with a filled value.](/filled-selector)
+* [`:unchecked` - Selects all elements that are unchecked.](/unchecked-selector)
 
 ## Validator
 
 The validate method returns a Validator object that has a few public methods that you can use trigger validation programmatically or change the contents of the form. The validator object has more methods, but only those documented here are intended for usage.
 
-{{APIList|
-{{APIListHeader|Validator methods}}
-{{:Plugins/Validation/Validator/form}}
-{{:Plugins/Validation/Validator/element}}
-{{:Plugins/Validation/Validator/resetForm}}
-{{:Plugins/Validation/Validator/showErrors}}
-{{:Plugins/Validation/Validator/numberOfInvalids}}
-}}
+* [`Validator.form()` - Validates the form.](/Validator.form)
+* [`Validator.element()` - Validates a single element.](/Validator.element)
+* [`Validator.resetForm()` - Resets the controlled form.](/Validator.resetForm)
+* [`Validator.showErrors()` - Show the specified messages.](/Validator.showErrors)
+* [`Validator.numberOfInvalids()` - Returns the number of invalid fields.](/Validator.numberOfInvalids)
 
 There are a few static methods on the validator object:
 
-{{APIList|
-{{APIListHeader|Validator functions}}
-{{:Plugins/Validation/Validator/setDefaults}}
-{{:Plugins/Validation/Validator/addMethod}}
-{{:Plugins/Validation/Validator/addClassRules}}
-}}
+* [`jQuery.validator.addMethod()` - Add a custom validation method.](/jQuery.validator.addMethod)
+* [`jQuery.validator.format()` - Replaces {n} placeholders with arguments.](/jQuery.validator.format)
+* [`jQuery.validator.setDefaults()` - Modify default settings for validation.](/jQuery.validator.setDefaults)
+* [`jQuery.validator.addClassRules()` - Add a compound class method.](/jQuery.validator.addClassRules)
 
 ## List of built-in Validation methods
 
 A set of standard validation methods is provided:
 
-{{APIList|
-{{APIListHeader|Methods}}
-{{:Plugins/Validation/Methods/required}}
-{{:Plugins/Validation/Methods/remote}}
-{{:Plugins/Validation/Methods/minlength}}
-{{:Plugins/Validation/Methods/maxlength}}
-{{:Plugins/Validation/Methods/rangelength}}
-{{:Plugins/Validation/Methods/min}}
-{{:Plugins/Validation/Methods/max}}
-{{:Plugins/Validation/Methods/range}}
-{{:Plugins/Validation/Methods/email}}
-{{:Plugins/Validation/Methods/url}}
-{{:Plugins/Validation/Methods/date}}
-{{:Plugins/Validation/Methods/dateISO}}
-{{:Plugins/Validation/Methods/number}}
-{{:Plugins/Validation/Methods/digits}}
-{{:Plugins/Validation/Methods/creditcard}}
-{{:Plugins/Validation/Methods/equalTo}}
-}}
+* [`required` - Makes the element required.](/required-method)
+* [`remote` - Requests a resource to check the element for validity.](/remote-method)
+* [`minlength` - Makes the element require a given minimum length.](/minlength-method)
+* [`maxlength` - Makes the element require a given maxmimum length.](/maxlength-method)
+* [`rangelength` - Makes the element require a given value range.](/rangelength-method)
+* [`min` - Makes the element require a given minimum.](/min-method)
+* [`max` - Makes the element require a given maximum.](/max-method)
+* [`range` - Makes the element require a given value range.](/range-method)
+* [`email` - Makes the element require a valid email](/email-method)
+* [`url` - Makes the element require a valid url](/url-method)
+* [`date` - Makes the element require a date.](/date-method)
+* [`dateISO` - Makes the element require a ISO date.](/dateISO-method)
+* [`number` - Makes the element require a decimal number.](/number-method)
+* [`digits` - Makes the element require digits only.](/digits-method)
+* [`creditcard` - Makes the element require a creditcard number.](/creditcard-method)
+* [`equalTo` - Requires the element to be the same as another one](/equalTo-method)
 
-Some more methods are provided as addons, currently included in additional-methods.js in the download package.
+Some more methods are provided as addons, currently included in additional-methods.js in the download package. Not all of them are documented here:
 
-{{APIList|
-{{:Plugins/Validation/Methods/accept}}
-{{:Plugins/Validation/CustomMethods/extension}}
-{{:Plugins/Validation/CustomMethods/minWords}}
-{{:Plugins/Validation/CustomMethods/maxWords}}
-{{:Plugins/Validation/CustomMethods/rangeWords}}
-{{:Plugins/Validation/CustomMethods/letterswithbasicpunc}}
-{{:Plugins/Validation/CustomMethods/alphanumeric}}
-{{:Plugins/Validation/CustomMethods/lettersonly}}
-{{:Plugins/Validation/CustomMethods/nowhitespace}}
-{{:Plugins/Validation/CustomMethods/ziprange}}
-{{:Plugins/Validation/CustomMethods/vinUS}}
-{{:Plugins/Validation/CustomMethods/dateITA}}
-{{:Plugins/Validation/CustomMethods/phoneUS}}
-}}
--->
+* [`accept` - Makes a file upload accept only specified mime-types.](/accept-method)
+* [`extension` - Makes the element require a certain file extension.](/extension-method)
+* [`phoneUS` - Validate for valid US phone number.](/phoneUS-method)
 
 # [General Guidelines](/reference)
 
