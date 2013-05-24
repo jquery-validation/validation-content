@@ -9,7 +9,7 @@
 &lt;head&gt;
 &lt;meta charset="utf-8"&gt;
 &lt;title&gt;<xsl:value-of select="desc"/>&lt;/title&gt;
-&lt;link rel=&quot;stylesheet&quot; href=&quot;/resources/demo.css&quot;&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;http://jquery.bassistance.de/validate/demo/site-demos.css&quot;&gt;
 <xsl:if test="css">&lt;style&gt;<xsl:copy-of select="css/text()"/>  &lt;/style&gt;</xsl:if>
 &lt;/head&gt;
 &lt;body&gt;
