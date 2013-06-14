@@ -11,7 +11,7 @@ You may need different ways to specify validation rules, based on the server-sid
 **"But aren't there already a ton of validation plugins out there?"**
 Right, there are a lot of non-jQuery-based solutions (which you'd avoid since you found jQuery) and some jQuery-based solutions. This particular one you are looking at is one of the oldest jQuery plugins (started in July 2006) and proved itself in projects all around the world. There is also an [article](http://bassistance.de/2007/07/04/about-client-side-form-validation-and-frameworks/) discussing how this plugin fits the bill of the should-be validation solution.
 
-Not convinced? [Have a look at this example](jquery.bassistance.de/validate/demo/):
+Not convinced? [Have a look at this example](http://jquery.bassistance.de/validate/demo/):
 
 <pre><code>
 <form class="cmxform" id="commentForm" method="get" action="">
