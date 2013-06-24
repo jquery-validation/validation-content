@@ -12,7 +12,7 @@
 	<example>
 		<desc>Triggers element validation programmatically.</desc>
 		<code><![CDATA[
-var validator = $( "#myform" );
+var validator = $( "#myform" ).validate();
 validator.element( "#myselect" );
 ]]></code>
 	</example>

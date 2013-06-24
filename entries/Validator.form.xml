@@ -9,7 +9,7 @@
 	<example>
 		<desc>Triggers form validation programmatically.</desc>
 		<code><![CDATA[
-var validator = $( "#myform" );
+var validator = $( "#myform" ).validate();
 validator.form();
 ]]></code>
 	</example>

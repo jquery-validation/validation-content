@@ -12,7 +12,7 @@
 	<example>
 		<desc>Adds and shows error message programmatically.</desc>
 		<code><![CDATA[
-var validator = $( "#myshowErrors" );
+var validator = $( "#myshowErrors" ).validate();
 validator.showErrors({
 	"firstname": "I know that your firstname is Pete, Pete!"
 });

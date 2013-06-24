@@ -9,7 +9,7 @@
 	<example>
 		<desc>Reset the form controlled by this validator.</desc>
 		<code><![CDATA[
-var validator = $( "#myform" );
+var validator = $( "#myform" ).validate();
 validator.resetForm();
 ]]></code>
 	</example>
