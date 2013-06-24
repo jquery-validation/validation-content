@@ -13,7 +13,8 @@
 
 ]]></css>
 		<code><![CDATA[
-var form = $( "#myform" ).validate();
+var form = $( "#myform" );
+form.validate();
 $( "button" ).click(function() {
 	alert( "Valid: " + form.valid() );
 });
@@ -22,7 +23,7 @@ $( "button" ).click(function() {
 <form id="myform">
 	<input type="text" name="name" required>
 	<br>
-	<button>Validate!</button>
+	<button type="button">Validate!</button>
 </form>
 ]]></html>
 	</example>
