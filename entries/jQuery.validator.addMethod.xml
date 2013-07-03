@@ -35,7 +35,7 @@ See also a <a href="http://regexlib.com/DisplayPatterns.aspx">library of regular
 	<example>
 		<desc>Add a validation method that checks if a value starts with a certain domain.</desc>
 		<code><![CDATA[
-jQuery.validator.addMethod("domain";, function(value, element) {
+jQuery.validator.addMethod("domain", function(value, element) {
   return this.optional(element) || /^http:\/\/mycorporatedomain.com/.test(value);
 }, "Please specify the correct domain for your documents");
 ]]></code>
