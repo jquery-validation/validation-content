@@ -7,7 +7,7 @@
 		<p>Works with text inputs.</p>
 	</longdesc>
 	<example>
-		<desc>Makes "field" required and an url.</desc>
+		<desc>Makes "field" required and a url.</desc>
 		<code><![CDATA[
 $( "#myform" ).validate({
   rules: {

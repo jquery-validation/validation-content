@@ -3,11 +3,11 @@
 	<title>rangelength method</title>
 	<desc>Makes the element require a given value range.</desc>
 	<longdesc>
-		Return false, if the element is
+		Return false if the element is
 		<ul>
 			<li>some kind of text input and its length is too short or too long</li>
-			<li>a set of checkboxes has not enough or too many boxes checked</li>
-			<li>a select and has not enough or too many options selected</li>
+			<li>a set of checkboxes that doesn't have enough, or has too many boxes checked</li>
+			<li>a select that doesn't have enough, or has too many options selected</li>
 		</ul>
 		<p>Works with text inputs, selects and checkboxes.</p>
 	</longdesc>

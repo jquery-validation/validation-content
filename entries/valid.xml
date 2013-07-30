@@ -8,7 +8,7 @@
 	<signature>
 	</signature>
 	<example>
-		<desc>Sets up validation for a form, then checks if the form is when clicking a button valid.</desc>
+		<desc>Sets up validation for a form, then checks if the form is valid when clicking a button.</desc>
 		<css><![CDATA[
 
 ]]></css>

@@ -3,7 +3,7 @@
 	<title>.validate()</title>
 	<desc>Validates the selected form.</desc>
 	<longdesc>
-		This method sets up event handlers for submit, focus, keyup, blur and click to trigger validation of the entire form or individual elements. Each one can be disabled, see the onxxx options (onsubmit, onfocusout, onkeyup, onclick). focusInvalid focuses elements when submitting a invalid form.
+		This method sets up event handlers for submit, focus, keyup, blur and click to trigger validation of the entire form or individual elements. Each one can be disabled, see the onxxx options (onsubmit, onfocusout, onkeyup, onclick). focusInvalid focuses elements when submitting an invalid form.
 		<p>Use the debug option to ease setting up validation rules, it always prevents the default submit, even when script errors occur.</p>
 		<p>Use submitHandler to implement your own form submit, eg. via Ajax. Use invalidHandler to react when an invalid form is submitted.</p>
 		<p>Use rules and messages to specify which elements to validate, and how. See <a href="/rules">rules()</a> for more details about specifying validation rules.</p>
@@ -25,7 +25,7 @@
 			</property>
 			<property name="submitHandler" default="native form submit">
 				<desc>
-					Callback for handling the actual submit when the form is valid. Gets the form as the only argument. Replaces the default submit. The right place to <a href="http://www.malsup.com/jquery/form/#api">submit a form via Ajax</a> after it validated.
+					Callback for handling the actual submit when the form is valid. Gets the form as the only argument. Replaces the default submit. The right place to <a href="http://www.malsup.com/jquery/form/#api">submit a form via Ajax</a> after it is validated.
 					<p><strong>Example</strong>: Submits the form via Ajax when valid.</p>
 					<pre><code>
 					$(".selector").validate({
@@ -38,7 +38,7 @@
 					<pre><code>
 					$(".selector").validate({
 						submitHandler: function(form) {
-							// do other stuff for a valid form
+							// do other things for a valid form
 							form.submit();
 						}
 					});
@@ -52,7 +52,7 @@
 			</property>
 			<property name="invalidHandler">
 				<desc>
-					Callback for custom code when an invalid form is submitted. Called with a event object as the first argument, and the validator as the second.
+					Callback for custom code when an invalid form is submitted. Called with an event object as the first argument, and the validator as the second.
 					<p><strong>Example</strong>: Displays a message above the form, indicating how many fields are invalid when the user tries to submit an invalid form.</p>
 					<pre><code>
 					$(".selector").validate({
@@ -84,7 +84,7 @@
 			<property name="ignore" default='":hidden"'>
 				<desc>
 					Elements to ignore when validating, simply filtering them out. jQuery's not-method is used, therefore everything that is accepted by not() can be passed as this option. Inputs of type submit and reset are always ignored, so are disabled elements.
-					<p><strong>Example</strong>: Ignores all element with the class "ignore" when validating.</p>
+					<p><strong>Example</strong>: Ignores all elements with the class "ignore" when validating.</p>
 					<pre><code>
 					$("#myform").validate({
 						ignore: ".ignore"
@@ -110,7 +110,7 @@
 						}
 					});
 					</code></pre>
-					<p><strong>Example</strong>: Specifies a contact element as required and as email address, the latter depending on a checkbox being checked for contacting via email.</p>
+					<p><strong>Example</strong>: Specifies a contact element as required and as email address, the latter depending on a checkbox being checked for contact via email.</p>
 					<pre><code>
 					$(".selector").validate({
 						rules: {
@@ -130,7 +130,7 @@
 			</property>
 			<property name="messages" default="the default message for the method used">
 				<desc>
-					Key/value pairs defining custom messages. Key is the name of an element, value the message to display for that element. Instead of a plain message another map with specific messages for each rule can be used. Overrides the title attribute of an element or the default message for the method (in that order). Each message can be a String or a Callback. The callback is called in the scope of the validator and with the rule's parameters as the first and the element as the second arugment, it must return a String to display as the message.
+					Key/value pairs defining custom messages. Key is the name of an element, value the message to display for that element. Instead of a plain message, another map with specific messages for each rule can be used. Overrides the title attribute of an element or the default message for the method (in that order). Each message can be a String or a Callback. The callback is called in the scope of the validator and with the rule's parameters as the first and the element as the second arugment, it must return a String to display as the message.
 					<p><strong>Example</strong>: Specifies a name element as required and an email element as required and a valid email address. A single message is specified for the name element, and two messages for email.</p>
 					<pre><code>
 					$(".selector").validate({
@@ -194,7 +194,7 @@
 			<property name="onsubmit" default="true">
 				<desc>
 					Validate the form on submit. Set to false to use only other events for validation.
-					<p>Set to a Function to decide yourself when to run validation.</p>
+					<p>Set to a Function to decide for yourself when to run validation.</p>
 					<p>A boolean true is not a valid value.</p>
 					<p><strong>Example</strong>: Disables onsubmit validation, allowing the user to submit whatever he wants, while still validating on keyup/blur/click events (if not specified otherwise).</p>
 					<pre><code>
@@ -208,7 +208,7 @@
 			<property name="onfocusout">
 				<desc>
 					Validate elements (except checkboxes/radio buttons) on blur. If nothing is entered, all rules are skipped, except when the field was already marked as invalid.
-					<p>Set to a Function to decide yourself when to run validation.</p>
+					<p>Set to a Function to decide for yourself when to run validation.</p>
 					<p>A boolean true is not a valid value.</p>
 					<p><strong>Example</strong>: Disables onblur validation.</p>
 					<pre><code>
@@ -230,7 +230,7 @@
 			<property name="onkeyup">
 				<desc>
 					Validate elements on keyup. As long as the field is not marked as invalid, nothing happens. Otherwise, all rules are checked on each key up event. Set to false to disable.
-					<p>Set to a Function to decide yourself when to run validation.</p>
+					<p>Set to a Function to decide for yourself when to run validation.</p>
 					<p>A boolean true is not a valid value.</p>
 					<p><strong>Example</strong>: Disables onkeyup validation.</p>
 					<pre><code>
@@ -252,7 +252,7 @@
 			<property name="onclick">
 				<desc>
 					Validate checkboxes and radio buttons on click. Set to false to disable.
-					<p>Set to a Function to decide yourself when to run validation.</p>
+					<p>Set to a Function to decide for yourself when to run validation.</p>
 					<p>A boolean true is not a valid value.</p>
 					<p><strong>Example</strong>: Disables onclick validation of checkboxes and radio buttons.</p>
 					<pre><code>
@@ -273,7 +273,7 @@
 			</property>
 			<property name="focusInvalid" default="true">
 				<desc>
-					Focus the last active or first invalid element on submit via validator.focusInvalid(). The last active element is the one that had focus when the form was submitted, avoiding to steal its focus. If there was no element focused, the first one in the form gets it, unless this option is turned off.
+					Focus the last active or first invalid element on submit via validator.focusInvalid(). The last active element is the one that had focus when the form was submitted, avoiding stealing its focus. If there was no element focused, the first one in the form gets it, unless this option is turned off.
 					<p><strong>Example</strong>: Disables focusing of invalid elements.</p>
 					<pre><code>
 					$(".selector").validate({
@@ -285,7 +285,7 @@
 			</property>
 			<property name="focusCleanup" default="false">
 				<desc>
-					If enabled, removes the errorClass from the invalid elements and hides all errors messages whenever the element is focused. Avoid combination with focusInvalid.
+					If enabled, removes the errorClass from the invalid elements and hides all error messages whenever the element is focused. Avoid combination with focusInvalid.
 					<p><strong>Example</strong>: Enables cleanup when focusing elements, removing the error class and hiding error messages when an element is focused.</p>
 					<pre><code>
 					$(".selector").validate({
@@ -321,7 +321,7 @@
 			</property>
 			<property name="errorElement" default='"label"'>
 				<desc>
-					Use this element type to create error messages and to look for existing error messages. The default, "label", has the advantage of creating a meaningful link between error message and invalid field using the for attribute (which is always used, no matter the element type).
+					Use this element type to create error messages and to look for existing error messages. The default, "label", has the advantage of creating a meaningful link between error message and invalid field using the for attribute (which is always used, regardless of element type).
 					<p><strong>Example</strong>: Sets the error element to "em".</p>
 					<pre><code>
 					$(".selector").validate({
@@ -346,7 +346,7 @@
 			<property name="errorLabelContainer">
 				<desc>
 					Hide and show this container when validating.
-					<p><strong>Example</strong>: All error labels are displayed inside an unordered list with the ID "messageBox", as specified by the selector passed as errorContainer option. All error elements are wrapped inside an li element, to create a list of messages.</p>
+					<p><strong>Example</strong>: All error labels are displayed inside an unordered list with the ID "messageBox", as specified by the selector passed as errorContainer option. All error elements are wrapped inside a li element, to create a list of messages.</p>
 					<pre><code>
 					$("#myform").validate({
 						errorLabelContainer: "#messageBox",
@@ -360,7 +360,7 @@
 			<property name="errorContainer">
 				<desc>
 					Hide and show this container when validating.
-					<p><strong>Example</strong>: Uses an additonal container for error messages. The elements given as the errorContainer are all shown and hidden when errors occur. But the error labels themselve are added to the element(s) given as errorLabelContainer, here an unordered list. Therefore the error labels are also wrapped into li elements (wrapper option).</p>
+					<p><strong>Example</strong>: Uses an additonal container for error messages. The elements given as the errorContainer are all shown and hidden when errors occur. However, the error labels themselves are added to the element(s) given as errorLabelContainer, here an unordered list. Therefore the error labels are also wrapped into li elements (wrapper option).</p>
 					<pre><code>
 					$("#myform").validate({
 						errorContainer: "#messageBox1, #messageBox2",
@@ -374,7 +374,7 @@
 			</property>
 			<property name="showErrors">
 				<desc>
-					A custom message display handler. Gets the map of errors as the first argument and and array of errors as the second, called in the context of the validator object. The arguments contain only those elements currently validated, which can be a single element when doing validation onblur/keyup. You can trigger (in addition to your own messages) the default behaviour by calling this.defaultShowErrors().
+					A custom message display handler. Gets the map of errors as the first argument and an array of errors as the second, called in the context of the validator object. The arguments contain only those elements currently validated, which can be a single element when doing validation onblur/keyup. You can trigger (in addition to your own messages) the default behaviour by calling this.defaultShowErrors().
 					<p><strong>Example</strong>: Update the number of invalid elements each time an error is displayed. Delegates to the default implementation for the actual error display.</p>
 					<pre><code>
 					$(".selector").validate({
@@ -405,7 +405,7 @@
 			<property name="errorPlacement" default="Places the error label after the invalid element">
 				<desc>
 					Customize placement of created error labels. First argument: The created error label as a jQuery object. Second argument: The invalid element as a jQuery object.
-					<p><strong>Example</strong>: Use a table layout for the form, placing error messags in the next cell after the input.</p>
+					<p><strong>Example</strong>: Use a table layout for the form, placing error messages in the next cell after the input.</p>
 					<pre><code>
 					$("#myform").validate({
 						errorPlacement: function(error, element) {
@@ -425,7 +425,7 @@
 			</property>
 			<property name="success">
 				<desc>
-					If specified, the error label is displayed to show a valid element. If a String is given, its added as a class to the label. If a Function is given, its called with the label (as a jQuery object) and the validated input (as a DOM element). The label can be used to add a text like "ok!".
+					If specified, the error label is displayed to show a valid element. If a String is given, it is added as a class to the label. If a Function is given, it is called with the label (as a jQuery object) and the validated input (as a DOM element). The label can be used to add a text like "ok!".
 					<p><strong>Example</strong>: Add a class "valid" to valid elements, styled via CSS.</p>
 					<pre><code>
 					$("#myform").validate({
@@ -466,7 +466,7 @@
 						}
 					});
 					</code></pre>
-					<p><strong>Example</strong>: Adds the error class to both the invalid element and it's label</p>
+					<p><strong>Example</strong>: Adds the error class to both the invalid element and its label</p>
 					<pre><code>
 					$(".selector").validate({
 						highlight: function(element, errorClass, validClass) {

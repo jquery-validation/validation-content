@@ -3,7 +3,7 @@
 	<title>.rules()</title>
 	<desc>Read, add and remove rules for an element.</desc>
 	<longdesc>
-		Return the validations rules for the first selected element or
+		Returns the validations rules for the first selected element or
 
 		<p>Adds the specified rules and returns all rules for the first matched element. Requires that the parent form is validated, that is, $( "form" ).validate() is called first or</p>
 
@@ -32,7 +32,7 @@
 		<desc>Remove rules</desc>
 		<argument name='"remove"' type="String"/>
 		<argument name="rules" type="Object">
-			<desc>The space-seperated names of rules to remove and return. If left unspecified, removes and return all rules. Manipulates only rules specified via rules-option or via rules("add").</desc>
+			<desc>The space-seperated names of rules to remove and return. If left unspecified, removes and returns all rules. Manipulates only rules specified via rules-option or via rules("add").</desc>
 		</argument>
 	</signature>
 	<example>

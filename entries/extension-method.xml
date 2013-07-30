@@ -9,7 +9,7 @@
 	<signature>
 		<argument name="extension" type="String" optional="true">
 			<desc>
-				The allowed file extensions, seperated via "|" (or a comma, ","), defaults to "png|jpe?g|gif".
+				The allowed file extensions, seperated with "|" (or a comma, ","), defaults to "png|jpe?g|gif".
 			</desc>
 		</argument>
 	</signature>

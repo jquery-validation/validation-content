@@ -1,14 +1,14 @@
 <?xml version="1.0"?>
 <entry name="creditcard" type="method" return="Boolean">
 	<title>creditcard method</title>
-	<desc>Makes the element require a creditcard number.</desc>
+	<desc>Makes the element require a credit card number.</desc>
 	<longdesc>
-		Return true, if the value is a valid creditcard number.
+		Return true if the value is a valid credit card number.
 		<p>Works with text inputs.</p>
-		<p>Note: The algorithm used can't verify the validity of the number - it is just a integrity check. As with any other clientside validation, you have to implement the same or better validation on the serverside.</p>
+		<p>Note: The algorithm used can't verify the validity of the number - it is just an integrity check. As with any other clientside validation, you have to implement the same or better validation on the serverside.</p>
 	</longdesc>
 	<example>
-		<desc>Makes "field" required and creditcard only.</desc>
+		<desc>Makes "field" required and credit card only.</desc>
 		<code><![CDATA[
 $( "#myform" ).validate({
   rules: {

@@ -3,11 +3,11 @@
 	<title>minlength method</title>
 	<desc>Makes the element require a given minimum length.</desc>
 	<longdesc>
-		Return false, if the element is
+		Return false if the element is
 		<ul>
 			<li>some kind of text input and its value is too short</li>
-			<li>a set of checkboxes has not enough boxes checked</li>
-			<li>a select and has not enough options selected</li>
+			<li>a set of checkboxes and doesn't have enough boxes checked</li>
+			<li>a select and doesn't have enough options selected</li>
 		</ul>
 		<p>Works with text inputs, selects and checkboxes.</p>
 	</longdesc>

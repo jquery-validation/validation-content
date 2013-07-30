@@ -10,7 +10,7 @@
 	<desc>Returns the number of invalid fields.</desc>
 	<longdesc>This depends on the internal validator state. It covers all fields only after validating the complete form (on submit or via $("form").valid()). After validating a single element, only that element is counted. Most useful in combination with the invalidHandler-option.</longdesc>
 	<example>
-		<desc>Displays a summary of invalid fields after a invalid submit.</desc>
+		<desc>Displays a summary of invalid fields after an invalid submit.</desc>
 		<code><![CDATA[
 var validator = $( "#myform" ).validate({
   invalidHandler: function() {

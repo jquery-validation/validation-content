@@ -3,7 +3,7 @@
 	<title>required method</title>
 	<desc>Makes the element required.</desc>
 	<longdesc>
-		Return false if the element is empty (text input) or unchecked (radio/checkbox) or nothing selected (select).
+		Return false, if the element is empty (text input) or unchecked (radio/checkbox) or if nothing is selected (select).
 		<p>Works with text inputs, selects, checkboxes and radio buttons.</p>
 		<p>To force a user to select an option from a select box, provide an empty option element like &lt;option value=""&gt;Choose...&lt;/option&gt;</p>
 	</longdesc>

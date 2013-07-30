@@ -4,7 +4,7 @@
 	<title>jQuery.validator.addMethod()</title>
 	<signature>
 		<argument name="name" type="String">
-			<desc>The name of the method, used to identify and referencing it, must be a valid javascript identifier</desc>
+			<desc>The name of the method used to identify it and referencing it must be a valid javascript identifier</desc>
 		</argument>
 		<argument name="method" type="Function">
 			<desc>The actual method implementation, returning true if an element is valid. First argument: Current value. Second argument: Validated element. Third argument: Parameters.</desc>
@@ -15,20 +15,20 @@
 				<desc>the element to be validated</desc>
 			</property>
 			<property name="value" type="String">
-				<desc>parameters specified for the method, e.g. for min: 5 the parameter is 5, for range: [1, 5] its [1, 5]</desc>
+				<desc>parameters specified for the method, e.g. for min: 5, the parameter is 5, for range: [1, 5] it's [1, 5]</desc>
 			</property>
 		</argument>
 		<argument name="message" type="String" optional="true">
-			<desc>The default message to display for this method. Can be a function created by ''jQuery.validator.format(value)''. When undefined, an already existing message is used (handy for localization), otherwise the field-specific messages have to be defined.</desc>
+			<desc>The default message to display for this method. Can be a function created by ''jQuery.validator.format(value)''. When undefined, an existing message is used (handy for localization), otherwise the field-specific messages have to be defined.</desc>
 		</argument>
 	</signature>
 	<desc>Add a custom validation method. It must consist of a name (must be a legal javascript identifier), a javascript based function and a default string message.</desc>
 	<longdesc>The arguments to the callback are:
  * the current value of the validated element
  * the element to be validated
- * parameters specified for the method, e.g. for min: 5 the parameter is 5, for range: [1, 5] its [1, 5]
+ * parameters specified for the method, e.g. for min: 5 the parameter is 5, for range: [1, 5] it's [1, 5]
 
-Please note: While the temptation is great to add a regex method that checks it's parameter against the value, it is much cleaner to encapsulate those regular expressions inside their own method. If you need lots of slightly different expressions, try to extract a common parameter.
+Please note: While the temptation is great to add a regex method that checks its parameter against the value, it is much cleaner to encapsulate those regular expressions inside their own method. If you need lots of slightly different expressions, try to extract a common parameter.
 
 See also a <a href="http://regexlib.com/DisplayPatterns.aspx">library of regular expressions</a>.
 </longdesc>

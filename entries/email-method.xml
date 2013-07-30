@@ -3,7 +3,7 @@
 	<title>email method</title>
 	<desc>Makes the element require a valid email</desc>
 	<longdesc>
-		Return true, if the value is a valid email address.
+		Return true if the value is a valid email address.
 		<p>Works with text inputs.</p>
 	</longdesc>
 	<example>
