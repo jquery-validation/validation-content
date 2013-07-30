@@ -4,7 +4,7 @@
 	<title>jQuery.validator.addMethod()</title>
 	<signature>
 		<argument name="name" type="String">
-			<desc>The name of the method used to identify it and referencing it must be a valid javascript identifier</desc>
+			<desc>The name of the method used to identify it and referencing it; this must be a valid JavaScript identifier</desc>
 		</argument>
 		<argument name="method" type="Function">
 			<desc>The actual method implementation, returning true if an element is valid. First argument: Current value. Second argument: Validated element. Third argument: Parameters.</desc>
@@ -31,6 +31,8 @@
 Please note: While the temptation is great to add a regex method that checks its parameter against the value, it is much cleaner to encapsulate those regular expressions inside their own method. If you need lots of slightly different expressions, try to extract a common parameter.
 
 See also a <a href="http://regexlib.com/DisplayPatterns.aspx">library of regular expressions</a>.
+
+If you still can't resist, use the "pattern" method.
 </longdesc>
 	<example>
 		<desc>Add a validation method that checks if a value starts with a certain domain.</desc>

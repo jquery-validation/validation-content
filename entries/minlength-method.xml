@@ -6,7 +6,7 @@
 		Return false if the element is
 		<ul>
 			<li>some kind of text input and its value is too short</li>
-			<li>a set of checkboxes and doesn't have enough boxes checked</li>
+			<li>a set of checkboxes that doesn't have enough boxes checked</li>
 			<li>a select and doesn't have enough options selected</li>
 		</ul>
 		<p>Works with text inputs, selects and checkboxes.</p>

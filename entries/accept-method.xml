@@ -11,7 +11,7 @@
 
 		<p>Works with type="file" inputs.</p>
 
-		<p>Note: This method used to look at just the filename, specifically the file extension. That behaviour is now available as the "extension" method inside additional-methods.js, as is this "accept" method.</p>
+		<p>Note: This method used to look at just the filename, specifically the file extension. That behaviour is now available as the "extension" method inside src/additional/extension.js.</p>
 	</longdesc>
 	<signature>
 		<argument name="mimetype" type="String">

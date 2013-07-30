@@ -72,16 +72,6 @@ All validation rules included here provide a default error message which you can
 
 The priorities are as follows: A custom message (passed by plugin options), the element's title, the default message.
 
-## Error messages and Google Toolbar conflicts
-
-Google Toolbar's AutoFill feature sometimes conflicts with the validation plugin's message display. Google Toolbar replaces the title attribute of an element with some hint at its AutoFill. The validation plugin then uses that title attribute to display it as an error message - not the intended behaviour. One workaround to avoid that is to clear affected elements on DOM load:
-
-<pre><code>
-  $("input.remove_title").attr("title", "");
-</code></pre>
-
-More details in [this article](http://www.dream-revolver.com/2008/04/22/google-toolbar-overwriting-labels-when-using-jquerys-validate-plugin/).
-
 # Error message display
 Error messages are handled via label elements with an additional class (option errorClass). The link between the message and the invalid element is provided via the labels for attribute. When provided in the markup, they are shown and hidden accordingly, and otherwise created on demand. By default, labels are created after the invalid element, this is also customizable (option errorPlacement). It is also possible to put them into an error container (option errorLabelContainer). To use a different element then a label, specify the errorElement option.
 
