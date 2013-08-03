@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <entry name="maxlength" type="method" return="Boolean">
 	<title>maxlength method</title>
-	<desc>Makes the element require a given maxmimum length.</desc>
+	<desc>Makes the element require a given maximum length.</desc>
 	<longdesc>
 		Return false if the element is
 		<ul>
