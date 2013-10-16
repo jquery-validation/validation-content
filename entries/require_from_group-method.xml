@@ -3,9 +3,9 @@
 	<title>require_from_group method</title>
 	<desc>nsures a given number of fields in a group are complete.</desc>
 	<longdesc>
-		In the options passed to the rule, define the minimum number of fields 
+		In the options passed to the rule, supply the minimum number of fields 
 		within the group that must be complete and a CSS selector to define the
-		group. Then apply this rulke to all the fields within the group.
+		group. Then apply this rule to all the fields within the group.
 		The form then cannot be submitted until at least the minimum number have 
 		been completed.
 	</longdesc>
