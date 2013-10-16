@@ -129,6 +129,7 @@ Some more methods are provided as add-ons, and are currently included in additio
 * [`accept` - Makes a file upload accept only specified mime-types.](/accept-method)
 * [`extension` - Makes the element require a certain file extension.](/extension-method)
 * [`phoneUS` - Validate for valid US phone number.](/phoneUS-method)
+* [`require_from_group` - Ensures a given number of fields in a group are complete.](/require_from_group-method)
 
 # [General Guidelines](/reference)
 
