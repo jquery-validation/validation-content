@@ -14,7 +14,7 @@
 			<property name="element" type="Element">
 				<desc>the element to be validated</desc>
 			</property>
-			<property name="value" type="String">
+			<property name="params" type="Object">
 				<desc>parameters specified for the method, e.g. for min: 5, the parameter is 5, for range: [1, 5] it's [1, 5]</desc>
 			</property>
 		</argument>
@@ -23,16 +23,10 @@
 		</argument>
 	</signature>
 	<desc>Add a custom validation method. It must consist of a name (must be a legal javascript identifier), a javascript based function and a default string message.</desc>
-	<longdesc>The arguments to the callback are:
- * the current value of the validated element
- * the element to be validated
- * parameters specified for the method, e.g. for min: 5 the parameter is 5, for range: [1, 5] it's [1, 5]
-
-Please note: While the temptation is great to add a regex method that checks its parameter against the value, it is much cleaner to encapsulate those regular expressions inside their own method. If you need lots of slightly different expressions, try to extract a common parameter.
+	<longdesc>
+For simple one-off validation, you can use the bundled <code>pattern</code> method (in additional methods, source in <code>src/additional/pattern.js</code>) to validate a field against a regular expression. In general, it is a good idea to encapsulate those regular expressions inside their own method. If you need lots of slightly different expressions, try to extract a common parameter.
 
 See also a <a href="http://regexlib.com/DisplayPatterns.aspx">library of regular expressions</a>.
-
-If you still can't resist, use the "pattern" method.
 </longdesc>
 	<example>
 		<desc>Add a validation method that checks if a value starts with a certain domain.</desc>
