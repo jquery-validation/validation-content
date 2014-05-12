@@ -83,6 +83,7 @@ By default, the first invalid element in a form is focused after submitting a fo
 
 # Form submit
 By default, the form submission is prevented when the form is invalid, and submitted as normal when it is valid. You can also handle the submission manually (option submitHandler).
+If there's error in the form when submitting and you need to perform additional operation you can use the invalidHandler (option invalidHandler).
 
 ## Skipping validation on submit
 To skip validation while still using a submit-button, add a class="cancel" to that input.
