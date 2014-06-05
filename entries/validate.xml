@@ -125,6 +125,24 @@
 						}
 					});
 					</code></pre>
+					<p><strong>Example</strong>: Configure a rule that requires a parameter, along with a <code>depends</code> callback.</p>
+					<pre><code>
+					$(".selector").validate({
+						rules: {
+							// at least 15€ when bonus material is included
+							pay_what_you_want: {
+								required: true
+								min: {
+									// min needs a parameter passed to it
+									param: 15,
+									depends: function(element) {
+										return $("#bonus-material").is(':checked');
+									}
+								}
+							}
+						}
+					});
+					</code></pre>
 				</desc>
 				<type name="Object"/>
 			</property>
