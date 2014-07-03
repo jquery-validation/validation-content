@@ -9,14 +9,14 @@
 &lt;head&gt;
 &lt;meta charset="utf-8"&gt;
 &lt;title&gt;<xsl:value-of select="desc"/>&lt;/title&gt;
-&lt;link rel=&quot;stylesheet&quot; href=&quot;http://jquery.bassistance.de/validate/demo/site-demos.css&quot;&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;http://jqueryvalidation.org/files/demo/site-demos.css&quot;&gt;
 <xsl:if test="css">&lt;style&gt;<xsl:copy-of select="css/text()"/>  &lt;/style&gt;</xsl:if>
 &lt;/head&gt;
 &lt;body&gt;
 &lt;form id=&quot;myform&quot;&gt;<xsl:copy-of select="html/text()"/>&lt;/form&gt;
-&lt;script src="http://code.jquery.com/jquery-1.9.1.min.js"&gt;&lt;/script&gt;
-&lt;script src="http://jquery.bassistance.de/validate/jquery.validate.js"&gt;&lt;/script&gt;
-&lt;script src="http://jquery.bassistance.de/validate/additional-methods.js"&gt;&lt;/script&gt;
+&lt;script src="http://code.jquery.com/jquery-1.11.1.min.js"&gt;&lt;/script&gt;
+&lt;script src="http://jqueryvalidation.org/files/dist/jquery.validate.min.js"&gt;&lt;/script&gt;
+&lt;script src="http://jqueryvalidation.org/files/dist/additional-methods.min.js"&gt;&lt;/script&gt;
 &lt;script&gt;
 // just for the demos, avoids form submit
 jQuery.validator.setDefaults({
