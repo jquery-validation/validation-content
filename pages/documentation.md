@@ -11,7 +11,7 @@ You may need different ways to specify validation rules according to the server-
 **"But aren't there already a ton of validation plugins out there?"**
 Right, there are a lot of non-jQuery-based solutions (which you'd avoid since you found jQuery) and some jQuery-based solutions. This particular one is one of the oldest jQuery plugins (started in July 2006) and has proved itself in projects all around the world. There is also an [article](http://bassistance.de/2007/07/04/about-client-side-form-validation-and-frameworks/) discussing how this plugin fits the bill of the should-be validation solution.
 
-Not convinced? [Have a look at this example](http://jquery.bassistance.de/validate/demo/):
+Not convinced? [Have a look at this example](http://jqueryvalidation.org/files/demo/):
 
 <pre><code>
 <form class="cmxform" id="commentForm" method="get" action="">
@@ -170,8 +170,8 @@ So the correct code looks slightly different:
 
 # Demos
 
-## [The Marketo sign-up form](http://jquery.bassistance.de/validate/demo/marketo/)
-### [The Marketo sign-up form, step 2](http://jquery.bassistance.de/validate/demo/marketo/step2.htm)
+## [The Marketo sign-up form](http://jqueryvalidation.org/files/demo/marketo/)
+### [The Marketo sign-up form, step 2](http://jqueryvalidation.org/files/demo/marketo/step2.htm)
 Based on an old version of the marketo.com sign-up form. The custom validation was once replaced with this plugin. Thanks to Glen Lipka for contributing it!
 
 *Notable features of the demo:*
@@ -182,7 +182,7 @@ Based on an old version of the marketo.com sign-up form. The custom validation w
 * A custom method for making the billing address on step 2 optional when "Same as Company Address" is checked
 * A custom method for checking the password: Checks that the password contains at least one number and one character and that it is at least 6 characters long. If the user blurs the field with an invalid value, the input is emptied and gets focus again.
 
-## [The Remember The Milk sign-up form](http://jquery.bassistance.de/validate/demo/milk/)
+## [The Remember The Milk sign-up form](http://jqueryvalidation.org/files/demo/milk/)
 The sign-up form from rememberthemilk.com (based on an older version). The custom validation was replaced using this plugin. Thanks to RTM for contributing!
 
 *Notable features of the demo:*
@@ -190,7 +190,7 @@ The sign-up form from rememberthemilk.com (based on an older version). The custo
 * Custom message display, based on the original table layout, using success option to display a checkmark for valid fields
 * Remote validation of username, to check if it is already taken (try "Peter", "asdf" or "George")
 
-## [A multipart "buy&amp;sell a house" form](http://jquery.bassistance.de/validate/demo/multipart/)
+## [A multipart "buy&amp;sell a house" form](http://jqueryvalidation.org/files/demo/multipart/)
 Contributed by Michael Evangelista, showing a multipart form for buying and selling houses.
 
 *Notable features of the demo:*
@@ -198,7 +198,7 @@ Contributed by Michael Evangelista, showing a multipart form for buying and sell
 * Multipart, implemented using the jQuery UI accordion and a custom method to check if an element is on the current page when validated
 * Integration with masked-input plugin, see Phone and Zip fields
 
-## [Using remote validation to help with captchas](http://jquery.bassistance.de/validate/demo/captcha/)
+## [Using remote validation to help with captchas](http://jqueryvalidation.org/files/demo/captcha/)
 Features remote validation for helping the user to fill out captchas, based on example at [psyrens.com](http://psyrens.com/captcha/).
 
 *Notable features of the demo:*
