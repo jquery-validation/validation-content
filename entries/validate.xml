@@ -125,6 +125,22 @@
 						}
 					});
 					</code></pre>
+                                        <p><strong>Example</strong>: Sets a password length requirement if the password is filled out.</p>
+                                        <pre><code>
+                                        $(".selector").validate({
+                                                rules: {
+                                                        password: {
+                                                                minlength: {
+                                                                        //minlength needs a parameter passed to it
+                                                                        param:8,
+                                                                        depends: function(element) {
+                                                                                return $(element).is(':filled');
+                                                                        }
+                                                                }
+                                                        }
+                                                }
+                                        });
+                                        </code></pre>
 				</desc>
 				<type name="Object"/>
 			</property>
