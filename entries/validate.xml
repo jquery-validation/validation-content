@@ -118,7 +118,7 @@
 								required: true,
 								email: {
 									depends: function(element) {
-										return $("#contactform_email:checked")
+										return $("#contactform_email").is(":checked");
 									}
 								}
 							}
@@ -136,7 +136,7 @@
 									// min needs a parameter passed to it
 									param: 15,
 									depends: function(element) {
-										return $("#bonus-material").is(':checked');
+										return $("#bonus-material").is(":checked");
 									}
 								}
 							}
