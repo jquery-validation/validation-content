@@ -92,7 +92,7 @@ To skip validation while still using a submit-button, add a class="cancel" to th
  <input type="submit" class="cancel" name="cancel" value="Cancel">
 </code></pre>
 
-[Demo for the cancel button](http://jquery.bassistance.de/validate/demo/errorcontainer-demo.html)
+[Demo for the cancel button](http://jqueryvalidation.org/files/demo/errorcontainer-demo.html)
 
 # Validation event
 By default, forms are validated on submit, triggered by the user clicking the submit button or pressing enter when a form input is focused (option onsubmit). In addition, once a field was highlighted as being invalid, it is validated whenever the user types something in the field (option onkeyup). When the user enters something invalid into a valid field, it is also validated when the field loses focus (option onblur).
