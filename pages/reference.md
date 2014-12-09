@@ -65,6 +65,12 @@ With that in place, we can add a class customer to all customer fields and be do
  <input name="customer3" class="customer">
 </code></pre>
 
+You can also reuse existing methods inside other custom methods, to reuse certain implementations. For example, if you're writing a custom method for validating email addresses inside a single field, you could call the existing email method for each email:
+
+```js
+jQuery.validator.methods.email.call(this, email, element)
+```
+
 # Error messages
 An error message displays a hint for the user about invalid elements, and what is wrong. There are three ways to provide error messages. Via the title attribute of the input element to validate, via error labels and via plugin settings (option messages).
 
