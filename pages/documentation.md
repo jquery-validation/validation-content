@@ -199,7 +199,7 @@ Contributed by Michael Evangelista, showing a multipart form for buying and sell
 * Integration with masked-input plugin, see Phone and Zip fields
 
 ## [Using remote validation to help with captchas](http://jqueryvalidation.org/files/demo/captcha/)
-Features remote validation for helping the user to fill out captchas, based on example at [psyrens.com](http://psyrens.com/captcha/).
+Features remote validation for helping the user to fill out captchas.
 
 *Notable features of the demo:*
 
