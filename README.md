@@ -12,8 +12,8 @@ The `xmllint` and `xsltproc` utilities need to be in your path. If you are on Wi
 
 * Install [WordPress](http://wordpress.org/download/)
 * Install [jqueryvalidation-theme](https://github.com/jzaefferer/validation-theme) - clone that repo, then symlink it into your `wp-content/themes` folder
-* Install [grunt-wordpress plugin](https://github.com/jquery/jquery-wp-content/blob/master/mu-plugins/grunt-wordpress.php)
-* Install [jquery-static-index plugin](https://github.com/jquery/jquery-wp-content/blob/master/plugins/jquery-static-index.php)
+* Install [gilded-wordpress plugin](https://raw.githubusercontent.com/scottgonzalez/gilded-wordpress/v1.0.0/gilded-wordpress.php)
+* Install [jquery-static-index plugin](https://raw.githubusercontent.com/jquery/jquery-wp-content/v4.0.1/plugins/jquery-static-index.php)
 
 ### Installation
 
