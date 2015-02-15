@@ -34,7 +34,7 @@ $( "#myform" ).validate({
 <input class="left phone-group" id="home_phone" name="home_phone">
 <br/>
 <label for="work_phone">Work phone: </label>
-<input class="left phone-group" id="Work_phone" name="work_phone">
+<input class="left phone-group" id="work_phone" name="work_phone">
 <br/>
 <input type="submit" value="Validate!">
 ]]></html>
