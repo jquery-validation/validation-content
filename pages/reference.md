@@ -11,10 +11,10 @@ The plugin can never replace serverside validation and doesn't intend to do so. 
 
 # Markup recommendations
 Each input has a label associated with it: The for-attribute of the label refers to the id-attribute of the input.
-<pre><code>
+```html
 <label for="firstname">Firstname</label>
 <input id="firstname" name="fname">
-</code></pre>
+```
 
 The name attribute is '''required''' for input elements, the validation plugin doesn't work without it. Usually name and id attributes should have the same value.
 
@@ -27,7 +27,7 @@ A validation rule applies one or more validation methods to an input element. Yo
 ## Fields with complex names (brackets, dots)
 If your form consists of fields using names that aren't legal JavaScript identifiers, you have to quote those names when using the rules option:
 
-<pre><code>
+```js
  $("#myform").validate({
    rules: {
      // no quoting necessary
@@ -38,14 +38,14 @@ If your form consists of fields using names that aren't legal JavaScript identif
      "user.address.street": "required"
    }
  });
-</code></pre>
+```
 
 ## Refactoring rules
 Whenever you have multiple fields with the same rules and messages, refactoring those can reduce a lot of duplication. Using addMethod and addClassRules are most effective for that.
 
 Let's consider an example where you have ten customer fields, each required and with a minlength of 2. You need custom messages for both rules. To avoid having to specify those rules and messages again and again, we can alias existing methods with different messages and group them into a single class:
 
-<pre><code>
+```js
  // alias required to cRequired with new message
  $.validator.addMethod("cRequired", $.validator.methods.required,
    "Customer name required");
@@ -55,15 +55,15 @@ Let's consider an example where you have ten customer fields, each required and 
    $.format("Customer name must have at least {0} characters"));
  // combine them both, including the parameter for minlength
  $.validator.addClassRules("customer", { cRequired: true, cMinlength: 2 });
-</code></pre>
+```
 
 With that in place, we can add a class customer to all customer fields and be done with it:
 
-<pre><code>
+```html
  <input name="customer1" class="customer">
  <input name="customer2" class="customer">
  <input name="customer3" class="customer">
-</code></pre>
+```
 
 You can also reuse existing methods inside other custom methods, to reuse certain implementations. For example, if you're writing a custom method for validating email addresses inside a single field, you could call the existing email method for each email:
 
@@ -91,12 +91,14 @@ By default, the first invalid element in a form is focused after submitting a fo
 By default, the form submission is prevented when the form is invalid, and submitted as normal when it is valid. You can also handle the submission manually (option submitHandler).
 
 ## Skipping validation on submit
-To skip validation while still using a submit-button, add a class="cancel" to that input.
+To skip validation while still using a submit-button, add the attribte "formnovalidate" to that input:
 
-<pre><code>
- <input type="submit" name="submit" value="Submit">
- <input type="submit" class="cancel" name="cancel" value="Cancel">
-</code></pre>
+```html
+ <input type="submit" name="go" value="Submit">
+ <input type="submit" formnovalidate name="cancel" value="Cancel">
+```
+
+This used to work by adding `class="cancel"` to the input, this is now deprecated.
 
 [Demo for the cancel button](http://jqueryvalidation.org/files/demo/errorcontainer-demo.html)
 
