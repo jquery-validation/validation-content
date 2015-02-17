@@ -1,5 +1,5 @@
 <script>{
-	"title": "Reference docs"
+	"title": "Reference documentation"
 }</script>
 
 # Goals
