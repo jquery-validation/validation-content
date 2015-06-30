@@ -5,7 +5,7 @@
 	<longdesc>
 		The serverside resource is called via jQuery.ajax (XMLHttpRequest) and gets a key/value pair corresponding to the name of the validated element and its value as a GET parameter. The response is evaluated as JSON and must be <code>true</code> for valid elements, and can be any <code>false</code>, <code>undefined</code> or <code>null</code> for invalid elements, using the default message; or a string, eg. <code>"That name is already taken, try peter123 instead"</code> to display as the error message.
 
-		<p>For more examples, take a look the <a href="http://jquery.bassistance.de/validate/demo/marketo">marketo demo</a> and the <a href="http://jquery.bassistance.de/validate/demo/milk">milk demo</a>.</p>
+		<p>For more examples, take a look the <a href="http://jqueryvalidation.org/files/demo/marketo">marketo demo</a> and the <a href="http://jqueryvalidation.org/files/demo/milk/">milk demo</a>.</p>
 	</longdesc>
 	<signature>
 		<argument name="options" type="Object">
