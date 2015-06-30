@@ -26,30 +26,5 @@ var template = jQuery.validator.format("{0} is not a valid value");
 alert(template("abc"));
 ]]></code>
 	</example>
-<!-- 	{{APIExample|
-|desc=Demonstrates basic usage.
-|code=&lt;nowiki&gt;
-    $(&quot;button&quot;).&lt;/nowiki&gt;{{Code|Events|click}}&lt;nowiki&gt;(function () {
-      var str = &quot;Hello {0}, this is {1}&quot;;
-      alert(&quot;'&quot; + str + &quot;'&quot;);
-
-      str = &lt;/nowiki&gt;{{Code|Plugins/Validation|jQuery.validator.format}}&lt;nowiki&gt;(str, &quot;World&quot;, &quot;Bob&quot;);
-      alert(&quot;'&quot; + str + &quot;'&quot;);
-    });
-&lt;/nowiki&gt;
-|inhead=&lt;nowiki&gt;&lt;script src=&quot;http://jzaefferer.github.com/jquery-validation/jquery.validate.js&quot;&gt;&lt;/script&gt;&lt;/nowiki&gt;
-|html=&lt;nowiki&gt;&lt;button&gt;Show format Example&lt;/button&gt;&lt;/nowiki&gt;
-}}
-
-{{APIExample|
-|desc=Shows how to first create a template function by passing only the string argument and then calling it later.
-|code=&lt;nowiki&gt;$(&quot;button&quot;).&lt;/nowiki&gt;{{Code|Events|click}}&lt;nowiki&gt;(function () {
-  var template = &lt;/nowiki&gt;{{Code|Plugins/Validation|jQuery.validator.format}}&lt;nowiki&gt;(&quot;Please enter more {0}, or order {0} by mail (see {1})&quot;);
-  alert(template(&quot;Apples&quot;, &quot;our FAQ&quot;));
-});
-&lt;/nowiki&gt;
-|inhead=&lt;nowiki&gt;&lt;script src=&quot;http://jzaefferer.github.com/jquery-validation/jquery.validate.js&quot;&gt;&lt;/script&gt;&lt;/nowiki&gt;
-|html=&lt;nowiki&gt;&lt;button&gt;Show format Example&lt;/button&gt;&lt;/nowiki&gt;
-}} -->
 	<category slug="validator"/>
 </entry>

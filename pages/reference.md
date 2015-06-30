@@ -52,7 +52,7 @@ Let's consider an example where you have ten customer fields, each required and 
  // alias minlength, too
  $.validator.addMethod("cMinlength", $.validator.methods.minlength,
    // leverage parameter replacement for minlength, {0} gets replaced with 2
-   $.format("Customer name must have at least {0} characters"));
+   $.validator.format("Customer name must have at least {0} characters"));
  // combine them both, including the parameter for minlength
  $.validator.addClassRules("customer", { cRequired: true, cMinlength: 2 });
 ```

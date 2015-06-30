@@ -168,7 +168,7 @@
 						}
 					});
 					</code></pre>
-					<p><strong>Example</strong>: Validates the name-field as required and having at least two characters. Provides a callback message using jQuery.format to avoid having to specify the parameter in two places.</p>
+					<p><strong>Example</strong>: Validates the name-field as required and having at least two characters. Provides a callback message using jQuery.validator.format to avoid having to specify the parameter in two places.</p>
 					<pre><code>
 					$(".selector").validate({
 						rules: {
@@ -180,7 +180,7 @@
 						messages: {
 							name: {
 								required: "We need your email address to contact you",
-								minlength: jQuery.format("At least {0} characters required!")
+								minlength: jQuery.validator.format("At least {0} characters required!")
 							}
 						}
 					});

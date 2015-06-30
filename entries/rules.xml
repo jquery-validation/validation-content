@@ -51,7 +51,7 @@ $( "#myinput" ).rules( "add", {
 	minlength: 2,
 	messages: {
 		required: "Required input",
-		minlength: jQuery.format("Please, at least {0} characters are necessary")
+		minlength: jQuery.validator.format("Please, at least {0} characters are necessary")
 	}
 });
 ]]></code>
