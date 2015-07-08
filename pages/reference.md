@@ -22,10 +22,10 @@ The name attribute is '''required''' for input elements, the validation plugin d
 A validation method implements the logic to validate any element. Provided are a set of default validation methods, such as required. Apart from required itself and equalTo, all validation methods declare an element valid when it has no value at all. That way an email field is optional unless required is specified. You can specify an element input to contain a valid email address, or nothing at all. Use <a href="/jQuery.validator.addMethod/">jQuery.validator.addMethod</a> to implement custom methods.
 
 # Rules
-A validation rule applies one or more validation methods to an input element. You can specify validation rules via metadata or via plugin settings (option rules). The decision is often influenced by serverside infrastructure. If a web framework is used, it is often easier to use metadata, which is also good for fast prototyping. Plugin settings produce cleaner markup, though valid markup results from both.
+A validation rule applies one or more validation methods to an input element. You can specify validation rules via metadata or via plugin settings (option `rules`). The decision is often influenced by serverside infrastructure. If a web framework is used, it is often easier to use metadata, which is also good for fast prototyping. Plugin settings produce cleaner markup, though valid markup results from both.
 
 ## Fields with complex names (brackets, dots)
-If your form consists of fields using names that aren't legal JavaScript identifiers, you have to quote those names when using the rules option:
+If your form consists of fields using names that aren't legal JavaScript identifiers, you have to quote those names when using the `rules` option:
 
 ```js
  $("#myform").validate({
@@ -72,23 +72,29 @@ jQuery.validator.methods.email.call(this, email, element)
 ```
 
 # Error messages
-An error message displays a hint for the user about invalid elements, and what is wrong. There are three ways to provide error messages. Via the title attribute of the input element to validate, via error labels and via plugin settings (option messages).
+An error message displays a hint for the user about invalid elements, and what is wrong. There are four ways to provide error messages. Via the title attribute of the input element to validate, via data attributes, via error labels and via plugin settings (option `messages`).
 
 All validation rules included here provide a default error message which you can use for prototyping, because it is used when no specific message is provided.
 
 The priorities are as follows: A custom message (passed by plugin options), the element's title, the default message.
 
+When using data attributes, you can set a generic message for all rules, or specific messages per rule:
+```html
+<input required data-msg="Please fill this field">
+<input data-rule-minlength="2" data-rule-maxlength="4" data-msg-minlength="At least two chars" data-msg-maxlength="At most fours chars">
+```
+
 # Error message display
-Error messages are handled via label elements with an additional class (option errorClass). The link between the message and the invalid element is provided via the labels for attribute. When provided in the markup, they are shown and hidden accordingly, and otherwise created on demand. By default, labels are created after the invalid element, this is also customizable (option errorPlacement). It is also possible to put them into an error container (option errorLabelContainer). To use a different element then a label, specify the errorElement option.
+Error messages are handled via label elements with an additional class (option `errorClass`). The link between the message and the invalid element is provided via the labels for attribute. When provided in the markup, they are shown and hidden accordingly, and otherwise created on demand. By default, labels are created after the invalid element, this is also customizable (option `errorPlacement`). It is also possible to put them into an error container (option `errorLabelContainer`). To use a different element then a label, specify the `errorElement` option.
 
 # General messages
-In addition to field-specific messages you can display a general "your form is invalid, please fix the highlighted fields!" message in a container anywhere on your page, eg. above the form (option errorContainer). The container is shown and hidden when errors occur and are fixed accordingly. The container for error labels (option errorLabelContainer) can also be nested inside the error container.
+In addition to field-specific messages you can display a general "your form is invalid, please fix the highlighted fields!" message in a container anywhere on your page, eg. above the form (option `errorContainer`). The container is shown and hidden when errors occur and are fixed accordingly. The container for error labels (option `errorLabelContainer`) can also be nested inside the error container.
 
 # Focusing of invalid elements
-By default, the first invalid element in a form is focused after submitting a form with invalid elements. To prevent confusion on the behalf of the user, the plugin remembers the element that had focus when the form was submitted, and refocuses that element. That way the user can try to fill out elements of the form at the end, without being forced to focus them again and again. This can be disabled (option focusInvalid).
+By default, the first invalid element in a form is focused after submitting a form with invalid elements. To prevent confusion on the behalf of the user, the plugin remembers the element that had focus when the form was submitted, and refocuses that element. That way the user can try to fill out elements of the form at the end, without being forced to focus them again and again. This can be disabled (option `focusInvalid`).
 
 # Form submit
-By default, the form submission is prevented when the form is invalid, and submitted as normal when it is valid. You can also handle the submission manually (option submitHandler).
+By default, the form submission is prevented when the form is invalid, and submitted as normal when it is valid. You can also handle the submission manually (option `submitHandler`).
 
 ## Skipping validation on submit
 To skip validation while still using a submit-button, add the attribte "formnovalidate" to that input:
@@ -103,14 +109,20 @@ This used to work by adding `class="cancel"` to the input, this is now deprecate
 [Demo for the cancel button](http://jqueryvalidation.org/files/demo/errorcontainer-demo.html)
 
 # Validation event
-By default, forms are validated on submit, triggered by the user clicking the submit button or pressing enter when a form input is focused (option onsubmit). In addition, once a field was highlighted as being invalid, it is validated whenever the user types something in the field (option onkeyup). When the user enters something invalid into a valid field, it is also validated when the field loses focus (option onblur).
+By default, forms are validated on submit, triggered by the user clicking the submit button or pressing enter when a form input is focused (option `onsubmit`). In addition, once a field was highlighted as being invalid, it is validated whenever the user types something in the field (option `onkeyup`). When the user enters something invalid into a valid field, it is also validated when the field loses focus (option `onblur`).
 
 The goal of these interactions is to provide feedback as early as possible, whilst avoiding user annoyance. Displaying error messages before the user had the chance to even type something is not helpful.
 
 # Developing and debugging a form
-While developing and debugging the form, you should set the debug option to true. That prevents form submission on both valid and invalid forms and outputs some helpful messages to window.console (available via Firebug or Firebug Lite) that help debugging. When you have everything set up and don't get any error messages displayed, check if your rules all accept empty elements as valid (like email or url methods).
+While developing and debugging the form, you should set the `debug` option to true. That prevents form submission on both valid and invalid forms and outputs some helpful messages to window.console (available via Firebug or Firebug Lite) that help debugging. When you have everything set up and don't get any error messages displayed, check if your rules all accept empty elements as valid (like email or url methods).
 
 Some issues are caused by certain form element's names. A name you should avoid is "submit" (for submit buttons and anything else). Browsers expose form elements as properties of the form element, by their name, in this case hiding native methods like submit(). Just don't use name="submit" and you're good.
 
 # Validating multiple forms on one page
-The plugin can handle only one form per call. In case you have multiple forms on a single page which you want to validate, you can avoid having to duplicate the plugin settings by modifying the defaults. Use <a href="/jQuery.validator.setDefaults/">jQuery.validator.setDefaults</a> to override multiple settings at once.
+The plugin can handle only one form per call. In case you have multiple forms on a single page which you want to validate, you have to initialise them all individually:
+```js
+$( "form" ).each( function() {
+  $( this ).validate( options );
+} );
+```
+You can avoid having to duplicate the plugin settings by modifying the defaults, using <a href="/jQuery.validator.setDefaults/">jQuery.validator.setDefaults</a> to override multiple settings at once.

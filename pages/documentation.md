@@ -131,6 +131,8 @@ Some more methods are provided as add-ons, and are currently included in additio
 * [`phoneUS` - Validate for valid US phone number.](/phoneUS-method)
 * [`require_from_group` - Ensures a given number of fields in a group are complete.](/require_from_group-method)
 
+You can find the [source code for all additional methods in the GitHub repository](https://github.com/jzaefferer/jquery-validation/tree/master/src/additional).
+
 # [General Guidelines](/reference)
 
 The General Guidelines section provides detailed discussion of the design and ideas behind the plugin, explaining why certain things are as they are. It covers the features in more detail than the API documentation, which just briefly explains the various methods and options available.

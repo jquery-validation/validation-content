@@ -11,10 +11,10 @@
 
 		<p>There are several ways to specify validation rules.</p>
 		<ul>
-			<li>Validation methods without parameters can be specified as classes on the element (recommended)</li>
 			<li>Validation methods with parameters can be specified as attributes (recommended)</li>
-			<li>Both can be specified as metadata using the metadata plugin</li>
+			<li>Validation methods without parameters can be specified as classes on the element</li>
 			<li>Both can be specified using the rules-option of the validate()-method</li>
+			<li>Both rules and messages can be specified using data attributes, using <code>data-msg</code> (a generic, not-method specifi message), <code>data-msg-[method]</code> and <code>data-rule-[method]</code>.</li>
 		</ul>
 		<p>When setting, the rules can also contain a messages-object, specifying custom messages for existing or added rules.</p>
 	</longdesc>
