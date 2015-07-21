@@ -133,6 +133,8 @@ Some more methods are provided as add-ons, and are currently included in additio
 
 You can find the [source code for all additional methods in the GitHub repository](https://github.com/jzaefferer/jquery-validation/tree/master/src/additional).
 
+It is possible to re-define the implementation of the built-in rules using the [`$.validator.methods` property](/jQuery.validator.methods/)
+
 # [General Guidelines](/reference)
 
 The General Guidelines section provides detailed discussion of the design and ideas behind the plugin, explaining why certain things are as they are. It covers the features in more detail than the API documentation, which just briefly explains the various methods and options available.

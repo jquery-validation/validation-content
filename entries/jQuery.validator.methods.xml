@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../entries2html.xsl" ?>
+<entry type="method" name="jQuery.validator.methods" returns="Object">
+	<title>jQuery.validator.methods</title>
+	<desc>Object holding all validation methods known to the validator. This can be accessed to override individual methods, while keeping the default messages.</desc>
+	<example>
+		<desc>Sets a custom email pattern for the built-in email validation rule.</desc>
+		<code><![CDATA[
+$.validator.methods.email = function( value, element ) {
+  return this.optional( element ) || /[a-z]+@[a-z]+\.[a-z]+/.test( value );
+}
+]]></code>
+	</example>
+	<category slug="validator"/>
+</entry>

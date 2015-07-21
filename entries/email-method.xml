@@ -5,6 +5,7 @@
 	<longdesc>
 		Return true if the value is a valid email address.
 		<p>Works with text inputs.</p>
+		<p>In case you need a custom email pattern use the <a href="/jQuery.validator.methods/">$.validator.methods property</a>.</p>
 	</longdesc>
 	<example>
 		<desc>Makes "field" required and an email address.</desc>
