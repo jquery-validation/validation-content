@@ -115,6 +115,7 @@ A set of standard validation methods is provided:
 * [`min` - Makes the element require a given minimum.](/min-method)
 * [`max` - Makes the element require a given maximum.](/max-method)
 * [`range` - Makes the element require a given value range.](/range-method)
+* [`step` - Makes the element require a given step.](/step-method)
 * [`email` - Makes the element require a valid email](/email-method)
 * [`url` - Makes the element require a valid url](/url-method)
 * [`date` - Makes the element require a date.](/date-method)
