@@ -48,6 +48,9 @@
 				<property name="form" type="Element">
 					<desc>The form currently being validated, as a DOMElement.</desc>
 				</property>
+				<property name="event" type="Event">
+					<desc>The submit event instance.</desc>
+				</property>
 				<type name="Function"/>
 			</property>
 			<property name="invalidHandler">
