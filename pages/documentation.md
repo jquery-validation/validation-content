@@ -122,12 +122,12 @@ A set of standard validation methods is provided:
 * [`dateISO` - Makes the element require an ISO date.](/dateISO-method)
 * [`number` - Makes the element require a decimal number.](/number-method)
 * [`digits` - Makes the element require digits only.](/digits-method)
-* [`creditcard` - Makes the element require a credit card number.](/creditcard-method)
 * [`equalTo` - Requires the element to be the same as another one](/equalTo-method)
 
 Some more methods are provided as add-ons, and are currently included in additional-methods.js in the download package. Not all of them are documented here:
 
 * [`accept` - Makes a file upload accept only specified mime-types.](/accept-method)
+* [`creditcard` - Makes the element require a credit card number.](/creditcard-method)
 * [`extension` - Makes the element require a certain file extension.](/extension-method)
 * [`phoneUS` - Validate for valid US phone number.](/phoneUS-method)
 * [`require_from_group` - Ensures a given number of fields in a group are complete.](/require_from_group-method)
