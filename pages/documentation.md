@@ -110,7 +110,7 @@ A set of standard validation methods is provided:
 * [`required` - Makes the element required.](/required-method)
 * [`remote` - Requests a resource to check the element for validity.](/remote-method)
 * [`minlength` - Makes the element require a given minimum length.](/minlength-method)
-* [`maxlength` - Makes the element require a given maxmimum length.](/maxlength-method)
+* [`maxlength` - Makes the element require a given maximum length.](/maxlength-method)
 * [`rangelength` - Makes the element require a given value range.](/rangelength-method)
 * [`min` - Makes the element require a given minimum.](/min-method)
 * [`max` - Makes the element require a given maximum.](/max-method)
