@@ -10,13 +10,14 @@ To achieve this, it is important that the plugin is actually deployed on website
 The plugin can never replace serverside validation and doesn't intend to do so. Having both in place gives you the necessary security for your application, as well as improved usability.
 
 # Markup recommendations
-Each input has a label associated with it: The for-attribute of the label refers to the id-attribute of the input.
+Mandated: A 'name' attribute is required for all input elements needing validation, and the plugin will not work without this. A 'name' attribute must also be unique to the form, as this is how the plugin keeps track of all input elements. However, each group of radio or checkbox elements will share the same 'name' since the value of this grouping represents a single piece of the form data.
+
+Optionally: Each input can have a label associated with it, where the 'for' attribute of the label refers to the 'id' attribute of the input. It's also a common practice to have 'id' and 'name' attributes with the same value, although keep in mind that since this plugin does not use the 'id' attribute, this is not mandatory.
+
 ```html
 <label for="firstname">Firstname</label>
 <input id="firstname" name="fname">
 ```
-
-The name attribute is '''required''' for input elements, the validation plugin doesn't work without it. Usually name and id attributes should have the same value.
 
 # Methods
 A validation method implements the logic to validate any element. Provided are a set of default validation methods, such as required. Apart from required itself and equalTo, all validation methods declare an element valid when it has no value at all. That way an email field is optional unless required is specified. You can specify an element input to contain a valid email address, or nothing at all. Use <a href="/jQuery.validator.addMethod/">jQuery.validator.addMethod</a> to implement custom methods.
