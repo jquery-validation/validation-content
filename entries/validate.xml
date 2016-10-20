@@ -43,7 +43,7 @@
 						}
 					});
 					</code></pre>
-					<p>The callback gets passed one argument:</p>
+					<p>The callback gets passed two arguments:</p>
 				</desc>
 				<property name="form" type="Element">
 					<desc>The form currently being validated, as a DOMElement.</desc>
