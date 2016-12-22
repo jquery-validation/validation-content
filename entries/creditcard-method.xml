@@ -5,6 +5,7 @@
 	<longdesc>
 		Return true if the value is a valid credit card number.
 		<p>Works with text inputs.</p>
+		<p>Part of the additional-methods.js file</p>
 		<p>Note: The algorithm used can't verify the validity of the number - it is just an integrity check. As with any other clientside validation, you have to implement the same or better validation on the serverside.</p>
 	</longdesc>
 	<example>
