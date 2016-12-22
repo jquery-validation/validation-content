@@ -8,6 +8,7 @@
 		group. Then apply this rule to all the fields within the group.
 		The form then cannot be submitted until at least the minimum number have
 		been completed.
+		<p>Part of the additional-methods.js file</p>
 	</longdesc>
 	<example>
 		<desc>Within a group of three phone numbers, ensure at least one is complete.</desc>
