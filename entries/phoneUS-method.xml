@@ -4,6 +4,7 @@
 	<desc>Validate for valid US phone number.</desc>
 	<longdesc>
 		Works with text inputs.
+		<p>Part of the additional-methods.js file</p>
 	</longdesc>
 	<example>
 		<desc>Makes "field" required and a US phone number.</desc>
