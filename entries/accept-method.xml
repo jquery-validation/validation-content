@@ -10,7 +10,7 @@
 		<p>You can specify multiple mime-types by separating them with a comma, e.g. "image/x-eps,application/pdf".</p>
 
 		<p>Works with type="file" inputs.</p>
-
+		<p>Part of the additional-methods.js file</p>
 		<p>Note: This method used to look at just the filename, specifically the file extension. That behaviour is now available as the "extension" method inside src/additional/extension.js.</p>
 	</longdesc>
 	<signature>
