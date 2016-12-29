@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="../entries2html.xsl" ?>
+<entry type="method" name="Validator.destroy">
+	<title>Validator.destroy()</title>
+	<signature>
+	</signature>
+	<desc>Destroys this instance of validator freeing up resources and unregistering events.</desc>
+	<longdesc>This is only useful, when you need to clean up after the validator in a Single Page Application.</longdesc>
+	<example>
+		<desc>Destroying an instance of validator.</desc>
+		<code><![CDATA[
+/*
+ * On SPA page start.
+ */
+var validator = $( "#myform" ).validate();
+
+/*
+ * Just before SPA page's navigation away.
+ */
+validator.destroy();
+
+/*
+ * After this point the #myForm form is back to its original boring state.
+ */
+]]></code>
+	</example>
+	<category slug="validator"/>
+</entry>
