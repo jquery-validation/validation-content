@@ -95,6 +95,7 @@ The validate method returns a Validator object that has a few public methods tha
 * [`Validator.resetForm()` - Resets the controlled form.](/Validator.resetForm)
 * [`Validator.showErrors()` - Show the specified messages.](/Validator.showErrors)
 * [`Validator.numberOfInvalids()` - Returns the number of invalid fields.](/Validator.numberOfInvalids)
+* [`Validator.destroy()` - Destroys this instance of validator.](/Validator.destroy)
 
 There are a few static methods on the validator object:
 
