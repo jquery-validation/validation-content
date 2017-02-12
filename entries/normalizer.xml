@@ -8,10 +8,13 @@
 	</signature>
 	<desc>Prepares/transforms the elements value for validation.</desc>
 	<longdesc>
-		Note that this method:
-		<p>Doesn't change the elements' value, it only changes the value used for validation.</p>
-		<p>Gets the value passed as argument, and "this" within it references the corresponding DOMElement.</p>
-		<p>Needs to return a String value, otherwise it will throw a TypeError exception.</p>
+		<p>Transform the value of an element and the result for validation instead of the initial value. The normalizer can be defined global to all elements or local to only one element. With that said, the local normalizer will only run for the element for which it was defined. The global normalizer will run for all validated elements. This normalizer can be then overrided for each element, as needed, by attaching one to it. This way only the local one will run for that element, and the global one will run for others.</p>
+		<p>Note that this method:</p>
+		<ul>
+			<li><p>Doesn't change the elements' value, it only changes the value used for validation.</p></li>
+			<li><p>Gets the value passed as argument, and "this" within it references the corresponding <code>DOMElement</code>.</p></li>
+			<li><p>Needs to return a String value, otherwise it will throw a <code>TypeError</code> exception.</p></li>
+		</ul>
 	</longdesc>
 	<example>
 		<desc>Makes "field" required and use a normalizer to trim its value before validating</desc>
@@ -38,8 +41,8 @@ $( "#myform" ).validate( {
 <input type="submit" value="Validate!">
 ]]></html>
 	</example>
-    <example>
-        <desc>Makes "url" required and use a normalizer to append 'http://', if not present, to the value of the "url" element before validating</desc>
+	<example>
+		<desc>Makes "url" required and use a normalizer to append 'http://', if not present, to the value of the "url" element before validating</desc>
 		<code><![CDATA[
 $( "#myform" ).validate( {
   rules: {
@@ -51,8 +54,8 @@ $( "#myform" ).validate( {
 
         // Check if it doesn't start with http:// or https:// or ftp://
         if ( url && url.substr( 0, 7 ) !== "http://"
-                && url.substr( 0, 8 ) !== "https://"
-                && url.substr( 0, 6 ) !== "ftp://" ) {
+            && url.substr( 0, 8 ) !== "https://"
+            && url.substr( 0, 6 ) !== "ftp://" ) {
           // then prefix with http://
           url = "http://" + url;
         }
@@ -65,6 +68,55 @@ $( "#myform" ).validate( {
 } );
 ]]></code>
 <html><![CDATA[
+<label for="url_input">url: </label>
+<input class="left" id="url_input" name="url_input">
+<br/>
+<input type="submit" value="Validate!">
+]]></html>
+	</example>
+
+	<example>
+		<desc>Using a global normalizer in conjunction with a local one</desc>
+		<code><![CDATA[
+$( "#myform" ).validate( {
+  // This global normalizer will trim the value of all elements
+  // before validatng them.
+  normalizer: function( value ) {
+    return $.trim( value );
+  },
+  rules: {
+    username: {
+      required: true
+    },
+    url_input: {
+      required: true,
+      url: true,
+
+      // We don't need to trim the value of this element, so we overrided
+      // the global normalizer in order to append 'http://' to the url value
+      // if doesn't already.
+      normalizer: function( value ) {
+        var url = value;
+
+        // Check if it doesn't start with http:// or https:// or ftp://
+        if ( url && url.substr( 0, 7 ) !== "http://"
+            && url.substr( 0, 8 ) !== "https://"
+            && url.substr( 0, 6 ) !== "ftp://" ) {
+          // then prefix with http://
+          url = "http://" + url;
+        }
+
+        // Return the new url
+        return url;
+      }
+    }
+  }
+} );
+]]></code>
+<html><![CDATA[
+<label for="username">Required: </label>
+<input class="left" id="username" name="username">
+<br/>
 <label for="url_input">url: </label>
 <input class="left" id="url_input" name="url_input">
 <br/>
