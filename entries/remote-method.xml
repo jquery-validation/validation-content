@@ -10,7 +10,7 @@
 	<signature>
 		<argument name="options" type="Object">
 			<desc>
-				For the URL of the resource to request for serverside validation (String) or options to fully customize the request, see <a href="http://api.jquery.com/jQuery.ajax">jQuery.ajax</a> for details.
+				For the URL of the resource to request for serverside validation (String) or options to fully customize the request, see <a href="https://api.jquery.com/jQuery.ajax">jQuery.ajax</a> for details.
 				<p>These options deep-extend the defaults (<code>dataType:"json", data:{nameOfTheElement:valueOfTheElement}</code>). Any options you provide will override the defaults.</p>
 			</desc>
 		</argument>
