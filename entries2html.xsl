@@ -15,8 +15,8 @@
 &lt;body&gt;
 &lt;form id=&quot;myform&quot;&gt;<xsl:copy-of select="html/text()"/>&lt;/form&gt;
 &lt;script src="https://code.jquery.com/jquery-1.11.1.min.js"&gt;&lt;/script&gt;
-&lt;script src="https://cdn.jsdelivr.net/jquery.validation/1.15.0/jquery.validate.min.js"&gt;&lt;/script&gt;
-&lt;script src="https://cdn.jsdelivr.net/jquery.validation/1.15.0/additional-methods.min.js"&gt;&lt;/script&gt;
+&lt;script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"&gt;&lt;/script&gt;
+&lt;script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"&gt;&lt;/script&gt;
 &lt;script&gt;
 // just for the demos, avoids form submit
 jQuery.validator.setDefaults({
