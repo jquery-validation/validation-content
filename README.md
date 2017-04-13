@@ -27,8 +27,8 @@ In this repo:
 
 * Make sure your local `wordpress` nodejs module contains [this commit](https://github.com/scottgonzalez/node-wordpress/commit/2b19238cf8064dafb66b9db09d0adcc9eac7f724)
 * Make sure your local config contains
- * rpc-auth and basic-auth credentials
- * a https jqueryvalidation url
+  * rpc-auth and basic-auth credentials
+  * a https jqueryvalidation url
 
 ### Deploy
 
