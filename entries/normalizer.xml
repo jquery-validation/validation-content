@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<entry name="normalizer" type="method" return="String">
+	<title>normalizer</title>
+	<signature>
+		<argument name="value" type="String">
+			<desc>The value of the element.</desc>
+		</argument>
+	</signature>
+	<desc>Prepares/transforms the elements value for validation.</desc>
+	<longdesc>
+		Note that this method:
+		<p>Doesn't change the elements' value, it only changes the value used for validation.</p>
+		<p>Gets the value passed as argument, and "this" within it references the corresponding DOMElement.</p>
+		<p>Needs to return a String value, otherwise it will throw a TypeError exception.</p>
+	</longdesc>
+	<example>
+		<desc>Makes "field" required and use a normalizer to trim its value before validating</desc>
+		<code><![CDATA[
+$( "#myform" ).validate( {
+  rules: {
+    field: {
+      required: true,
+      normalizer: function( value ) {
+        // Trim the value of the `field` element before
+        // validating. this trims only the value passed
+        // to the attached validators, not the value of
+        // the element itself.
+        return $.trim( value );
+      }
+    }
+  }
+} );
+]]></code>
+<html><![CDATA[
+<label for="field">Required: </label>
+<input class="left" id="field" name="field">
+<br/>
+<input type="submit" value="Validate!">
+]]></html>
+	</example>
+    <example>
+        <desc>Makes "url" required and use a normalizer to append 'http://', if not present, to the value of the "url" element before validating</desc>
+		<code><![CDATA[
+$( "#myform" ).validate( {
+  rules: {
+    url_input: {
+      required: true,
+      url: true,
+      normalizer: function( value ) {
+        var url = value;
+
+        // Check if it doesn't start with http:// or https:// or ftp://
+        if ( url && url.substr( 0, 7 ) !== "http://"
+                && url.substr( 0, 8 ) !== "https://"
+                && url.substr( 0, 6 ) !== "ftp://" ) {
+          // then prefix with http://
+          url = "http://" + url;
+        }
+
+        // Return the new url
+        return url;
+      }
+    }
+  }
+} );
+]]></code>
+<html><![CDATA[
+<label for="url_input">url: </label>
+<input class="left" id="url_input" name="url_input">
+<br/>
+<input type="submit" value="Validate!">
+]]></html>
+	</example>
+	<category slug="methods"/>
+</entry>

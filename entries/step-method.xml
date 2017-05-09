@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<entry name="step" type="method" return="Boolean">
+	<title>step method</title>
+	<desc>Makes the element require a given step.</desc>
+	<longdesc>
+		Works with text inputs. No support for input types: date, datetime, datetime-local, month, time and week.
+	</longdesc>
+	<signature>
+		<argument name="value" type="Number">
+			<desc>
+				Step value required
+			</desc>
+		</argument>
+	</signature>
+	<example>
+		<desc>Makes "field" required and step of 10.</desc>
+		<code><![CDATA[
+$( "#myform" ).validate({
+  rules: {
+    field: {
+      required: true,
+      step: 10
+    }
+  }
+});
+]]></code>
+<html><![CDATA[
+<label for="field">Required, step 10: </label>
+<input type="text" class="left" id="field" name="field">
+<br/>
+<input type="submit" value="Validate!">
+]]></html>
+	</example>
+	<category slug="methods"/>
+</entry>

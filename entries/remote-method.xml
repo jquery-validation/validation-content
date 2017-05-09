@@ -3,14 +3,14 @@
 	<title>remote method</title>
 	<desc>Requests a resource to check the element for validity.</desc>
 	<longdesc>
-		The serverside resource is called via jQuery.ajax (XMLHttpRequest) and gets a key/value pair corresponding to the name of the validated element and its value as a GET parameter. The response is evaluated as JSON and must be <code>true</code> for valid elements, and can be any <code>false</code>, <code>undefined</code> or <code>null</code> for invalid elements, using the default message; or a string, eg. <code>"That name is already taken, try peter123 instead"</code> to display as the error message.
+		The serverside resource is called via jQuery.ajax (XMLHttpRequest) and gets a key/value pair corresponding to the name of the validated element and its value as a GET parameter. The serverside response must be a JSON string that must be <code>"true"</code> for valid elements, and can be <code>"false"</code>, <code>undefined</code>, or <code>null</code> for invalid elements, using the default error message.  If the serverside response is a string, eg. <code>"That name is already taken, try peter123 instead"</code>, this string will be displayed as a custom error message in place of the default.
 
-		<p>For more examples, take a look the <a href="http://jquery.bassistance.de/validate/demo/marketo">marketo demo</a> and the <a href="http://jquery.bassistance.de/validate/demo/milk">milk demo</a>.</p>
+		<p>For more examples, take a look the <a href="//jqueryvalidation.org/files/demo/marketo">marketo demo</a> and the <a href="//jqueryvalidation.org/files/demo/milk/">milk demo</a>.</p>
 	</longdesc>
 	<signature>
 		<argument name="options" type="Object">
 			<desc>
-				For the URL of the resource to request for serverside validation (String) or options to fully customize the request, see <a href="http://api.jquery.com/jQuery.ajax">jQuery.ajax</a> for details.
+				For the URL of the resource to request for serverside validation (String) or options to fully customize the request, see <a href="https://api.jquery.com/jQuery.ajax">jQuery.ajax</a> for details.
 				<p>These options deep-extend the defaults (<code>dataType:"json", data:{nameOfTheElement:valueOfTheElement}</code>). Any options you provide will override the defaults.</p>
 			</desc>
 		</argument>

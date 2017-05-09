@@ -16,7 +16,7 @@
 					Enables debug mode. If true, the form is not submitted and certain errors are displayed on the console (will check if a <code>window.console</code> property exists). Try to enable when a form is just submitted instead of validation stopping the submit.
 					<p><strong>Example</strong>: Prevents the form from submitting and tries to help setting up the validation with warnings about missing methods and other debug messages.</p>
 					<pre><code>
-					$(".selector").validate({
+					$("#myform").validate({
 						debug: true
 					});
 					</code></pre>
@@ -28,7 +28,7 @@
 					Callback for handling the actual submit when the form is valid. Gets the form as the only argument. Replaces the default submit. The right place to <a href="http://www.malsup.com/jquery/form/#api">submit a form via Ajax</a> after it is validated.
 					<p><strong>Example</strong>: Submits the form via Ajax when valid.</p>
 					<pre><code>
-					$(".selector").validate({
+					$("#myform").validate({
 						submitHandler: function(form) {
 							$(form).ajaxSubmit();
 						}
@@ -36,17 +36,20 @@
 					</code></pre>
 					<p><strong>Example</strong>: Use submitHandler to process something and then using the default submit. Note that "form" refers to a DOM element, this way the validation isn't triggered again.</p>
 					<pre><code>
-					$(".selector").validate({
+					$("#myform").validate({
 						submitHandler: function(form) {
 							// do other things for a valid form
 							form.submit();
 						}
 					});
 					</code></pre>
-					<p>The callback gets passed one argument:</p>
+					<p>The callback gets passed two arguments:</p>
 				</desc>
 				<property name="form" type="Element">
 					<desc>The form currently being validated, as a DOMElement.</desc>
+				</property>
+				<property name="event" type="Event">
+					<desc>The submit event instance.</desc>
 				</property>
 				<type name="Function"/>
 			</property>
@@ -55,7 +58,7 @@
 					Callback for custom code when an invalid form is submitted. Called with an event object as the first argument, and the validator as the second.
 					<p><strong>Example</strong>: Displays a message above the form, indicating how many fields are invalid when the user tries to submit an invalid form.</p>
 					<pre><code>
-					$(".selector").validate({
+					$("#myform").validate({
 						invalidHandler: function(event, validator) {
 							// 'this' refers to the form
 							var errors = validator.numberOfInvalids();
@@ -98,7 +101,7 @@
 					Key/value pairs defining custom rules. Key is the name of an element (or a group of checkboxes/radio buttons), value is an object consisting of rule/parameter pairs or a plain String. Can be combined with class/attribute/data rules. Each rule can be specified as having a depends-property to apply the rule only in certain conditions. See the second example below for details.
 					<p><strong>Example</strong>: Specifies a name element as required and an email element as required (using the shortcut for a single rule) and a valid email address (using another object literal).</p>
 					<pre><code>
-					$(".selector").validate({
+					$("#myform").validate({
 						rules: {
 							// simple rule, converted to {required:true}
 							name: "required",
@@ -112,7 +115,7 @@
 					</code></pre>
 					<p><strong>Example</strong>: Specifies a contact element as required and as email address, the latter depending on a checkbox being checked for contact via email.</p>
 					<pre><code>
-					$(".selector").validate({
+					$("#myform").validate({
 						rules: {
 							contact: {
 								required: true,
@@ -127,7 +130,7 @@
 					</code></pre>
 					<p><strong>Example</strong>: Configure a rule that requires a parameter, along with a <code>depends</code> callback.</p>
 					<pre><code>
-					$(".selector").validate({
+					$("#myform").validate({
 						rules: {
 							// at least 15€ when bonus material is included
 							pay_what_you_want: {
@@ -151,7 +154,7 @@
 					Key/value pairs defining custom messages. Key is the name of an element, value the message to display for that element. Instead of a plain message, another map with specific messages for each rule can be used. Overrides the title attribute of an element or the default message for the method (in that order). Each message can be a String or a Callback. The callback is called in the scope of the validator, with the rule's parameters as the first argument and the element as the second, and must return a String to display as the message.
 					<p><strong>Example</strong>: Specifies a name element as required and an email element as required and a valid email address. A single message is specified for the name element, and two messages for email.</p>
 					<pre><code>
-					$(".selector").validate({
+					$$("#myform").validate({
 						rules: {
 							name: "required",
 							email: {
@@ -168,9 +171,9 @@
 						}
 					});
 					</code></pre>
-					<p><strong>Example</strong>: Validates the name-field as required and having at least two characters. Provides a callback message using jQuery.format to avoid having to specify the parameter in two places.</p>
+					<p><strong>Example</strong>: Validates the name-field as required and having at least two characters. Provides a callback message using jQuery.validator.format to avoid having to specify the parameter in two places.</p>
 					<pre><code>
-					$(".selector").validate({
+					$("#myform").validate({
 						rules: {
 							name: {
 								required: true,
@@ -180,7 +183,7 @@
 						messages: {
 							name: {
 								required: "We need your email address to contact you",
-								minlength: jQuery.format("At least {0} characters required!")
+								minlength: jQuery.validator.format("At least {0} characters required!")
 							}
 						}
 					});
@@ -216,7 +219,7 @@
 					<p>A boolean true is not a valid value.</p>
 					<p><strong>Example</strong>: Disables onsubmit validation, allowing the user to submit whatever he wants, while still validating on keyup/blur/click events (if not specified otherwise).</p>
 					<pre><code>
-					$(".selector").validate({
+					$("#myform").validate({
 						onsubmit: false
 					});
 					</code></pre>
@@ -230,7 +233,7 @@
 					<p>A boolean true is not a valid value.</p>
 					<p><strong>Example</strong>: Disables onblur validation.</p>
 					<pre><code>
-					$(".selector").validate({
+					$("#myform").validate({
 						onfocusout: false
 					});
 					</code></pre>
@@ -252,7 +255,7 @@
 					<p>A boolean true is not a valid value.</p>
 					<p><strong>Example</strong>: Disables onkeyup validation.</p>
 					<pre><code>
-					$(".selector").validate({
+					$("#myform").validate({
 						onkeyup: false
 					});
 					</code></pre>
@@ -274,7 +277,7 @@
 					<p>A boolean true is not a valid value.</p>
 					<p><strong>Example</strong>: Disables onclick validation of checkboxes and radio buttons.</p>
 					<pre><code>
-					$(".selector").validate({
+					$("#myform").validate({
 						onclick: false
 					});
 					</code></pre>
@@ -294,7 +297,7 @@
 					Focus the last active or first invalid element on submit via validator.focusInvalid(). The last active element is the one that had focus when the form was submitted, avoiding stealing its focus. If there was no element focused, the first one in the form gets it, unless this option is turned off.
 					<p><strong>Example</strong>: Disables focusing of invalid elements.</p>
 					<pre><code>
-					$(".selector").validate({
+					$("#myform").validate({
 						focusInvalid: false
 					});
 					</code></pre>
@@ -306,7 +309,7 @@
 					If enabled, removes the errorClass from the invalid elements and hides all error messages whenever the element is focused. Avoid combination with focusInvalid.
 					<p><strong>Example</strong>: Enables cleanup when focusing elements, removing the error class and hiding error messages when an element is focused.</p>
 					<pre><code>
-					$(".selector").validate({
+					$("#myform").validate({
 						focusCleanup: true
 					});
 					</code></pre>
@@ -318,7 +321,7 @@
 					Use this class to create error labels, to look for existing error labels and to add it to invalid elements.
 					<p><strong>Example</strong>: Sets the error class to "invalid".</p>
 					<pre><code>
-					$(".selector").validate({
+					$("#myform").validate({
 						errorClass: "invalid"
 					});
 					</code></pre>
@@ -330,7 +333,7 @@
 					This class is added to an element after it was validated and considered valid.
 					<p><strong>Example</strong>: Sets the valid class to "success".</p>
 					<pre><code>
-					$(".selector").validate({
+					$("#myform").validate({
 						validClass: "success"
 					});
 					</code></pre>
@@ -342,7 +345,7 @@
 					Use this element type to create error messages and to look for existing error messages. The default, "label", has the advantage of creating a meaningful link between error message and invalid field using the for attribute (which is always used, regardless of element type).
 					<p><strong>Example</strong>: Sets the error element to "em".</p>
 					<pre><code>
-					$(".selector").validate({
+					$("#myform").validate({
 						errorElement: "em"
 					});
 					</code></pre>
@@ -354,7 +357,7 @@
 					Wrap error labels with the specified element. Useful in combination with errorLabelContainer to create a list of error messages.
 					<p><strong>Example</strong>: Wrap each error element with a list item, useful when using an ordered or unordered list as the error container.</p>
 					<pre><code>
-					$(".selector").validate({
+					$("#myform").validate({
 						wrapper: "li"
 					});
 					</code></pre>
@@ -395,7 +398,7 @@
 					A custom message display handler. Gets the map of errors as the first argument and an array of errors as the second, called in the context of the validator object. The arguments contain only those elements currently validated, which can be a single element when doing validation onblur/keyup. You can trigger (in addition to your own messages) the default behaviour by calling this.defaultShowErrors().
 					<p><strong>Example</strong>: Update the number of invalid elements each time an error is displayed. Delegates to the default implementation for the actual error display.</p>
 					<pre><code>
-					$(".selector").validate({
+					$("#myform").validate({
 						showErrors: function(errorMap, errorList) {
 							$("#summary").html("Your form contains "
 								+ this.numberOfInvalids()
@@ -476,7 +479,7 @@
 					How to highlight invalid fields. Override to decide which fields and how to highlight.
 					<p><strong>Example</strong>: Highlights an invalid element by fading it out and in again.</p>
 					<pre><code>
-					$(".selector").validate({
+					$("#myform").validate({
 						highlight: function(element, errorClass) {
 							$(element).fadeOut(function() {
 								$(element).fadeIn();
@@ -486,7 +489,7 @@
 					</code></pre>
 					<p><strong>Example</strong>: Adds the error class to both the invalid element and its label</p>
 					<pre><code>
-					$(".selector").validate({
+					$("#myform").validate({
 						highlight: function(element, errorClass, validClass) {
 							$(element).addClass(errorClass).removeClass(validClass);
 							$(element.form).find("label[for=" + element.id + "]")
@@ -523,7 +526,7 @@
 					Set to skip reading messages from the title attribute, helps to avoid issues with Google Toolbar; default is false for compability, the message-from-title is likely to be completely removed in a future release.
 					<p><strong>Example</strong>: Configure the plugin to ignore title attributes on validated elements when looking for messages.</p>
 					<pre><code>
-					$(".selector").validate({
+					$("#myform").validate({
 						ignoreTitle: true
 					});
 					</code></pre>

@@ -5,6 +5,7 @@
 	<longdesc>
 		Returns true if the value ends with one of the specified file extensions. If nothing is specified, only images are allowed (png, jpeg, gif).
 		<p>Works with text inputs.</p>
+		<p>Part of the additional-methods.js file</p>
 	</longdesc>
 	<signature>
 		<argument name="extension" type="String" optional="true">

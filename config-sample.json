@@ -1,5 +1,9 @@
 {
-	"url": "validation.local",
+	"url": "https://jqueryvalidation.org/",
 	"username": "admin",
-	"password": "secret"
+	"password": "secret",
+	"basicAuth": {
+        	"username": "basic-auth-admin",
+        	"password": "basic-auth-secret"
+    	}
 }
