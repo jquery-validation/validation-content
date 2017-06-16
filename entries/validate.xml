@@ -272,10 +272,10 @@
 			</property>
 			<property name="onclick">
 				<desc>
-					Validate checkboxes and radio buttons on click. Set to false to disable.
+					Validate checkboxes, radio buttons, and select elements on click. Set to false to disable.
 					<p>Set to a Function to decide for yourself when to run validation.</p>
 					<p>A boolean true is not a valid value.</p>
-					<p><strong>Example</strong>: Disables onclick validation of checkboxes and radio buttons.</p>
+					<p><strong>Example</strong>: Disables onclick validation of checkboxes, radio buttons, and select elements.</p>
 					<pre><code>
 					$("#myform").validate({
 						onclick: false
