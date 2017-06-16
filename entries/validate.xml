@@ -231,7 +231,7 @@
 					Validate elements (except checkboxes/radio buttons) on blur. If nothing is entered, all rules are skipped, except when the field was already marked as invalid.
 					<p>Set to a Function to decide for yourself when to run validation.</p>
 					<p>A boolean true is not a valid value.</p>
-					<p><strong>Example</strong>: Disables onblur validation.</p>
+					<p><strong>Example</strong>: Disables focusout validation.</p>
 					<pre><code>
 					$("#myform").validate({
 						onfocusout: false
@@ -395,7 +395,7 @@
 			</property>
 			<property name="showErrors">
 				<desc>
-					A custom message display handler. Gets the map of errors as the first argument and an array of errors as the second, called in the context of the validator object. The arguments contain only those elements currently validated, which can be a single element when doing validation onblur/keyup. You can trigger (in addition to your own messages) the default behaviour by calling this.defaultShowErrors().
+					A custom message display handler. Gets the map of errors as the first argument and an array of errors as the second, called in the context of the validator object. The arguments contain only those elements currently validated, which can be a single element when doing validation on focusout or keyup. You can trigger (in addition to your own messages) the default behaviour by calling this.defaultShowErrors().
 					<p><strong>Example</strong>: Update the number of invalid elements each time an error is displayed. Delegates to the default implementation for the actual error display.</p>
 					<pre><code>
 					$("#myform").validate({
