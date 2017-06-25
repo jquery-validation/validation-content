@@ -212,6 +212,13 @@
 				</desc>
 				<type name="Object"/>
 			</property>
+			<property name="normalizer">
+				<desc>
+					Prepares/transforms the elements value for validation.
+					See <a href="/normalizer/">normalizer docs</a> for more details.
+				</desc>
+				<type name="Function"/>
+			</property>
 			<property name="onsubmit" default="true">
 				<desc>
 					Validate the form on submit. Set to false to use only other events for validation.
