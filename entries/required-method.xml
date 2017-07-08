@@ -6,6 +6,7 @@
 		Return false, if the element is empty (text input) or unchecked (radio/checkbox) or if nothing is selected (select).
 		<p>Works with text inputs, selects, checkboxes and radio buttons.</p>
 		<p>To force a user to select an option from a select box, provide an empty option element like &lt;option value=""&gt;Choose...&lt;/option&gt;</p>
+		<p>Note that white spaces are considered valid.</p>
 	</longdesc>
 	<signature>
 		<desc>The element is always required.</desc>
@@ -28,7 +29,7 @@
 		</argument>
 	</signature>
 	<example>
-		<desc>Makes "field" always required. Nothing and blanks are invalid.</desc>
+		<desc>Makes "field" always required.</desc>
 		<code><![CDATA[
 $( "#myform" ).validate({
   rules: {
