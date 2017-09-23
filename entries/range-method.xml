@@ -25,7 +25,7 @@ $( "#myform" ).validate({
 });
 ]]></code>
 <html><![CDATA[
-<label for="field">Required, minium 13, maximum 23:</label>
+<label for="field">Required, minimum 13, maximum 23:</label>
 <input type="text" class="left" id="field" name="field">
 <br/>
 <input type="submit" value="Validate!">

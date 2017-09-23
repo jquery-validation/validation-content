@@ -31,7 +31,7 @@ $( "#myform" ).validate({
 });
 ]]></code>
 <html><![CDATA[
-<label for="field">Required, minium length 2, maximum length 6: </label>
+<label for="field">Required, minimum length 2, maximum length 6: </label>
 <input type="text" class="left" id="field" name="field">
 <br/>
 <input type="submit" value="Validate!">
