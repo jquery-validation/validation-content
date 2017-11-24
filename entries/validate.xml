@@ -222,8 +222,6 @@
 			<property name="onsubmit" default="true">
 				<desc>
 					Validate the form on submit. Set to false to use only other events for validation.
-					<p>Set to a Function to decide for yourself when to run validation.</p>
-					<p>A boolean true is not a valid value.</p>
 					<p><strong>Example</strong>: Disables onsubmit validation, allowing the user to submit whatever he wants, while still validating on keyup/blur/click events (if not specified otherwise).</p>
 					<pre><code>
 					$("#myform").validate({
