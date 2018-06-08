@@ -5,7 +5,8 @@
 	<longdesc>
 		Return true if the value is a valid email address.
 		<p>Works with text inputs.</p>
-		<p>In case you need a custom email pattern use the <a href="/jQuery.validator.methods/">$.validator.methods property</a>.</p>
+		<p><strong>IMPORTANT NOTE:</strong></p>
+		<p style="font-style: italic;"><strong>As of version <code>1.12.0</code> we started using the same regular expression that the <a href="https://html.spec.whatwg.org/multipage/forms.html#valid-e-mail-address">HTML5 specification suggests for browsers to use</a>. We will follow their lead and use the same check. In case you need to adjust the built-in validation regular expression patterns, please use the <a href="/jQuery.validator.methods/">$.validator.methods property</a>. If you have different requirements, please consider <a href="/jQuery.validator.addMethod/">using a custom method</a>.</strong></p>
 	</longdesc>
 	<example>
 		<desc>Makes "field" required and an email address.</desc>
