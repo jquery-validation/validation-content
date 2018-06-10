@@ -25,8 +25,8 @@
 			</property>
 			<property name="submitHandler" default="native form submit">
 				<desc>
-					Callback for handling the actual submit when the form is valid. Gets the form and the submit event as the only arguments. Replaces the default submit. The right place to <a href="http://www.malsup.com/jquery/form/#api">submit a form via Ajax</a> after it is validated.
-					<p><strong>Example</strong>: Submits the form via Ajax when valid.</p>
+					Callback for handling the actual submit when the form is valid. Gets the form and the submit event as the only arguments. Replaces the default submit. The right place to submit a form via Ajax after it is validated.
+					<p><strong>Example</strong>: Submits the form via Ajax, using <a href="http://jquery.malsup.com/form">jQuery Form plugin</a>, when valid.</p>
 					<pre><code>
 					$("#myform").validate({
 						submitHandler: function(form) {
