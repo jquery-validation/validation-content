@@ -11,9 +11,10 @@
 		<p>Transform the value of an element and the result for validation instead of the initial value. The normalizer can be defined global to all elements or local to only one element. With that said, the local normalizer will only run for the element for which it was defined. The global normalizer will run for all validated elements. This normalizer can be then overrided for each element, as needed, by attaching one to it. This way only the local one will run for that element, and the global one will run for others.</p>
 		<p>Note that this method:</p>
 		<ul>
+			<li><p>Has been available since version <code>1.15.0</code></p></li>
 			<li><p>Doesn't change the elements' value, it only changes the value used for validation.</p></li>
 			<li><p>Gets the value passed as argument, and "this" within it references the corresponding <code>DOMElement</code>.</p></li>
-			<li><p>Needs to return a String value, otherwise it will throw a <code>TypeError</code> exception.</p></li>
+			<li><p>For versions between <code>1.15.0</code> and <code>1.17.0</code>, it must return a string value. And as of <code>1.17.1</code>, it can return any value including <code>null</code> and <code>undefined</code>.</p></li>
 		</ul>
 	</longdesc>
 	<example>
