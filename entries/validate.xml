@@ -154,7 +154,7 @@
 					Key/value pairs defining custom messages. Key is the name of an element, value the message to display for that element. Instead of a plain message, another map with specific messages for each rule can be used. Overrides the title attribute of an element or the default message for the method (in that order). Each message can be a String or a Callback. The callback is called in the scope of the validator, with the rule's parameters as the first argument and the element as the second, and must return a String to display as the message.
 					<p><strong>Example</strong>: Specifies a name element as required and an email element as required and a valid email address. A single message is specified for the name element, and two messages for email.</p>
 					<pre><code>
-					$$("#myform").validate({
+					$("#myform").validate({
 						rules: {
 							name: "required",
 							email: {
