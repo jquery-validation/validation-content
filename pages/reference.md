@@ -7,7 +7,7 @@ The ultimate goal of this plugin is to make working with forms more fun for ever
 
 To achieve this, it is important that the plugin is actually deployed on websites around the world, so a lot of focus is spent on making it easy for developers - that's you - to use the plugin.
 
-The plugin can never replace serverside validation and doesn't intend to do so. Having both in place gives you the necessary security for your application, as well as improved usability.
+The plugin can never replace server-side validation and doesn't intend to do so. Having both in place gives you the necessary security for your application, as well as improved usability.
 
 # Markup recommendations
 Mandated: A 'name' attribute is required for all input elements needing validation, and the plugin will not work without this. A 'name' attribute must also be unique to the form, as this is how the plugin keeps track of all input elements. However, each group of radio or checkbox elements will share the same 'name' since the value of this grouping represents a single piece of the form data.
@@ -20,7 +20,7 @@ Optionally: Each input can have a label associated with it, where the 'for' attr
 ```
 
 # Methods
-A validation method implements the logic to validate any element. Provided are a set of default validation methods, such as required. Apart from required itself and equalTo, all validation methods declare an element valid when it has no value at all. That way an email field is optional unless required is specified. You can specify an element input to contain a valid email address, or nothing at all. Use <a href="/jQuery.validator.addMethod/">jQuery.validator.addMethod</a> to implement custom methods.
+A validation method implements the logic to validate any element. Provided are a set of default validation methods, such as `required`. Apart from `required` itself and `equalTo`, all validation methods declare an element valid when it has no value at all. That way an email field is optional unless `required` is specified. You can specify an element input to contain a valid email address, or nothing at all. Use <a href="/jQuery.validator.addMethod/">jQuery.validator.addMethod</a> to implement custom methods.
 
 # Rules
 A validation rule applies one or more validation methods to an input element. You can specify validation rules via metadata or via plugin settings (option `rules`). The decision is often influenced by serverside infrastructure. If a web framework is used, it is often easier to use metadata, which is also good for fast prototyping. Plugin settings produce cleaner markup, though valid markup results from both.
@@ -42,7 +42,7 @@ If your form consists of fields using names that aren't legal JavaScript identif
 ```
 
 ## Refactoring rules
-Whenever you have multiple fields with the same rules and messages, refactoring those can reduce a lot of duplication. Using addMethod and addClassRules are most effective for that.
+Whenever you have multiple fields with the same rules and messages, refactoring those can reduce a lot of duplication. Using `addMethod()` and `addClassRules()` are most effective for that.
 
 Let's consider an example where you have ten customer fields, each required and with a minlength of 2. You need custom messages for both rules. To avoid having to specify those rules and messages again and again, we can alias existing methods with different messages and group them into a single class:
 
@@ -66,7 +66,7 @@ With that in place, we can add a class customer to all customer fields and be do
  <input name="customer3" class="customer">
 ```
 
-You can also reuse existing methods inside other custom methods, to reuse certain implementations. For example, if you're writing a custom method for validating email addresses inside a single field, you could call the existing email method for each email:
+You can also reuse existing methods inside other custom methods, to reuse certain implementations. For example, if you're writing a custom method for validating email addresses inside a single field, you could call the existing `email` method for each email:
 
 ```js
 jQuery.validator.methods.email.call(this, email, element)
@@ -82,7 +82,7 @@ The priorities are as follows: A custom message (passed by plugin options), the 
 When using data attributes, you can set a generic message for all rules, or specific messages per rule:
 ```html
 <input required data-msg="Please fill this field">
-<input data-rule-minlength="2" data-rule-maxlength="4" data-msg-minlength="At least two chars" data-msg-maxlength="At most fours chars">
+<input data-rule-minlength="2" data-rule-maxlength="4" data-msg-minlength="At least two chars" data-msg-maxlength="At most four chars">
 ```
 
 # Error message display
@@ -98,7 +98,7 @@ By default, the first invalid element in a form is focused after submitting a fo
 By default, the form submission is prevented when the form is invalid, and submitted as normal when it is valid. You can also handle the submission manually (option `submitHandler`).
 
 ## Skipping validation on submit
-To skip validation while still using a submit-button, add the attribte "formnovalidate" to that input:
+To skip validation while still using a submit-button, add the attribute "formnovalidate" to that input:
 
 ```html
  <input type="submit" name="go" value="Submit">
