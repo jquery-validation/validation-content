@@ -21,7 +21,7 @@
     }
   ],
   "dependencies": {
-    "grunt": "0.4.5",
+    "grunt": "1.5.3",
     "grunt-jquery-content": "2.0.0"
   }
 }
