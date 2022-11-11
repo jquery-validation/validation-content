@@ -51,7 +51,7 @@ Of course that isn't the only way to specify rules. You also don't have to rely 
 ### A few things to look out for when playing around with the demo
 
 * After trying to submit an invalid form, the first invalid element is focused, allowing the user to correct the field. If another invalid field - that wasn't the first one - was focused before submit, that field is focused instead, allowing the user to start at the bottom if he or she prefers.
-* Before a field is marked as invalid, the validation is lazy: Before submitting the form for the first time, the user can tab through fields without getting annoying messages - they won't get bugged before having the chance to actually enter a correct value
+* Before a field is marked as invalid, the validation is lazy: Before submitting the form for the first time, the user can tab through fields without getting annoying messages - they won't get bugged before having the chance to actually enter a correct value. Note however that once a user has edited a field, it will start getting validated even before the user submits the form.
 * Once a field is marked invalid, it is eagerly validated: As soon as the user has entered the necessary value, the error message is removed
 * If the user enters something in a non-marked field, and tabs/clicks away from it (blur the field), it is validated - obviously the user had the intention to enter something, but failed to enter the correct value
 
