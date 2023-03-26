@@ -174,6 +174,32 @@ So the correct code looks slightly different:
  });
 </code></pre>
 
+## Combining validators (for example, fulfill one rule OR another)
+
+The current format for rules ANDs all the rules that are specified.
+<pre><code>
+rules: {
+    // simple rule, converted to {required:true}
+    name: "required",
+    // compound rule
+    email: {
+      required: true,
+      email: true
+    }
+  }
+</code></pre>
+
+When multiple rules need to be combined a custom rule can be created that glues the logic. For example requiring one field to validate as a Spanish NIF or NIE the following code can be added to your project. 
+<pre><code>
+jQuery.validator.addMethod( "nifnieES", function( value, element ) {
+  "use strict";
+
+  return jQuery.validator.methods.nifES.call(this, value, element) || jQuery.validator.methods.nieES.call(this, value, element);
+
+}, "Please specify a valid NIF/NIE number." );
+</code></pre>
+Then the rule nifnieES can be used.
+
 # Demos
 
 ## [The Marketo sign-up form](https://jqueryvalidation.org/files/demo/marketo/)
